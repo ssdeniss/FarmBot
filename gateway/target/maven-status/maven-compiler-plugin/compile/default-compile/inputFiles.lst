@@ -1,7 +1,0 @@
-/app/src/main/java/md/customs/frontiera/gateway/GatewayApplication.java
-/app/src/main/java/md/customs/frontiera/gateway/configs/TokenFilterFactory.java
-/app/src/main/java/md/customs/frontiera/gateway/utils/JwtUtils.java
-/app/src/main/java/md/customs/frontiera/gateway/configs/CorsConfig.java
-/app/src/main/java/md/customs/frontiera/gateway/controllers/HealthCheck.java
-/app/src/main/java/md/customs/frontiera/gateway/clients/AuthenticationClient.java
-/app/src/main/java/md/customs/frontiera/gateway/utils/Consume.java
