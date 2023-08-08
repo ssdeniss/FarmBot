@@ -1,0 +1,10 @@
+/app/src/main/java/md/utm/farmbot/auth/exceptions/UnauthorizedException.java
+/app/src/main/java/md/utm/farmbot/auth/AuthApplication.java
+/app/src/main/java/md/utm/farmbot/auth/exceptions/UnauthenticatedException.java
+/app/src/main/java/md/utm/farmbot/auth/dtos/AuthenticatedUserDTO.java
+/app/src/main/java/md/utm/farmbot/auth/utils/RequestUtils.java
+/app/src/main/java/md/utm/farmbot/auth/controllers/LocalAuthenticationController.java
+/app/src/main/java/md/utm/farmbot/auth/services/LocalAuthenticationService.java
+/app/src/main/java/md/utm/farmbot/auth/dtos/UsernamePasswordCredentialsDTO.java
+/app/src/main/java/md/utm/farmbot/auth/exceptions/PlatformException.java
+/app/src/main/java/md/utm/farmbot/auth/utils/ServletUtils.java

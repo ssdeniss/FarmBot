@@ -1,0 +1,68 @@
+server:
+  servlet:
+    context-path: /
+app:
+  secure-connection: ${APP_SECURE_CONNECTION:true}
+  security:
+    permit:
+      - method: POST
+        url: /v1/local
+      - method: POST
+        url: /v1/local/token
+      - method: GET
+        url: /v1/logout
+  jwt:
+    secret: ${JWT_SECRET:JWTSECRETSHOULDBE256BITSASPERJWTSPECIFICATIONRFC7518}
+    expire: ${JWT_EXPIRE:86400}
+  serviceaccount:
+    role: ${SERVICEACCOUNT_ROLE:ROLE_SERVICEACCOUNT}
+services:
+  users:
+    host: ${SERVICES_USERS_HOST}
+    endpoints:
+      details: ${SERVICES_USERS_ENDPOINT_DETAILS}
+      authenticate: ${SERVICES_USERS_ENDPOINT_AUTHENTICATE}
+javers:
+  sqlSchemaManagementEnabled: false
+management:
+  endpoint:
+    info:
+      enabled: true
+    mappings:
+      enabled: true
+    metrics:
+      enabled: true
+logging:
+  level:
+    root: INFO
+    md.utm.farmbot: DEBUG
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driverClassName: org.postgresql.Driver
+  flyway:
+    enabled: false
+
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: none
+    open-in-view: false
+    show-sql: true
+
+  cloud:
+    loadbalancer.ribbon.enabled: false
+  output:
+    ansi:
+      enabled: always
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+logging:
+  level:
+    root: WARN
+    md.utm.farmbot: INFO

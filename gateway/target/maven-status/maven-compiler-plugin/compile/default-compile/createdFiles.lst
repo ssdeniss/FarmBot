@@ -1,0 +1,8 @@
+md/customs/frontiera/gateway/clients/AuthenticationClient.class
+md/customs/frontiera/gateway/controllers/HealthCheck.class
+md/customs/frontiera/gateway/utils/JwtUtils.class
+md/customs/frontiera/gateway/configs/TokenFilterFactory$Config.class
+md/customs/frontiera/gateway/GatewayApplication.class
+md/customs/frontiera/gateway/utils/Consume.class
+md/customs/frontiera/gateway/configs/CorsConfig.class
+md/customs/frontiera/gateway/configs/TokenFilterFactory.class
