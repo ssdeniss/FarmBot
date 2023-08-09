@@ -1,0 +1,15 @@
+.header {
+  height: 60px;
+  color: $white;
+  background-color: $primary;
+  width: 100vw;
+  .container {
+    height: 100%;
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+}

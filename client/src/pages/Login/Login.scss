@@ -1,0 +1,29 @@
+.login {
+  width: 100vw;
+  height: calc(100vh - 60px);
+  background-color: rgba(18, 114, 77, 0.253);
+  &__form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(
+      160deg,
+      rgba(217, 217, 217, 0.32) 0%,
+      rgba(217, 217, 217, 0.08) 100%
+    );
+    box-shadow: $darkShadow;
+    backdrop-filter: blur(20px);
+  }
+  &__title {
+    text-align: center;
+  }
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

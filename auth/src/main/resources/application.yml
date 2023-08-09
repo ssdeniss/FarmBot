@@ -17,11 +17,10 @@ app:
   serviceaccount:
     role: ${SERVICEACCOUNT_ROLE:ROLE_SERVICEACCOUNT}
 services:
-  users:
-    host: ${SERVICES_USERS_HOST}
+  backend:
+    host: ${SERVICES_BACKEND_HOST}
     endpoints:
-      details: ${SERVICES_USERS_ENDPOINT_DETAILS}
-      authenticate: ${SERVICES_USERS_ENDPOINT_AUTHENTICATE}
+      authenticate: ${SERVICES_BACKEND_ENDPOINT_AUTHENTICATE}
 javers:
   sqlSchemaManagementEnabled: false
 management:
@@ -44,14 +43,12 @@ spring:
     driverClassName: org.postgresql.Driver
   flyway:
     enabled: false
-
   jpa:
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate.ddl-auto: none
     open-in-view: false
-    show-sql: true
-
+    show-sql: false
   cloud:
     loadbalancer.ribbon.enabled: false
   output:

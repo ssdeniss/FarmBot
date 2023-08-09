@@ -27,7 +27,6 @@ public class LocalAuthenticationController {
 
     private final LocalAuthenticationService authenticationService;
 
-
     @PostMapping(consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity<Void> login(
             @ModelAttribute UsernamePasswordCredentialsDTO credentials,

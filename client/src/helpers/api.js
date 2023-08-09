@@ -69,7 +69,7 @@ const getSearchQueryString = (data) =>
 
 export const search = (endpoint, data, options = {}) =>
   fetch(
-    `${window._env_.API_BACKEND_URL}${endpoint}${
+    `${process.env.REACT_APP_API_BACKEND_URL}${endpoint}${
       endpoint.endsWith('&') ? '' : '?'
     }${getSearchQueryString(data)}`,
     {
@@ -87,7 +87,7 @@ export const search = (endpoint, data, options = {}) =>
     .then((resp) => resp.json());
 
 export const get = (endpoint, options = {}) =>
-  fetch(`${window._env_.API_BACKEND_URL}${endpoint}`, {
+  fetch(`${process.env.REACT_APP_API_BACKEND_URL}${endpoint}`, {
     method: 'GET',
     credentials: 'include',
     ...options,
@@ -101,7 +101,7 @@ export const get = (endpoint, options = {}) =>
     .then((resp) => resp.json());
 
 export const getMpass = async (endpoint, options = {}) =>
-  fetch(`${window._env_.API_BACKEND_URL}${endpoint}`, {
+  fetch(`${process.env.REACT_APP_API_BACKEND_URL}${endpoint}`, {
     method: 'GET',
     ...options,
     headers: {
@@ -111,7 +111,7 @@ export const getMpass = async (endpoint, options = {}) =>
   }).then(handleHttpErrors);
 
 export const downloadFile = async (endpoint, options = {}) =>
-  fetch(`${window._env_.API_BACKEND_URL}${endpoint}`, {
+  fetch(`${process.env.REACT_APP_API_BACKEND_URL}${endpoint}`, {
     method: 'GET',
     credentials: 'include',
     headers: {
@@ -121,7 +121,7 @@ export const downloadFile = async (endpoint, options = {}) =>
   }).then(handleHttpErrors);
 
 export const post = (endpoint, data, options = {}) =>
-  fetch(`${window._env_.API_BACKEND_URL}${endpoint}`, {
+  fetch(`${process.env.REACT_APP_API_BACKEND_URL}${endpoint}`, {
     method: 'POST',
     credentials: 'include',
     ...options,
@@ -137,7 +137,7 @@ export const post = (endpoint, data, options = {}) =>
     .then((resp) => resp.json());
 
 export const postScheduler = async (endpoint, data, options = {}) =>
-  fetch(`${window._env_.API_BACKEND_URL}${endpoint}`, {
+  fetch(`${process.env.REACT_APP_API_BACKEND_URL}${endpoint}`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -150,7 +150,7 @@ export const postScheduler = async (endpoint, data, options = {}) =>
   }).then(handleHttpErrors);
 
 export const postMpass = async (endpoint, data, options = {}) =>
-  fetch(`${window._env_.API_BACKEND_URL}${endpoint}`, {
+  fetch(`${process.env.REACT_APP_API_BACKEND_URL}${endpoint}`, {
     method: 'POST',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
@@ -159,7 +159,7 @@ export const postMpass = async (endpoint, data, options = {}) =>
   }).then(handleHttpErrors);
 
 export const postWithRawResponse = (endpoint, data, options = {}) =>
-  fetch(`${window._env_.API_BACKEND_URL}${endpoint}`, {
+  fetch(`${process.env.REACT_APP_API_BACKEND_URL}${endpoint}`, {
     method: 'POST',
     credentials: 'include',
     ...options,
@@ -174,7 +174,7 @@ export const postWithRawResponse = (endpoint, data, options = {}) =>
     .then(handleHttpErrors);
 
 export const postFiles = async (endpoint, data, options = {}) =>
-  fetch(`${window._env_.API_BACKEND_URL}${endpoint}`, {
+  fetch(`${process.env.REACT_APP_API_BACKEND_URL}${endpoint}`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -186,7 +186,7 @@ export const postFiles = async (endpoint, data, options = {}) =>
   }).then(handleHttpErrors);
 
 export const put = (endpoint, data, options = {}) =>
-  fetch(`${window._env_.API_BACKEND_URL}${endpoint}`, {
+  fetch(`${process.env.REACT_APP_API_BACKEND_URL}${endpoint}`, {
     method: 'PUT',
     credentials: 'include',
     ...options,
@@ -201,7 +201,7 @@ export const put = (endpoint, data, options = {}) =>
     .then(handleHttpErrors);
 
 export const patch = (endpoint, data, options = {}) =>
-  fetch(`${window._env_.API_BACKEND_URL}${endpoint}`, {
+  fetch(`${process.env.REACT_APP_API_BACKEND_URL}${endpoint}`, {
     method: 'PATCH',
     credentials: 'include',
     ...options,
@@ -217,7 +217,7 @@ export const patch = (endpoint, data, options = {}) =>
 
 export const download = async (endpoint, data, options = {}) => {
   return fetch(
-    `${window._env_.API_BACKEND_URL}${endpoint}${
+    `${process.env.REACT_APP_API_BACKEND_URL}${endpoint}${
       endpoint.endsWith('&') ? '' : '?'
     }${getSearchQueryString(data)}`,
     {
@@ -246,7 +246,7 @@ export const download = async (endpoint, data, options = {}) => {
 };
 
 export const remove = (endpoint, options = {}) =>
-  fetch(`${window._env_.API_BACKEND_URL}${endpoint}`, {
+  fetch(`${process.env.REACT_APP_API_BACKEND_URL}${endpoint}`, {
     method: 'DELETE',
     credentials: 'include',
     ...options,

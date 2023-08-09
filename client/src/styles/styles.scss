@@ -1,0 +1,14 @@
+@import './colors.scss';
+@import './global.scss';
+@import './light.scss';
+@import './dark.scss';
+
+@import '../pages/Calendar/Calendar.scss';
+@import '../pages/Home/Home.scss';
+@import '../pages/Info/Info.scss';
+@import '../pages/Login/Login.scss';
+@import '../pages/NotFound/NotFound.scss';
+@import '../pages/Settings/Settings.scss';
+
+@import '../components/Header/Header.scss';
+@import '../components/Menu/Menu.scss';
