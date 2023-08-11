@@ -120,7 +120,7 @@ button.ant-btn.ant-btn-default {
 }
 
 .ant-input-affix-wrapper {
-  background-color: $greyLight;
+  // background-color: $greyLight;
   &:hover {
     border-color: $greyBlack !important;
   }
@@ -129,7 +129,7 @@ button.ant-btn.ant-btn-default {
     box-shadow: none !important;
   }
   input {
-    background-color: $greyLight;
+    // background-color: $greyLight;
     font-size: 14px;
     &::placeholder {
       font-size: 14px;

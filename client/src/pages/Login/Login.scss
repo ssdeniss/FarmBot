@@ -1,15 +1,13 @@
 .login {
   width: 100vw;
   height: calc(100vh - 60px);
-  background-color: rgba(18, 114, 77, 0.253);
+  display: flex;
+  justify-content: flex-end;
   &__form {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
+    max-width: 50vw;
+    width: 100%;
     padding: 20px;
-    border-radius: 10px;
+    margin-left: 10px;
     background: linear-gradient(
       160deg,
       rgba(217, 217, 217, 0.32) 0%,
@@ -17,13 +15,27 @@
     );
     box-shadow: $darkShadow;
     backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__form-content {
+    width: 100%;
+    max-width: 500px;
   }
   &__title {
     text-align: center;
+    margin-bottom: 20px;
+  }
+  &__form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
   &__buttons {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    margin-top: 20px;
   }
 }
