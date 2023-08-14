@@ -1,5 +1,6 @@
 package md.utm.farmbot.backend;
 
+import md.utm.farmBot.servicecore.ServiceCoreModule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -11,6 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @SpringBootApplication(
         scanBasePackageClasses = {
+                ServiceCoreModule.class,
                 BackendApplication.class
         }
 )

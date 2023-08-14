@@ -4,7 +4,7 @@ server:
 
 app:
   model:
-    package: md.utm.farmbot.backend.model
+    package: md.utm.farmbot.backend.models
   jwt:
     secret: ${JWT_SECRET:JWTSECRETSHOULDBE256BITSASPERJWTSPECIFICATIONRFC7518}
     expire: ${JWT_EXPIRE:86400}
@@ -68,4 +68,4 @@ spring:
 logging:
   level:
     root: WARN
-    md.utm.farmbot: INFO
+    md.utm.farmbot: DEBUG

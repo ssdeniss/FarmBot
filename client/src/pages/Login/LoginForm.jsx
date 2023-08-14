@@ -5,7 +5,7 @@ import { Button, Input, Alert, Divider } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import { useTranslation } from 'react-i18next';
-import { SERVICE_URI, BASE_URI } from '../../services/auth';
+import { SERVICE_URI, AUTH_URI } from '../../services/auth';
 
 const LoginForm = () => {
   const { t } = useTranslation();
@@ -25,7 +25,7 @@ const LoginForm = () => {
           name="log-in"
           id="log-in"
           method="POST"
-          action={`${process.env.REACT_APP_API_BACKEND_URL}${SERVICE_URI}${BASE_URI}`}
+          action={`${process.env.REACT_APP_API_BACKEND_URL}${SERVICE_URI}${AUTH_URI}`}
         >
           <div className="login__form-inputs">
             <Input
@@ -48,7 +48,7 @@ const LoginForm = () => {
           )}
 
           <div className="login__buttons">
-            <Button type="primary" block onClick={handleRedirectToHome}>
+            <Button block htmlType="submit">
               Autentificare
             </Button>
             <Divider />

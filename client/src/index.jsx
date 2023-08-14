@@ -13,8 +13,6 @@ if (process && process.env.NODE_ENV !== 'production') {
 
   // eslint-disable-next-line no-undef
   window._env_.API_BACKEND_URL = process.env.REACT_APP_API_BACKEND_URL;
-  window._env_.MPASS_LOGIN_URL = process.env.REACT_APP_MPASS_LOGIN_URL;
-  window._env_.MPASS_LOGOUT_URL = process.env.REACT_APP_MPASS_LOGOUT_URL;
   window._env_.VERSION = process.env.REACT_APP_VERSION;
 }
 

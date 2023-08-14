@@ -2,14 +2,14 @@ package md.utm.farmbot.auth.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import md.utm.farmBot.servicecore.configs.security.JwtTokenProvider;
 import md.utm.farmbot.auth.clients.BackendClient;
 import md.utm.farmbot.auth.dtos.AuthenticatedUserDTO;
 import md.utm.farmbot.auth.dtos.UsernamePasswordCredentialsDTO;
-import md.utm.farmbot.auth.token.JwtTokenProvider;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -24,13 +24,19 @@ public class LocalAuthenticationService {
 
     public String localAuthentication(UsernamePasswordCredentialsDTO credentials){
         String token = tokenProvider.generateServiceToken(LocalAuthenticationService.class.getName());
+        List<String> permission = new ArrayList<>();
+        permission.add("APP_USER");
+
         AuthenticatedUserDTO user = backendClient.authenticate(credentials, token);
         var opaqueToken = generateOpaqueToken();
+
         var jwtToken = tokenProvider.generateToken(
                 Map.of(
                         JwtTokenProvider.ISSUER, LocalAuthenticationService.class.getName(),
                         JwtTokenProvider.IDENTIFIER, user.getId(),
-                        JwtTokenProvider.SUBJECT, user.getUsername()
+                        JwtTokenProvider.SUBJECT, user.getUsername(),
+                        JwtTokenProvider.PERMISSIONS,
+                        user.getUsername() != null ? permission : Collections.emptyList()
                 )
         );
 
