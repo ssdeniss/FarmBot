@@ -2,8 +2,8 @@ package md.utm.farmbot.backend.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import md.utm.farmbot.backend.models.User;
 import md.utm.farmbot.backend.repositories.UserRepository;
+import md.utm.farmbot.backend.models.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

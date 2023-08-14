@@ -4,6 +4,7 @@ import md.utm.farmbot.auth.dtos.AuthenticatedUserDTO;
 import md.utm.farmbot.auth.dtos.UsernamePasswordCredentialsDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
@@ -14,6 +15,11 @@ public interface BackendClient {
     @PostMapping("${services.backend.endpoints.authenticate}")
     AuthenticatedUserDTO authenticate(
             UsernamePasswordCredentialsDTO credentials,
+            @RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken
+    );
+
+    @GetMapping("${services.backend.endpoints.details}")
+    AuthenticatedUserDTO getUserDetails(
             @RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken
     );
 }

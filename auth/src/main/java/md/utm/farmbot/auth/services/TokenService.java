@@ -12,8 +12,6 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class TokenService {
 
-    private final ObjectMapper objectMapper;
-
     private final Cache<String, String> CACHE = CacheBuilder.newBuilder()
             .expireAfterAccess(Duration.ofDays(14))
             .build();

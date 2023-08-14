@@ -21,6 +21,7 @@ services:
     host: ${SERVICES_BACKEND_HOST}
     endpoints:
       authenticate: ${SERVICES_BACKEND_ENDPOINT_AUTHENTICATE}
+      details: ${SERVICES_BACKEND_ENDPOINT_DETAILS}
 javers:
   sqlSchemaManagementEnabled: false
 management:
@@ -62,4 +63,4 @@ spring:
 logging:
   level:
     root: WARN
-    md.utm.farmbot: INFO
+    md.utm.farmbot: DEBUG
