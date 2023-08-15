@@ -14,9 +14,23 @@ NC='\033[0m'  # No Color
 # -l show logs of all or [cont1, cont2, cont3, ...] in same terminal (!recomended to use only with one parameter)
 # - force befor main script remove everething from docker
 
+if [ ! -f "run.config" ]; then
+   echo -e "${RED}ERR${NC} | 'run.config' file not found, \n${RED} ->${NC} | Please create it in the same directory with 'run.sh'"	
+   exit 1
+fi
+
+
 # Change direction
-directory=$(cat run_configuration | grep -E "^directory=" | cut -d '=' -f 2)
-cd "$directory"
+directory=$(grep -E "^\s*directory=" run.config | grep -vE "^#" | cut -d '=' -f 2)
+if [ -z "$directory" ]; then
+    # If directory is not found, set it to the current working directory (pwd)
+    directory=$(pwd)
+fi
+
+cd "$directory" || {
+    echo -e "${RED} ->${NC} Failed to change to directory ${YELLOW}'$directory'${NC}. Exiting script."
+    exit 1
+}
 
 # Initialize arrays to store functions and parameters
 functions=()
@@ -49,7 +63,7 @@ launch_container() {
 stop_container(){
 	container="$1"
     	echo -e "${YELLOW}(Stopping)${NC} container from Docker:${BLUE} $container ${NC} "
-    	echo -ne "${RED}(Stoped)${NC} -> "
+    	echo -ne "${RED}(Stoped) -> ${NC}"
     	docker stop "$container"  
 }
 
@@ -59,11 +73,11 @@ reload_container() {
 	stop_container "$container"
    
     	echo -e "${YELLOW}(Removing)${NC} container from Docker:${BLUE} $container ${NC} "
-    	echo -ne "${RED}(Removed)${NC} -> "
+    	echo -ne "${RED}(Removed) -> ${NC}"
     	docker rm "$container"  
     	echo -e "${GREEN}(Launching)${NC} container from Docker:${BLUE} $container ${NC} "
-    	echo -ne "${GREEN}(Docker Response)${NC} -> "
-    	docker-compose up -d "$container" 2>&1 | grep -E "(done)" 	
+    	echo -ne "${GREEN}(Docker Response) -> ${NC}"
+    	docker-compose up -d "$container"	
 }
 
 
@@ -112,22 +126,18 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-echo -e "\033[H\033[2J"
 
 if [[ " ${functions[@]} " =~ " -force " ]]; then
+  echo -e "\033[H\033[2J"
   if [ "$(docker ps -q)" ]; then
     echo -e "${YELLOW}(PREPARING...)${NC} clean space"
     docker stop $(docker ps -q)
-    echo ""
   fi
   if [ "$(docker ps -qa)" ]; then
     echo -e "${RED}(CLEANING...)${NC} docker memory"
     docker rm $(docker ps -qa)
-    echo ""
     echo -e "${GREEN}(DONE)${NC} docker memory clear"
-    echo ""
   else
-    echo ""
     echo -e "${GREEN}Docker memory clear${NC}"
     echo ""
   fi
@@ -135,7 +145,13 @@ fi
 
 
 # Define the list
-critical_containers=("gateway" "postgres" "auth" "backend")
+if grep -qE "^\s*containers=" run.config; then
+    containers_string=$(grep -E "^\s*containers=" run.config | cut -d '=' -f 2)
+    IFS=',' read -ra container_names <<< "$containers_string"
+    critical_containers=("${container_names[@]// /}") 
+else
+    critical_containers=("gateway" "postgres" "auth" "backend")
+fi
 running_containers=$(docker ps --format '{{.Names}}')
 all_containers=$(docker ps -a --format '{{.Names}}')
 

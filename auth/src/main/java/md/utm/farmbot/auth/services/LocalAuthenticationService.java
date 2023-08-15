@@ -7,7 +7,6 @@ import md.utm.farmbot.auth.clients.BackendClient;
 import md.utm.farmbot.auth.dtos.AuthenticatedUserDTO;
 import md.utm.farmbot.auth.dtos.UsernamePasswordCredentialsDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
