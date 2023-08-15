@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 import { getCurrentUserDetails } from '../../services/auth';
 
 const AuthContext = React.createContext(null);
@@ -70,7 +70,7 @@ export const hasPermission = (userPerm, allowedPerm) => {
 export const IsAuthenticated = ({ children }) => {
   const { user } = useContext(AuthContext);
 
-  return user ? <>{children}</> : <Redirect to="/" />;
+  return user ? <>{children}</> : <Navigate to="/" />;
 };
 
 export const HasPermission = ({ permissions, children }) => {
@@ -103,9 +103,9 @@ export const PrivateRoute = ({
           if (hasPermission(user.permissions, permissions)) {
             return <Component {...props} key={props.location.search} />;
           }
-          return <Redirect to={{ pathname: '/forbidden' }} />;
+          return <Navigate to="/forbidden" />;
         }
-        return <Redirect to={{ pathname: '/' }} />;
+        return <Navigate to="/" />;
       }}
     />
   );

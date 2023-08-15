@@ -1,0 +1,75 @@
+.menu {
+  position: absolute;
+  left: 200px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: $primary;
+  padding: 20px 10px;
+  border-radius: 50px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s linear;
+  transform: rotate(-90deg);
+
+  &__indicator {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: $greyMedium;
+    border-radius: 50%;
+    border: 6px solid $greyLight;
+    transition: all 0.5s linear;
+    left: 50%;
+    top: 0;
+    &::before {
+      content: '';
+      position: absolute;
+      background-color: transparent;
+      width: 20px;
+      height: 20px;
+      top: -15px;
+      left: 2px;
+      border-bottom-right-radius: 50px;
+      box-shadow: 10px 0px 0 0 $greyLight;
+    }   
+     &::after {
+      content: '';
+      position: absolute;
+      background-color: transparent;
+      width: 20px;
+      height: 20px;
+      bottom: -22px;
+      left: 3px;
+      border-top-right-radius: 50px;
+      box-shadow: 10px 0px 0 0 $greyLight;
+    }
+  }
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+  }
+  &__item {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.5s linear;
+    &.active {
+      transform: translateX(30px);
+      svg {
+        fill: $primary;
+      }
+    }
+    svg {
+      width: 35px;
+      height: 35px;
+      fill: $white;
+    }
+  }
+}

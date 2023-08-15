@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import i18n from 'i18next';
 import backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
@@ -31,11 +31,11 @@ i18n
       useSuspense: false,
     },
   });
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
 
-ReactDOM.render(
+root.render(
   <ConfigProvider locale={localeRo}>
     <App />
   </ConfigProvider>,
-
-  document.getElementById('root'),
 );

@@ -4,8 +4,8 @@ import AuthContext from '../pages/Login';
 
 const Default = ({ children }) => {
   const { user } = useContext(AuthContext);
-  // const history = useHistory();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (user?.id) {
       navigate('/home');

@@ -2,7 +2,6 @@
 body {
   font-family: 'Inter', sans-serif !important;
   font-weight: 500 !important;
-  overflow-x: hidden;
 }
 .container {
   max-width: 1300px;
@@ -50,6 +49,15 @@ div {
 .text {
   font-size: 0.75rem;
   line-height: 1.125rem;
+}
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 button.ant-btn.ant-btn-primary {
