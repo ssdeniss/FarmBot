@@ -15,8 +15,14 @@ NC='\033[0m'  # No Color
 # - force befor main script remove everething from docker
 
 if [ ! -f "run.config" ]; then
-   echo -e "${RED}ERR${NC} | 'run.config' file not found, \n${RED} ->${NC} | Please create it in the same directory with 'run.sh'"	
-   exit 1
+   echo -e "${YELLOW}INFO:${NC} | 'run.config' file not found"	
+   touch run.config
+   chmod a+rw run.config
+   # Define the text to be added
+   config_text="#\n# ### DEFAULT CONFIGURATION ###\n\n# directory=<pwd>\n# containers=gateway, postgres, auth, backend\n\n# ###                       ###\n\n# MAKE YOUR CUSTOM CONFIG:"
+   # Append the text to run.config
+   echo -e "$config_text" >> run.config
+   echo -e "${GREEN}INFO:${NC} | default 'run.config' file was created in same directory."	
 fi
 
 
