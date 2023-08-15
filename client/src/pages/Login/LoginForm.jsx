@@ -1,16 +1,17 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-
 import { Button, Input, Alert, Divider } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-
 import { useTranslation } from 'react-i18next';
 import { SERVICE_URI, AUTH_URI } from '../../services/auth';
+import AuthContext from '.';
 
 const LoginForm = () => {
   const { t } = useTranslation();
   const { search } = useLocation();
   const isInvalid = useMemo(() => search === '?invalid', [search]);
+  const { user } = useContext(AuthContext);
+
   // const history = useHistory();
 
   const handleRedirectToHome = () => {
@@ -18,7 +19,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="login__form">
+    <div className={`login__form ${user?.id ? '' : 'active'}`}>
       <div className="login__form-content">
         <h4 className="login__title">Autentificare</h4>
         <form
