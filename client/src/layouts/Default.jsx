@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import AuthContext from '../pages/Login';
 import Menu from '../components/Menu/Menu';
 import Header from '../components/Header/Header';
 
 const Default = ({ children }) => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (user?.id) {
-      navigate('/home');
+      // navigate('/home');
     }
     // eslint-disable-next-line
   }, [user?.id]);

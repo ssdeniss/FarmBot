@@ -1,25 +1,25 @@
 import React, { useMemo, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Input, Alert, Divider } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { SERVICE_URI, AUTH_URI } from '../../services/auth';
 import AuthContext from '.';
+import Drawer from '../../components/Drawer';
 
 const LoginForm = () => {
   const { t } = useTranslation();
   const { search } = useLocation();
   const isInvalid = useMemo(() => search === '?invalid', [search]);
   const { user } = useContext(AuthContext);
-
-  // const history = useHistory();
+  const navigate = useNavigate();
 
   const handleRedirectToHome = () => {
-    // history.push('/home');
+    navigate('/home');
   };
 
   return (
-    <div className={`login__form ${user?.id ? '' : 'active'}`}>
+    <Drawer active={!user?.id}>
       <div className="login__form-content">
         <h4 className="login__title">Autentificare</h4>
         <form
@@ -49,7 +49,7 @@ const LoginForm = () => {
           )}
 
           <div className="login__buttons">
-            <Button block htmlType="submit">
+            <Button block htmlType="submit" type="primary">
               Autentificare
             </Button>
             <Divider />
@@ -59,7 +59,7 @@ const LoginForm = () => {
           </div>
         </form>
       </div>
-    </div>
+    </Drawer>
   );
 };
 

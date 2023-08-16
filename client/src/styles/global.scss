@@ -3,6 +3,9 @@ body {
   font-family: 'Inter', sans-serif !important;
   font-weight: 500 !important;
 }
+body {
+  overflow-x: hidden;
+}
 .container {
   max-width: 1300px;
   margin: 0 auto;
@@ -142,5 +145,31 @@ button.ant-btn.ant-btn-default {
     &::placeholder {
       font-size: 14px;
     }
+  }
+}
+
+.drawer {
+  max-width: 50vw;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  margin-left: 10px;
+  background: linear-gradient(
+    160deg,
+    rgba(217, 217, 217, 0.32) 0%,
+    rgba(217, 217, 217, 0.08) 100%
+  );
+  box-shadow: $darkShadow;
+  backdrop-filter: blur(20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: -1800px;
+  transition: all 0.5s linear;
+  &.active {
+    transition: all 0.5s linear;
+    right: 0;
   }
 }
