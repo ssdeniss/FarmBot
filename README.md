@@ -16,7 +16,7 @@ The Farm Bot project consists of several services, each serving a specific purpo
 -> Servicecore
 	allow using: hibernate, JWT sequrity, FeignClients, JPA Specifications and Datasource, Password unidirictional encription.
 
-<!>see docker-compose file for more
+<!> see docker-compose file for more
 
 ###########################################################################################################################################################################################################
 ### GETTING STARTED ### ###################################################################################################################################################################################
@@ -29,7 +29,7 @@ To start the Farm Bot project, you'll need to follow these steps:
 	Edit the .env file to configure environment variables used by the services (such as database credentials).
 	Make sure the paths in the volumes sections of the Docker Compose file match your system paths.
 
-->Running the Project:
+-> Running the Project:
 	* Open a terminal and navigate to the project directory.
 	* Make shure that have permission: sudo chmod +x run.sh		
 	* Configure "run.config" if needed
@@ -47,9 +47,9 @@ To start the Farm Bot project, you'll need to follow these steps:
       custom  run: sudo ./run.sh -restart backend auth (or any other services | functions)
 -----------------------------------------------------------------------------------------------
 
-<!>Use service names (e.g., gateway, auth) to target specific services.
+<!> Use service names (e.g., gateway, auth) to target specific services.
 
-<!>Accessing Services:
+<!> Accessing Services:
 	Once the services are up, you can access them via the exposed ports on your Raspberry Pi.
 	For example, the gateway service can be accessed at http://<your_pi_ip>:18000. => ATENTION => set that in .env as REACT_APP_API_BACKEND_URL
 
@@ -68,7 +68,7 @@ The project is set up with Maven <3.6.3> for building and running tests. You can
 ### OPEN SOURCE && AUTHORS ################################################################################################################################################################################
 GIT: 
 	George Postica -> https://github.com/GeorgePostica/farmBot.git
-	Seremet Denis  -> https://github.com/ssdeniss/farmBot.git
+	Șeremet Denis  -> https://github.com/ssdeniss/farmBot.git
 	
 
 ### LICENSE ###

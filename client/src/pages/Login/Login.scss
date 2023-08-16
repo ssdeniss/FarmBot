@@ -22,10 +22,10 @@
     align-items: center;
     position: absolute;
     top: 0;
-    right: 800px;
-    transition: all 0.5s linear;
+    right: -1800px;
+    transition: all 5.5s linear;
     &.active {
-      transition: all 0.5s linear;
+      transition: all 5.5s linear;
       right: 0;
     }
   }
