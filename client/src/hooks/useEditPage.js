@@ -1,43 +1,33 @@
 import { useEffect, useState, useCallback, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 
 import { notification } from 'antd';
 
-import { useRouteParams } from './useRouteParams';
-
 export function useEditPage({
+  id,
+  isNew,
+  isInvalid,
   initial,
   dependency = null, // will trigger findOne function on change
   existent,
-  goBackPath,
-  goForwardPath,
-  pushBackOnError = true,
   onInvalid, // or handleCancel will be called
   onFailed,
   onCreate,
   onUpdate,
+  onCancel = () => {},
+  onError = () => {},
+  onSuccess = () => {},
 }) {
-  const { id, isNew, isInvalid } = useRouteParams();
-  const { t } = useTranslation();
-  const history = useHistory();
   const [entity, setEntity] = useState(undefined);
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleFail = useCallback(
-    (err) => {
-      notification.error({
-        message: t('actions.loadFailed', err),
-      });
-    },
-    [t],
-  );
+  const handleFail = useCallback(() => {
+    notification.error({
+      message: 'Eroare la încărcarea datelor',
+    });
+  }, []);
 
-  const handleCancel = useCallback(
-    () => history.push(goBackPath),
-    [goBackPath, history],
-  );
+  const handleCancel = useCallback(() => onCancel(), [onCancel]);
 
   useEffect(() => {
     if (isInvalid) {
@@ -53,7 +43,7 @@ export function useEditPage({
           if (typeof onFailed === 'function') {
             onFailed(err);
           } else {
-            handleFail(err);
+            handleFail();
           }
         });
     }
@@ -77,19 +67,12 @@ export function useEditPage({
       return (isNew ? onCreate(value) : onUpdate({ ...value, id }))
         .then((res) => {
           notification.success({
-            message: t('actions.saveSuccessful'),
+            message: 'Datele au fost salvate cu succes',
             duration: 3,
           });
-
-          const url =
-            typeof goForwardPath === 'function'
-              ? goForwardPath(res)
-              : goForwardPath || goBackPath;
-
-          // eslint-disable-next-line no-unused-expressions
-          url.startsWith('!')
-            ? history.replace(url.substring(1))
-            : history.push(url);
+          if (onSuccess && typeof onSuccess === 'function') {
+            onSuccess(res);
+          }
         })
         .catch((msg) => {
           const { inner, status } = msg || {};
@@ -98,38 +81,18 @@ export function useEditPage({
           setErrors(inner);
 
           notification.error({
-            message: messageCode || t('actions.saveFailed'),
+            message: messageCode || 'Erroare la extragerea datelor',
           });
 
-          if (status === 409 && pushBackOnError) {
-            setTimeout(() => {
-              const url =
-                typeof goForwardPath === 'function'
-                  ? goForwardPath({ ...value, id })
-                  : goForwardPath || goBackPath;
-
-              // eslint-disable-next-line no-unused-expressions
-              url.startsWith('!')
-                ? history.replace(url.substring(1))
-                : history.push(url);
-            }, 1500);
+          if (status === 409 && onError && typeof onError === 'function') {
+            onError();
           }
 
           return Promise.reject(msg);
         })
         .finally(() => setLoading(false));
     },
-    [
-      goBackPath,
-      goForwardPath,
-      history,
-      id,
-      isNew,
-      onCreate,
-      onUpdate,
-      t,
-      pushBackOnError,
-    ],
+    [id, isNew, onCreate, onUpdate, onError, onSuccess],
   );
   const result = useMemo(
     () => [entity, handleSubmit, handleCancel, errors, loading],

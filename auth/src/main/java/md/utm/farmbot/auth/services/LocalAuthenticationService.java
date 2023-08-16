@@ -23,8 +23,6 @@ public class LocalAuthenticationService {
 
     public String localAuthentication(UsernamePasswordCredentialsDTO credentials){
         String token = tokenProvider.generateServiceToken(LocalAuthenticationService.class.getName());
-        List<String> permission = new ArrayList<>();
-        permission.add("APP_USER");
 
         AuthenticatedUserDTO user = backendClient.authenticate(credentials, token);
         var opaqueToken = generateOpaqueToken();
@@ -35,7 +33,7 @@ public class LocalAuthenticationService {
                         JwtTokenProvider.IDENTIFIER, user.getId(),
                         JwtTokenProvider.SUBJECT, user.getUsername(),
                         JwtTokenProvider.PERMISSIONS,
-                        user.getUsername() != null ? permission : Collections.emptyList()
+                        user.getPermission() != null ? List.of(user.getPermission()) : Collections.emptyList()
                 )
         );
 
