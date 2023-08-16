@@ -1,0 +1,45 @@
+server:
+  servlet:
+    context-path: /
+app:
+  secure-connection: ${APP_SECURE_CONNECTION:true}
+
+  jwt:
+    secret: ${JWT_SECRET:JWTSECRETSHOULDBE256BITSASPERJWTSPECIFICATIONRFC7518}
+    expire: ${JWT_EXPIRE:86400}
+  serviceaccount:
+    role: ${SERVICEACCOUNT_ROLE:ROLE_SERVICEACCOUNT}
+services:
+  backend:
+    host: ${SERVICES_BACKEND_HOST}
+javers:
+  sqlSchemaManagementEnabled: false
+management:
+  endpoint:
+    info:
+      enabled: true
+    mappings:
+      enabled: true
+    metrics:
+      enabled: true
+logging:
+  level:
+    root: INFO
+    md.utm.farmbot: DEBUG
+spring:
+  flyway:
+    enabled: false
+  cloud:
+    loadbalancer.ribbon.enabled: false
+  output:
+    ansi:
+      enabled: always
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+logging:
+  level:
+    root: WARN
+    md.utm.farmbot: DEBUG
