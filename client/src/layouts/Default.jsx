@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../pages/Login';
+import Menu from '../components/Menu/Menu';
+import Header from '../components/Header/Header';
 
 const Default = ({ children }) => {
   const { user } = useContext(AuthContext);
@@ -13,7 +15,13 @@ const Default = ({ children }) => {
     // eslint-disable-next-line
   }, [user?.id]);
 
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      {user?.id ? <Menu /> : null}
+      {children}
+    </>
+  );
 };
 
 export default Default;

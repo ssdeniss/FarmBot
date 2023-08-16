@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Icon from '../Icon';
 
+const ICONS_DISTANCE = 69;
+
 const Menu = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [currentMenuItem, setCurrentMenuItem] = useState('');
+  const [distance, setDistance] = useState(0);
+  const [menuHover, setMenuHover] = useState(false);
 
-  const handleNavigate = (nav) => {
+  const handleNavigate = (nav, index) => {
     navigate(`/${nav}`);
+    setDistance(index * ICONS_DISTANCE);
   };
 
   useEffect(() => {
@@ -16,13 +21,17 @@ const Menu = () => {
   }, [location.pathname]);
 
   return (
-    <div className="menu">
+    <div
+      className={`menu ${menuHover ? 'active' : ''}`}
+      onMouseEnter={() => setMenuHover(true)}
+      onMouseLeave={() => setMenuHover(false)}
+    >
+      <Icon className="menu__icon" name="menu" />
       <div className="menu__items">
-        <div className="menu__indicator" />
         <button
           className={`menu__item ${currentMenuItem === 'home' ? 'active' : ''}`}
           type="button"
-          onClick={() => handleNavigate('home')}
+          onClick={() => handleNavigate('home', 0)}
         >
           <Icon name="home" />
         </button>
@@ -31,7 +40,7 @@ const Menu = () => {
             currentMenuItem === 'library' ? 'active' : ''
           }`}
           type="button"
-          onClick={() => handleNavigate('library')}
+          onClick={() => handleNavigate('library', 1)}
         >
           <Icon name="library" />
         </button>
@@ -40,7 +49,7 @@ const Menu = () => {
             currentMenuItem === 'calendar' ? 'active' : ''
           }`}
           type="button"
-          onClick={() => handleNavigate('calendar')}
+          onClick={() => handleNavigate('calendar', 2)}
         >
           <Icon name="calendar" />
         </button>
@@ -49,10 +58,23 @@ const Menu = () => {
             currentMenuItem === 'settings' ? 'active' : ''
           }`}
           type="button"
-          onClick={() => handleNavigate('settings')}
+          onClick={() => handleNavigate('settings', 3)}
         >
           <Icon name="settings" />
         </button>
+        <button
+          className={`menu__item ${
+            currentMenuItem === 'administration' ? 'active' : ''
+          }`}
+          type="button"
+          onClick={() => handleNavigate('administration', 4)}
+        >
+          <Icon name="administration" />
+        </button>
+        <div
+          className="menu__indicator"
+          style={{ transform: `translateY(${distance}px)` }}
+        />
       </div>
     </div>
   );
