@@ -21,7 +21,7 @@ const PlantType = ({ id = null, onCancel, reload = () => {} }) => {
   });
 
   // TODO: add app loader for loading
-  console.log('TODO here ', loading);
+  console.log('TODO here -> ', loading);
 
   return (
     <EditPlantTypeForm
