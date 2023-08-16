@@ -1,4 +1,4 @@
-package md.utm.farmbot.backend.dtos;
+package md.utm.farmbot.backend.dtos.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -11,4 +11,5 @@ public class AuthenticatedUserResponse {
     private Long id;
     private String username;
     private String fullname;
+    private String permission;
 }

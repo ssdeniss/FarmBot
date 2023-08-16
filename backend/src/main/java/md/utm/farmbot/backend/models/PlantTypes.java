@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import java.util.Objects;
+
 import javax.persistence.*;
 
 @ToString
@@ -14,22 +14,17 @@ import javax.persistence.*;
 @Accessors(chain = true)
 @Setter
 @EqualsAndHashCode
-@Table(name = "FR_USER")
-public class User {
+@Table(name = "TAX_PLANT_TYPES")
+public class PlantTypes {
+
     @Id
     @Column(name = "ID", updatable = false, insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "USERNAME", nullable = false)
-    private String username;
-
-    @Column(name = "PASSWORD")
-    private String password;
-
     @Column(name = "NAME")
-    private String fullname;
+    private String name;
 
-    @Column(name = "PERMISSION")
-    private String permission;
+    @Column(name = "DESCRIPTION", nullable = false)
+    private String description;
 }

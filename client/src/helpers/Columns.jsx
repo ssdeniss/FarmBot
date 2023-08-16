@@ -9,7 +9,6 @@ import {
   filterText,
   filterDate,
 } from '../hooks/useDatasource';
-import { stringLengthValidator } from '../services/utils/validator/Validator';
 
 const Column = {
   text: (
@@ -32,8 +31,8 @@ const Column = {
     ...(filter ? filterText({ title }) : {}),
     render: (value) =>
       value && toUpperCase && typeof value.toUpperCase === 'function'
-        ? stringLengthValidator(value.toUpperCase(), 100)
-        : stringLengthValidator(value, 100),
+        ? value.toUpperCase()
+        : value,
   }),
   label: (key, title, { sort = true, width = 200, fixed } = {}) => ({
     title,
