@@ -1,5 +1,6 @@
 import React from 'react';
 import { plantData } from '../../constants/library';
+import { ScrollArea } from 'react-scrollbar';
 
 const LibraryColapse = ({ handleCategoryId, categoryId }) => {
   return (
@@ -24,7 +25,7 @@ const LibraryColapse = ({ handleCategoryId, categoryId }) => {
                   </div>
                   <div className="library__colapse-head--arrow">+</div>
                 </div>{' '}
-                <div className="library__colapse-body">
+                <ScrollArea className="library__colapse-body">
                   {item.categories?.length
                     ? item.categories.map((category) => {
                         return (
@@ -37,7 +38,7 @@ const LibraryColapse = ({ handleCategoryId, categoryId }) => {
                         );
                       })
                     : null}{' '}
-                </div>
+                </ScrollArea>
               </div>
             );
           })
