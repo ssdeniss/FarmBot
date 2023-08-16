@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.6.6</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>md.utm.farmbot</groupId>
+  <artifactId>hardware</artifactId>
+  <version>0.0.1</version>
+  <name>hardware</name>
+  <description>Hardware Service</description>
+
+  <properties>
+    <java.version>11</java.version>
+    <servicecore.version>0.0.5</servicecore.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>md.utm.farmBot.servicecore</groupId>
+      <artifactId>servicecore</artifactId>
+      <version>${servicecore.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>31.0.1-jre</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.rxtx</groupId>
+      <artifactId>rxtx</artifactId>
+      <version>2.2pre2</version>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>opennms</id>
+      <url>https://repo.opennms.org/maven2</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.7</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
