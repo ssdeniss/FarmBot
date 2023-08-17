@@ -5,9 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import md.utm.farmBot.servicecore.exceptions.DataNotFoundException;
-import md.utm.farmbot.files.model.QRTempValues;
 import md.utm.farmbot.files.repository.FilesRepository;
-import md.utm.farmbot.files.repository.QRTempValuesRepository;
 import md.utm.farmbot.files.utils.Consume;
 import md.utm.farmbot.files.model.File;
 import org.apache.commons.lang3.StringUtils;
@@ -39,7 +37,6 @@ public class FilesService {
 
     private final FilesRepository filesRepository;
 
-    private final QRTempValuesRepository qrTempValuesRepository;
     @Value("${app.store}")
     private String storeFolder;
 
@@ -187,10 +184,6 @@ public class FilesService {
         file.setSigned(true);
         return filesRepository.save(file).getId();
 
-    }
-
-    public Optional<QRTempValues> getQrByUUID(String uuid){
-        return qrTempValuesRepository.findByUuid(uuid);
     }
 
 }
