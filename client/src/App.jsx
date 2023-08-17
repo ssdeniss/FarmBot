@@ -9,7 +9,7 @@ import Calendar from './pages/Calendar/Calendar';
 import NotFound from './pages/NotFound/NotFound';
 import Settings from './pages/Settings/Settings';
 import './styles/styles.scss';
-import Administration from './components/Administration/Administration';
+import Administration from './pages/Administration/Administration';
 
 require('dotenv').config();
 

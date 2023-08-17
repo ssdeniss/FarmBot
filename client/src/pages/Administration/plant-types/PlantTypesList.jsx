@@ -5,9 +5,9 @@ import {
   remove,
 } from '../../../services/administration/plant_types';
 import Column from '../../../helpers/Columns';
-import AuthContext, { hasPermission } from '../../../pages/Login';
-import EditItemIcon from '../../icons/EditItemIcon';
-import DeleteItemIcon from '../../icons/DeleteItemIcon';
+import AuthContext, { hasPermission } from '../../Login';
+import EditItemIcon from '../../../components/icons/EditItemIcon';
+import DeleteItemIcon from '../../../components/icons/DeleteItemIcon';
 import PlantType from './PlantType';
 import useDatasource from '../../../hooks/useDatasource';
 

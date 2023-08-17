@@ -1,23 +1,18 @@
 import React, { useState } from 'react';
-import LibraryDrawer from './LibraryDrawer';
-import LibraryColapse from './LibraryColapse';
+import LibraryTabs from './LibraryTabs';
+import LibrarySegment from './LibrarySegment';
 
 const Library = () => {
   const [categoryId, setCategoryId] = useState(0);
   const handleCategoryId = (val) => {
     setCategoryId(val);
   };
+  console.log(categoryId);
   return (
     <div className="library">
       <div className="library__content">
-        <div className="container">
-          <LibraryColapse
-            handleCategoryId={handleCategoryId}
-            categoryId={categoryId}
-          />
-        </div>
-
-        <LibraryDrawer categoryId={categoryId} />
+        <LibraryTabs handleCategoryId={handleCategoryId} />
+        <LibrarySegment categoryId={categoryId} />
       </div>
     </div>
   );

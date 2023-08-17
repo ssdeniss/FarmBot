@@ -12,6 +12,7 @@
   justify-content: center;
   align-items: center;
   transition: all 0.3s linear;
+  z-index: 9;
   &__icon {
     position: absolute;
     opacity: 1;
@@ -41,7 +42,7 @@
     height: 60px;
     background-color: $greyMedium;
     border-radius: 50%;
-    border: 6px solid $greyLight;
+    border: 6px solid $greyDark;
     transition: all 0.4s linear;
     left: 50%;
     top: -8px;
@@ -54,7 +55,7 @@
       top: -21px;
       left: 4px;
       border-bottom-right-radius: 50px;
-      box-shadow: 10px 1px 0 0 $greyLight;
+      box-shadow: 10px 1px 0 0 $greyDark;
     }
     &::after {
       content: '';
@@ -65,7 +66,7 @@
       bottom: -21px;
       left: 4px;
       border-top-right-radius: 50px;
-      box-shadow: 10px -1px 0 0 $greyLight;
+      box-shadow: 10px -1px 0 0 $greyDark;
     }
   }
   &__items {

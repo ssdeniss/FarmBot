@@ -1,63 +1,14 @@
 .library {
-  &__colapse {
+  &__tab-title {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 10px;
   }
-  &__colapse-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: $greyMedium;
-    width: 100%;
-    max-width: 200px;
-    border-radius: 10px;
-
-    font-size: 24px;
-    &.active {
-      .library__colapse-body {
-        opacity: 1;
-        height: 300px;
-
-        pointer-events: initial;
-        background-color: $greyMedium;
-        cursor: pointer;
-      }
-      .library__colapse-body--title {
-        transition: all 0.3s linear;
-        &:hover {
-          background-color: $greyDark;
-        }
-      }
-    }
-  }
-  &__colapse-head {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    cursor: pointer;
-    padding: 0 10px;
-
-    &--content {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-  }
-  &__colapse-body {
-    opacity: 0;
-    height: 0px;
-    transition: all 0.1s linear;
-    pointer-events: none;
-    max-height: 200px;
-    overflow: auto;
-  }
-  &__colapse-body--title {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
+  &__tab-icon {
+    width: 15px;
+    height: 15px;
+    fill: transparent;
+    stroke: $black;
+    stroke-width: 3px;
   }
 }

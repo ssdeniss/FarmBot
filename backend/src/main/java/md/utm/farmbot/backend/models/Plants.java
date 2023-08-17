@@ -7,6 +7,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @ToString
 @Entity
@@ -14,17 +15,32 @@ import javax.persistence.*;
 @Accessors(chain = true)
 @Setter
 @EqualsAndHashCode
-@Table(name = "TAX_PLANT_TYPES")
-public class PlantTypes {
-
+@Table(name = "FR_PLANTS")
+public class Plants {
     @Id
     @Column(name = "ID", updatable = false, insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "PLANT_TYPE_ID",  nullable = false)
+    private Long typeId;
 
     @Column(name = "NAME", nullable = false)
     private String name;
 
     @Column(name = "DESCRIPTION")
     private String description;
+
+    @Column(name = "HUMIDITY_MIN")
+    private BigDecimal humidityMin;
+
+    @Column(name = "HUMIDITY_MAX")
+    private BigDecimal humidityMax;
+
+    @Column(name = "TEMPERATURE_MIN")
+    private BigDecimal temperatureMin;
+
+    @Column(name = "TEMPERATURE_MAX")
+    private BigDecimal temperatureMax;
+
 }

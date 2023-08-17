@@ -2,9 +2,30 @@
 body {
   font-family: 'Inter', sans-serif !important;
   font-weight: 500 !important;
+
+  ::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $primary;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: $primary !important;
+  }
 }
 body {
   overflow-x: hidden;
+}
+#root {
+  height: 100%;
+  width: 100%;
 }
 .container {
   max-width: 1300px;
@@ -151,7 +172,7 @@ button.ant-btn.ant-btn-default {
 .drawer {
   max-width: 50vw;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 200px);
   padding: 20px;
   margin-left: 10px;
   background: linear-gradient(
@@ -165,11 +186,57 @@ button.ant-btn.ant-btn-default {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 0;
-  right: -1800px;
+  top: 120px;
+  right: 40px;
+  opacity: 0;
+  pointer-events: none;
   transition: all 0.5s linear;
+  border-radius: 10px;
   &.active {
     transition: all 0.5s linear;
-    right: 0;
+    opacity: 1;
+    pointer-events: initial;
+  }
+}
+
+.default {
+  width: 100%;
+  padding: 24px;
+  margin: 0px;
+  height: calc(100% - 60px);
+  background-color: $greyDark;
+  &__content {
+    background-color: $greyMedium;
+    min-height: 100%;
+    padding: 24px;
+    box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    margin-left: 80px;
+  }
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: $primary !important;
+  svg {
+    stroke: $primary;
+  }
+}
+.ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
+  background-color: $primary;
+}
+.ant-tabs-tab {
+  .ant-tabs-tab-btn {
+    svg {
+      transition: all 0.3s;
+    }
+  }
+  &:hover {
+    .ant-tabs-tab-btn {
+      color: $primary !important;
+      svg {
+        stroke: $primary;
+        transition: all 0.3s;
+      }
+    }
   }
 }

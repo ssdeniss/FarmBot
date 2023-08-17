@@ -368,103 +368,63 @@ export const plantData = [
     categories: [
       {
         id: 0,
-        name: 'Banana',
+        name: 'Banana Tree',
         description:
-          'Bananele sunt plante tropicale cu frunze mari și caracteristice. Ele produc fructe comestibile și necesită condiții de creștere calde și umede.',
-        umedificarea:
-          'Umedificare: Ridicată - Mențineți solul mereu umed și asigurați umiditate ridicată în jurul plantei. Udați frecvent, aproximativ de 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă sau filtrată - Bananele preferă lumina indirectă sau filtrată. Pot tolera puțină lumină directă.',
+          'Copacul de banane este o plantă tropicală emblematică cunoscută pentru frunzele mari și luxuriante și fructul său delicios. Prosperează în climatul cald și umed.',
       },
       {
         id: 1,
-        name: 'Orchidee',
+        name: 'Palmier',
         description:
-          'Orhideele sunt plante elegante și rafinate cu flori spectaculoase. Acestea necesită îngrijire specială, inclusiv iluminare adecvată și controlul umidității.',
-        umedificarea:
-          'Umedificare: Medie - Udați solul atunci când acesta este aproape uscat. Aproximativ o dată pe săptămână, mai rar în timpul iernii.',
-        iluminare:
-          'Iluminare: Lumină indirectă - Orhideele preferă lumina indirectă sau filtrată. Evitați expunerea directă la soarele puternic.',
+          'Palmierii sunt sinonimi cu peisajele tropicale. Frunzele lor distincte și forme variate adaugă o notă de paradis în orice locație.',
       },
       {
         id: 2,
-        name: 'Ananas',
+        name: 'Hibiscus',
         description:
-          'Ananasul este o plantă tropicală cu o bază rozetoasă și frunze lungi. Produce fructe delicioase și necesită umiditate moderată și lumină adecvată.',
-        umedificarea:
-          'Umedificare: Medie - Udați solul regulat, menținând umiditatea constantă. Aproximativ 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă - Ananasul preferă expunerea indirectă la soare. Asigurați câteva ore de lumină directă în fiecare zi.',
+          'Florile de hibiscus sunt vibrante și atrăgătoare. Vin în diferite culori și dimensiuni, creând un spectacol impresionant în grădinile tropicale.',
       },
       {
         id: 3,
-        name: 'Planta de banane',
+        name: 'Pasărea Paradisului',
         description:
-          'Planta de banane, cunoscută și sub numele de platan, are frunze mari și ornate, asemănătoare cu cele ale bananelor. Are nevoie de umiditate și lumină adecvată.',
-        umedificarea:
-          'Umedificare: Ridicată - Mențineți solul umed și asigurați umiditate ridicată în jurul plantei. Udați frecvent, aproximativ de 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă sau filtrată - Planta de banane preferă lumina indirectă sau filtrată. Poate tolera puțină lumină directă.',
+          'Plantele Pasărea Paradisului au flori unice și exotice care seamănă cu o pasăre în zbor. Ele prosperă în condiții calde și însorite.',
       },
       {
         id: 4,
-        name: 'Hibiscus',
+        name: 'Bougainvillea',
         description:
-          'Hibiscusul este un arbust tropical cu flori mari și colorate. Necesită condiții calde și umede pentru a se dezvolta și înflori corespunzător.',
-        umedificarea:
-          'Umedificare: Medie - Udați solul regulat, menținând umiditatea constantă. Aproximativ 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă - Hibiscusul preferă lumina indirectă sau filtrată. Poate tolera puțină lumină directă.',
+          'Bougainvillea este cunoscută pentru bracteele sale colorate care înconjoară flori mici și neînsemnate. Adaugă o explozie de culoare în peisajele tropicale.',
       },
       {
         id: 5,
         name: 'Plumeria',
         description:
-          'Plumeria, cunoscută și sub numele de frangipani, are flori parfumate și colorate. Este o plantă tropicală iubită pentru aportul său estetic în grădini.',
-        umedificarea:
-          'Umedificare: Medie - Udați solul când stratul superior este uscat la atingere. Aproximativ o dată pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină directă - Plumeria preferă expunerea directă la soare pentru a se dezvolta corespunzător. Aproximativ 6-8 ore de lumină directă pe zi.',
+          'Plumeria, cunoscută și sub numele de Frangipani, are flori parfumate și frumoase folosite în lei. Aroma sa tropicală și aspectul evocă o senzație de paradis.',
       },
       {
         id: 6,
-        name: 'Guzmania',
+        name: 'Liliacul de Ghimbir',
         description:
-          'Guzmania este o plantă tropicală cu frunze în formă de rozetă și o inflorescență colorată în mijloc. Este o alegere populară pentru decorul interior exotic.',
-        umedificarea:
-          'Umedificare: Medie - Udați solul când stratul superior este uscat la atingere. Aproximativ o dată pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă - Guzmania preferă lumina indirectă sau filtrată. Poate tolera puțină lumină directă.',
+          'Liliacul de ghimbir are flori îndrăznețe și aromatice. Aspectul lor impresionant și aroma lor plăcută îl fac un favorit în grădinile tropicale.',
       },
       {
         id: 7,
-        name: 'Caladium',
+        name: 'Croton',
         description:
-          'Caladiumul are frunze mari și colorate, în formă de inimă sau lanceolate. Aceasta este o plantă tropicală apreciată pentru aspectul său vibrant.',
-        umedificarea:
-          'Umedificare: Ridicată - Udați solul regulat și mențineți umiditatea în jurul frunzelor. Aproximativ de 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă sau filtrată - Caladiumul preferă lumina indirectă sau filtrată. Evitați expunerea prelungită la soarele direct.',
+          'Plantele de croton au frunze colorate și variegate care aduc o explozie de culoare tropicală în grădini și spații interioare.',
       },
       {
         id: 8,
-        name: 'Alocasia',
+        name: 'Heliconia',
         description:
-          'Alocasia, cunoscută și sub numele de urechi de elefant, are frunze mari și distincte. Aceasta necesită umiditate și iluminare adecvată pentru a se dezvolta bine.',
-        umedificarea:
-          'Umedificare: Ridicată - Udați solul regulat și mențineți umiditatea în jurul frunzelor. Aproximativ de 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă sau filtrată - Alocasia preferă lumina indirectă sau filtrată. Evitați expunerea prelungită la soarele direct.',
+          'Heliconiile sunt cunoscute pentru florile lor dramatice și vibrante care seamănă cu ciocul unei păsări. Ele creează o ambianță tropicală oriunde sunt plantate.',
       },
       {
         id: 9,
-        name: 'Palmier de banane',
+        name: 'Bromeliadă',
         description:
-          'Palmierul de banane are frunze mari și aspect tropical. Acesta necesită umiditate și iluminare adecvată pentru a crește în mod corespunzător.',
-        umedificarea:
-          'Umedificare: Ridicată - Mențineți solul umed și asigurați umiditate ridicată în jurul plantei. Udați frecvent, aproximativ de 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă sau filtrată - Palmierul de banane preferă lumina indirectă sau filtrată. Poate tolera puțină lumină directă.',
+          'Bromeliadele vin în diferite forme și dimensiuni, formând adesea rozete colorate. Sunt ușor de îngrijit și adaugă o notă de tropice în orice mediu.',
       },
     ],
   },
@@ -481,103 +441,63 @@ export const plantData = [
     categories: [
       {
         id: 0,
-        name: 'Banana',
+        name: 'Menta',
         description:
-          'Bananele sunt plante tropicale cu frunze mari și caracteristice. Ele produc fructe comestibile și necesită condiții de creștere calde și umede.',
-        umedificarea:
-          'Umedificare: Ridicată - Mențineți solul mereu umed și asigurați umiditate ridicată în jurul plantei. Udați frecvent, aproximativ de 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă sau filtrată - Bananele preferă lumina indirectă sau filtrată. Pot tolera puțină lumină directă.',
+          'Menta este o plantă aromatică cunoscută pentru aroma sa răcoritoare. Frunzele sale sunt folosite în ceaiuri, deserturi și cocktailuri.',
       },
       {
         id: 1,
-        name: 'Orchidee',
+        name: 'Busuioc',
         description:
-          'Orhideele sunt plante elegante și rafinate cu flori spectaculoase. Acestea necesită îngrijire specială, inclusiv iluminare adecvată și controlul umidității.',
-        umedificarea:
-          'Umedificare: Medie - Udați solul atunci când acesta este aproape uscat. Aproximativ o dată pe săptămână, mai rar în timpul iernii.',
-        iluminare:
-          'Iluminare: Lumină indirectă - Orhideele preferă lumina indirectă sau filtrată. Evitați expunerea directă la soarele puternic.',
+          'Busuiocul are un miros intens și un gust distinct. Este folosit în bucătărie pentru a îmbogăți aromele diferitelor feluri de mâncare.',
       },
       {
         id: 2,
-        name: 'Ananas',
+        name: 'Rozmarin',
         description:
-          'Ananasul este o plantă tropicală cu o bază rozetoasă și frunze lungi. Produce fructe delicioase și necesită umiditate moderată și lumină adecvată.',
-        umedificarea:
-          'Umedificare: Medie - Udați solul regulat, menținând umiditatea constantă. Aproximativ 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă - Ananasul preferă expunerea indirectă la soare. Asigurați câteva ore de lumină directă în fiecare zi.',
+          'Rozmarinul oferă un parfum aromatic minunat. Frunzele și ramurile sale sunt utilizate în gătit pentru a da savoare mâncărurilor.',
       },
       {
         id: 3,
-        name: 'Planta de banane',
+        name: 'Pătrunjel',
         description:
-          'Planta de banane, cunoscută și sub numele de platan, are frunze mari și ornate, asemănătoare cu cele ale bananelor. Are nevoie de umiditate și lumină adecvată.',
-        umedificarea:
-          'Umedificare: Ridicată - Mențineți solul umed și asigurați umiditate ridicată în jurul plantei. Udați frecvent, aproximativ de 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă sau filtrată - Planta de banane preferă lumina indirectă sau filtrată. Poate tolera puțină lumină directă.',
+          'Pătrunjelul are un gust ușor picant și este adăugat în numeroase preparate culinare pentru a le îmbunătăți aroma și aspectul.',
       },
       {
         id: 4,
-        name: 'Hibiscus',
+        name: 'Cimbru',
         description:
-          'Hibiscusul este un arbust tropical cu flori mari și colorate. Necesită condiții calde și umede pentru a se dezvolta și înflori corespunzător.',
-        umedificarea:
-          'Umedificare: Medie - Udați solul regulat, menținând umiditatea constantă. Aproximativ 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă - Hibiscusul preferă lumina indirectă sau filtrată. Poate tolera puțină lumină directă.',
+          'Cimbrul are o aromă puternică și terestră. Este adesea utilizat în mâncăruri tradiționale și preparate cu carne pentru a le da gust.',
       },
       {
         id: 5,
-        name: 'Plumeria',
+        name: 'Tarhon',
         description:
-          'Plumeria, cunoscută și sub numele de frangipani, are flori parfumate și colorate. Este o plantă tropicală iubită pentru aportul său estetic în grădini.',
-        umedificarea:
-          'Umedificare: Medie - Udați solul când stratul superior este uscat la atingere. Aproximativ o dată pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină directă - Plumeria preferă expunerea directă la soare pentru a se dezvolta corespunzător. Aproximativ 6-8 ore de lumină directă pe zi.',
+          'Tarhonul are un gust anasonic și este adesea utilizat în sosuri și preparate cu carne. Aroma sa distinctă adaugă un plus de savoare.',
       },
       {
         id: 6,
-        name: 'Guzmania',
+        name: 'Coriandru',
         description:
-          'Guzmania este o plantă tropicală cu frunze în formă de rozetă și o inflorescență colorată în mijloc. Este o alegere populară pentru decorul interior exotic.',
-        umedificarea:
-          'Umedificare: Medie - Udați solul când stratul superior este uscat la atingere. Aproximativ o dată pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă - Guzmania preferă lumina indirectă sau filtrată. Poate tolera puțină lumină directă.',
+          'Coriandrul are un miros ușor citric și este utilizat în bucătăria asiatică și sud-americană. Frunzele și semințele sale sunt folosite.',
       },
       {
         id: 7,
-        name: 'Caladium',
+        name: 'Oregano',
         description:
-          'Caladiumul are frunze mari și colorate, în formă de inimă sau lanceolate. Aceasta este o plantă tropicală apreciată pentru aspectul său vibrant.',
-        umedificarea:
-          'Umedificare: Ridicată - Udați solul regulat și mențineți umiditatea în jurul frunzelor. Aproximativ de 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă sau filtrată - Caladiumul preferă lumina indirectă sau filtrată. Evitați expunerea prelungită la soarele direct.',
+          'Oregano are un gust puternic și este esențial în bucătăria italiană. Este folosit în sosuri, pizza și feluri de mâncare cu carne.',
       },
       {
         id: 8,
-        name: 'Alocasia',
+        name: 'Chimion',
         description:
-          'Alocasia, cunoscută și sub numele de urechi de elefant, are frunze mari și distincte. Aceasta necesită umiditate și iluminare adecvată pentru a se dezvolta bine.',
-        umedificarea:
-          'Umedificare: Ridicată - Udați solul regulat și mențineți umiditatea în jurul frunzelor. Aproximativ de 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă sau filtrată - Alocasia preferă lumina indirectă sau filtrată. Evitați expunerea prelungită la soarele direct.',
+          'Chimionul are un gust distinct și este adesea folosit în preparate orientale. Semințele sale pot fi prăjite pentru a amplifica aroma.',
       },
       {
         id: 9,
-        name: 'Palmier de banane',
+        name: 'Lavandă',
         description:
-          'Palmierul de banane are frunze mari și aspect tropical. Acesta necesită umiditate și iluminare adecvată pentru a crește în mod corespunzător.',
-        umedificarea:
-          'Umedificare: Ridicată - Mențineți solul umed și asigurați umiditate ridicată în jurul plantei. Udați frecvent, aproximativ de 2-3 ori pe săptămână.',
-        iluminare:
-          'Iluminare: Lumină indirectă sau filtrată - Palmierul de banane preferă lumina indirectă sau filtrată. Poate tolera puțină lumină directă.',
+          'Lavanda are un parfum dulce și floral. Este folosită în ceaiuri, produse de îngrijire și deserturi pentru a adăuga o notă elegantă.',
       },
     ],
   },
@@ -804,6 +724,79 @@ export const plantData = [
           'Umedificare: Scăzută - Udați solul atunci când este complet uscat. Aproximativ o dată la 2-4 săptămâni, în funcție de sezon.',
         iluminare:
           'Iluminare: Lumină directă sau indirectă - Jade Plant preferă lumina directă sau filtrată. Poate tolera soarele puternic.',
+      },
+    ],
+  },
+  {
+    id: 8,
+    name: 'Plante de grădină',
+    description:
+      'Plantele de grădină transformă exteriorul într-un colț viu de culoare și viață. De la flori delicate la fructe gustoase, ele îmbogățesc peisajul cu farmecul lor natural și diversitatea lor unică.',
+    image: '',
+    umedificarea:
+      'Umedificare: Scăzută - Udați cu grijă, permitând solului să se usuce complet între udări. Aproximativ o dată la 1-2 săptămâni, în funcție de sezon.',
+    iluminare:
+      'Iluminare: Lumină directă - Plantele suculente au nevoie de cel puțin 6 ore de soare direct pe zi pentru a menține forma compactă și culorile vii.',
+    categories: [
+      {
+        id: 0,
+        name: 'Trandafiri',
+        description:
+          'Trandafirii sunt flori elegante și populare în grădini, cunoscute pentru varietatea lor de culori și arome.',
+      },
+      {
+        id: 1,
+        name: 'Lavandă',
+        description:
+          'Lavanda este recunoscută pentru aroma sa plăcută și culorile sale violete. Este folosită în grădinărit și pentru uleiurile esențiale.',
+      },
+      {
+        id: 2,
+        name: 'Crizanteme',
+        description:
+          'Crizantemele aduc culori vibrante toamna și sunt simboluri ale bucuriei. Ele sunt ușor de îngrijit și se potrivesc în multe stiluri de grădină.',
+      },
+      {
+        id: 3,
+        name: 'Lalele',
+        description:
+          'Lalelele sunt flori de primăvară adorabile, disponibile într-o paletă diversificată de culori. Ele adaugă prospețime grădinilor de început de sezon.',
+      },
+      {
+        id: 4,
+        name: 'Hortensii',
+        description:
+          'Hortensiile impresionează cu florile lor mari și bogate. Ele pot fi albastre, roz, albe sau alte nuanțe, adăugând un aspect romantic grădinilor.',
+      },
+      {
+        id: 5,
+        name: 'Iasomie',
+        description:
+          'Iasomia este o plantă cățărătoare parfumată, cunoscută pentru aromele sale îmbietoare. Poate crea o ambianță plăcută în spațiul tău exterior.',
+      },
+      {
+        id: 6,
+        name: 'Azalee',
+        description:
+          'Azaleele oferă flori vibrante în culori variate. Acestea adaugă un strop de culoare și bucurie în grădină, în special în perioada de înflorire.',
+      },
+      {
+        id: 7,
+        name: 'Dalii',
+        description:
+          'Dalii sunt flori spectaculoase cu variate dimensiuni și culori. Ele sunt ideale pentru a crea aranjamente vizuale captivante în grădină.',
+      },
+      {
+        id: 8,
+        name: 'Bujori',
+        description:
+          'Bujorii sunt flori elegante și parfumate, reprezentând frumusețea și rafinamentul. Acestea pot aduce o notă de lux în grădină.',
+      },
+      {
+        id: 9,
+        name: 'Garofițe',
+        description:
+          'Garofițele sunt flori delicate cu o frumusețe clasică. Ele sunt adesea folosite pentru borduri sau granițe în grădini.',
       },
     ],
   },

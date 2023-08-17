@@ -1,0 +1,17 @@
+INSERT INTO tax_plant_types (name, description)
+VALUES ('Fructe',
+        'Fructele sunt plante care dezvoltă semințe în interiorul fructelor lor și sunt folosite pentru consum uman. Aceste plante necesită o îngrijire atentă pentru a produce recolte sănătoase.'),
+       ('Legume',
+        'Legumele sunt plante cultivate pentru părțile lor comestibile și sunt bogate în nutrienți esențiali. Aceste plante au nevoie de condiții adecvate pentru a se dezvolta în mod optim.'),
+       ('Plante de cameră',
+        'Plantele de cameră sunt plante cultivate în interior pentru a îmbogăți spațiul cu frunze și flori decorative. Aceste plante necesită o atenție specială pentru a supraviețui în condiții de interior.'),
+       ('Plante de grădină',
+        'Plantele de grădină transformă exteriorul într-un colț viu de culoare și viață. De la flori delicate la fructe gustoase, ele îmbogățesc peisajul cu farmecul lor natural și diversitatea lor unică.'),
+       ('Plante tropicale',
+        'Plantele tropicale sunt originare din regiuni cu climat cald și umed. Aceste plante necesită umiditate ridicată și temperaturi constante pentru a prospera.'),
+       ('Plante aromatice',
+        'Plantele aromatice sunt cultivate pentru a oferi arome și arome în bucătărie și în alte scopuri. Aceste plante sunt folosite în mod obișnuit în gătit și în preparate medicinale.'),
+       ('Plante exotice',
+        'Plantele exotice sunt originare din regiuni îndepărtate și pot avea cerințe neobișnuite. Aceste plante adaugă o notă de exotism în decorul dvs. interior.'),
+       ('Plante suculente',
+        'Plantele suculente sunt adaptate pentru a stoca apă în frunzele lor, permițându-le să supraviețuiască în condiții de secetă. Aceste plante necesită o îngrijire specifică pentru a preveni supraudarea.');

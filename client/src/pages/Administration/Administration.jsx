@@ -23,11 +23,13 @@ const Administration = () => {
   };
 
   return (
-    <div>
-      <Button type="primary" onClick={() => switchKey(KEYS.PLANT_TYPES)}>
-        Tipuri de plante
-      </Button>
-      {renderPageList()}
+    <div className="administration">
+      <div className="container">
+        <Button type="primary" onClick={() => switchKey(KEYS.PLANT_TYPES)}>
+          Tipuri de plante
+        </Button>
+        {renderPageList()}
+      </div>
     </div>
   );
 };

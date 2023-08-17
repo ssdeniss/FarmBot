@@ -19,7 +19,9 @@ const Default = ({ children }) => {
     <>
       <Header />
       {user?.id ? <Menu /> : null}
-      {children}
+      <div className="default">
+        <div className="default__content">{children}</div>
+      </div>
     </>
   );
 };
