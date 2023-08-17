@@ -7,28 +7,31 @@ import gnu.io.SerialPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.io.OutputStream;
 
 @Slf4j
 @Component
 public class ArduinoCommunication {
+
     private SerialPort serialPort;
     private OutputStream outputStream;
 
-    public ArduinoCommunication() {
-        initializeSerialPort();
+    @PostConstruct
+    private void initialize() {
+        try {
+            initializeSerialPort();
+        } catch (Exception e) {
+            log.error("Error initializing ArduinoCommunication", e);
+        }
     }
 
-    private void initializeSerialPort() {
-        try {
-            // TODO: config ports
-            CommPortIdentifier portId = CommPortIdentifier.getPortIdentifier("/dev/ttyUSB0"); // Replace with actual port
-            serialPort = (SerialPort) portId.open("ArduinoCommunication", 2000);
-            outputStream = serialPort.getOutputStream();
-        } catch (NoSuchPortException | PortInUseException | IOException e) {
-            log.error("ERR", e.getStackTrace());
-        }
+    private void initializeSerialPort() throws NoSuchPortException, PortInUseException, IOException {
+        CommPortIdentifier portId = CommPortIdentifier.getPortIdentifier("/dev/ttyUSB0"); // Replace with actual port
+        serialPort = (SerialPort) portId.open("ArduinoCommunication", 2000);
+        outputStream = serialPort.getOutputStream();
     }
 
     public void sendCommand(String command) {
@@ -39,10 +42,11 @@ public class ArduinoCommunication {
                 log.error("Output stream is not initialized.");
             }
         } catch (IOException e) {
-            log.error("ERR", e.getStackTrace());
+            log.error("Error sending command to Arduino", e);
         }
     }
 
+    @PreDestroy
     public void closeSerialPort() {
         if (serialPort != null) {
             serialPort.close();

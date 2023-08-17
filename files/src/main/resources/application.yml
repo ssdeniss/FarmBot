@@ -1,0 +1,61 @@
+server:
+  servlet:
+    context-path: /
+app:
+  jwt:
+    secret: ${JWT_SECRET:JWTSECRETSHOULDBE256BITSASPERJWTSPECIFICATIONRFC7518}
+    expire: ${JWT_EXPIRE:86400}
+  serviceaccount:
+    role: ${SERVICEACCOUNT_ROLE:ROLE_SERVICEACCOUNT}
+  store: ${FILES_DIR}
+management:
+  endpoint:
+    info:
+      enabled: true
+    mappings:
+      enabled: true
+    metrics:
+      enabled: true
+javers:
+  sqlSchemaManagementEnabled: false
+logging:
+  level:
+    md:
+      utm:
+        farmBot:
+          files: INFO
+    web: INFO
+    org.springframework.security: INFO
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql: INFO
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driverClassName: org.postgresql.Driver
+  flyway:
+    table: fls_flyway_schema_history
+    locations: classpath:db/migration/{vendor}
+    baseline-on-migrate: true
+    baseline-version: 0
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: none
+    open-in-view: false
+    show-sql: false
+  servlet:
+    multipart:
+      max-file-size: ${FILE_SIZE_LIMIT_BYTES:52428800}
+      max-request-size:  ${REQUEST_SIZE_LIMIT_BYTES:52428800}
+  output:
+    ansi:
+      enabled: always
+---
+spring:
+  profiles: prod
+logging:
+  level:
+    root: WARN
+    md.utm.md.utm.farmbot: INFO
