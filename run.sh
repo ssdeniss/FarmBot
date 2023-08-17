@@ -156,7 +156,7 @@ if grep -qE "^\s*containers=" run.config; then
     IFS=',' read -ra container_names <<< "$containers_string"
     critical_containers=("${container_names[@]// /}") 
 else
-    critical_containers=("gateway" "postgres" "auth" "backend")
+    critical_containers=("gateway" "postgres" "auth" "files" "backend")
 fi
 running_containers=$(docker ps --format '{{.Names}}')
 all_containers=$(docker ps -a --format '{{.Names}}')

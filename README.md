@@ -10,8 +10,9 @@ The Farm Bot project consists of several services, each serving a specific purpo
 <postgres> : This service uses the latest PostgreSQL image to provide a database for the project. It is exposed on port 5432 and uses a volume named postgres_data to persist data.
 <auth>     : The authentication service handles user authentication. It is exposed on ports 15001 and 18001 and depends on the postgres service for its database.
 <backend>  : The backend service handles core functionality and interacts with the database. Exposed on ports 15004 and 18004, it also relies on the postgres service.
+<files>    : The files service allow storing, and extracting any kind of files.
+<hardware> : The hardware service allow sending messages to Arduino or other pins conected to current RaspberryPi.
 <client>   : The client service run on client machine and represent frontend part of the application. | NOTE. on development build runs on developer machine NOT DOCKER !
-<...add more ?>
 
 -> Servicecore
 	allow using: hibernate, JWT sequrity, FeignClients, JPA Specifications and Datasource, Password unidirictional encription.

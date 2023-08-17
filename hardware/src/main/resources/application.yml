@@ -25,8 +25,13 @@ management:
 logging:
   level:
     root: INFO
-    md.utm.farmbot: DEBUG
+    md.utm.md.utm.farmbot: DEBUG
 spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driverClassName: org.postgresql.Driver
   flyway:
     enabled: false
   cloud:
@@ -42,4 +47,4 @@ spring:
 logging:
   level:
     root: WARN
-    md.utm.farmbot: DEBUG
+    md.utm.md.utm.farmbot: DEBUG
