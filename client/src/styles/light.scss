@@ -1,3 +1,88 @@
 body.light {
-  background-color: $greyLight;
+  .home-table tr td:not(:last-child)::after {
+    z-index: 9;
+    background-color: $greyDark;
+  }
+  .home-table td.ant-table-cell {
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
+  }
+  .ant-table-cell-fix-right button {
+    margin: 0 auto;
+  }
+  .ant-table-pagination.ant-pagination {
+    margin: 0 !important;
+    padding: 16px 20px !important;
+  }
+
+  td {
+    border-top: 1px solid $greyDark;
+  }
+  .ant-table-measure-row td {
+    border-top: none;
+  }
+
+  .ant-table-tbody td:not(:last-child) {
+    position: relative !important;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      height: 20px;
+      width: 1px;
+    }
+  }
+
+  .ant-table-cell-fix-right {
+    animation-name: fade-in-bg;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    background: $greyLight;
+  }
+
+  tr.ant-table-row {
+    &:hover {
+      background-color: #fff !important;
+
+      td {
+        background-color: #fff !important;
+      }
+    }
+  }
+
+  tr.animated-row {
+    animation-name: slide-in, fade-in-bg;
+    animation-duration: 0.5s, 1s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+    background: $greyLight;
+  }
+
+  .ant-table-cell-fix-right,
+  .animated-row {
+    background: $greyLight;
+  }
+
+  colgroup {
+    background: $greyLight;
+  }
+
+  .ant-table-row-selected td,
+  .ant-table-cell.ant-table-column-sort {
+    background: $greyLight !important;
+  }
+
+  .ant-table-wrapper .ant-table-tbody > tr > td {
+    transition: none !important;
+  }
+
+  .ant-popover-arrow:before,
+  .ant-popover-inner {
+    background-color: $greyMedium;
+  }
 }

@@ -27,6 +27,7 @@ const DeleteItemIcon = ({
       onConfirm={handleDelete}
       okText="Șterge"
       cancelText="Anulează"
+      okButtonProps={{ icon: <DeleteOutlined /> }}
     >
       <Tooltip title="Șterge">
         <Button

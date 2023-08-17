@@ -7,7 +7,7 @@ const KEYS = {
 };
 
 const Administration = () => {
-  const [key, setKey] = useState(null);
+  const [key, setKey] = useState(KEYS.PLANT_TYPES);
 
   const renderPageList = useCallback(() => {
     switch (key) {
@@ -24,12 +24,10 @@ const Administration = () => {
 
   return (
     <div className="administration">
-      <div className="container">
-        <Button type="primary" onClick={() => switchKey(KEYS.PLANT_TYPES)}>
-          Tipuri de plante
-        </Button>
-        {renderPageList()}
-      </div>
+      <Button type="primary" onClick={() => switchKey(KEYS.PLANT_TYPES)}>
+        Tipuri de plante
+      </Button>
+      {renderPageList()}
     </div>
   );
 };

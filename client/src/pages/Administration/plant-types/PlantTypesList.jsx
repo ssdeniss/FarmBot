@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { Button, Table } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import {
   findAll as findAllPlantTypes,
   remove,
@@ -32,43 +33,54 @@ const PlantTypesList = () => {
   const columns = useMemo(
     () => [
       Column.text('id', 'ID', {
-        width: 50,
+        width: 25,
       }),
       Column.text('name', 'Denumire', {
-        width: 100,
+        width: 50,
         filter: true,
       }),
       Column.text('description', 'Descriere', {
-        width: 100,
+        width: 200,
         sort: false,
       }),
-      Column.actions('Acțiune', (record) => (
-        <span style={{ textAlign: 'right' }}>
-          {hasPermission([permission], 'ADMIN') && (
-            <EditItemIcon
-              onClick={() => {
-                setUpdatePlant(record.id);
-              }}
-            />
-          )}
-          {hasPermission([permission], 'ADMIN') && (
-            <DeleteItemIcon
-              title={`Șterge tipul plantei ${record.name}`}
-              message="Succes"
-              item={record}
-              remove={remove}
-              reload={reload}
-            />
-          )}
-        </span>
-      )),
+      Column.actions(
+        'Acțiune',
+        (record) => (
+          <span style={{ textAlign: 'right' }}>
+            {hasPermission([permission], 'ADMIN') && (
+              <EditItemIcon
+                onClick={() => {
+                  setUpdatePlant(record.id);
+                }}
+              />
+            )}
+            {hasPermission([permission], 'ADMIN') && (
+              <DeleteItemIcon
+                title={`Șterge tipul plantei ${record.name}`}
+                message="Succes"
+                item={record}
+                remove={remove}
+                reload={reload}
+              />
+            )}
+          </span>
+        ),
+        { width: 25 },
+      ),
     ],
     [reload, permission],
   );
 
   return (
-    <>
-      <Button onClick={() => setUpdatePlant(true)}>Add</Button>
+    <div className="administration__taxonomy">
+      <Button
+        style={{ marginLeft: 'auto' }}
+        icon={<PlusOutlined />}
+        type="primary"
+        onClick={() => setUpdatePlant(true)}
+      >
+        Adaugă
+      </Button>
       <Table
         columns={columns}
         dataSource={content}
@@ -78,6 +90,8 @@ const PlantTypesList = () => {
         sortDirections={sort}
         rowKey="id"
         size="small"
+        scroll={{ y: 600, drag: true, x: 500 }}
+        rowClassName="animated-row"
       />
       {updatePlant ? (
         <PlantType
@@ -86,7 +100,7 @@ const PlantTypesList = () => {
           onCancel={() => setUpdatePlant(null)}
         />
       ) : null}
-    </>
+    </div>
   );
 };
 export default PlantTypesList;
