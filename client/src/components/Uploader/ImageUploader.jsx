@@ -1,27 +1,34 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { notification } from 'antd';
+import { Image, notification } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import imageCompression from 'browser-image-compression';
 
 const ImageUploader = ({
+  url,
   onImageClear = () => {},
   onImageUpload,
   disabled = false,
   size = 200,
-}) => {
-  const [imageUrl, setImageUrl] = useState('');
-  const limitFileSize = parseInt(window._env_.FILE_SIZE_LIMIT_BYTES, 10);
-
-  const options = {
+  options = {
     maxSizeMB: 1,
     maxWidthOrHeight: 900,
     useWebWorker: true,
-  };
+  },
+  radius = '50%',
+}) => {
+  const [imageUrl, setImageUrl] = useState(url);
+  const limitFileSize = parseInt(window._env_.FILE_SIZE_LIMIT_BYTES, 10);
+
+  useEffect(() => {
+    setImageUrl(url);
+  }, [url]);
 
   const clearImage = useCallback(() => {
-    URL.revokeObjectURL(imageUrl);
-    setImageUrl('');
+    if (imageUrl) {
+      URL.revokeObjectURL(imageUrl);
+      setImageUrl(null);
+    }
     onImageClear();
   }, [imageUrl, onImageClear]);
 
@@ -32,15 +39,30 @@ const ImageUploader = ({
         reader.readAsDataURL(compresed);
         reader.onload = () => {
           const base64String = reader.result.split(',')[1];
+          try {
+            const arrayBuffer = Uint8Array.from(atob(base64String), (c) =>
+              c.charCodeAt(0),
+            ).buffer;
+            const blob = new Blob([arrayBuffer]);
+            const objectUrl = URL.createObjectURL(blob);
+            setImageUrl(objectUrl);
+          } catch (e) {
+            console.error(
+              "Couldn't decode image base64, string not correctly encoded",
+            );
+            setImageUrl(null);
+          }
           onImageUpload(base64String);
-          clearImage();
         };
       }
     },
-    [clearImage, onImageUpload],
+    [onImageUpload],
   );
 
   const { getInputProps, open } = useDropzone({
+    accept: 'image/*',
+    maxSize: limitFileSize,
+    multiple: false,
     onDrop: (files) => {
       if (disabled) {
         return;
@@ -66,38 +88,47 @@ const ImageUploader = ({
         );
       }
     },
-    accept: 'image/*',
-    maxSize: limitFileSize,
-    multiple: false,
   });
 
   return (
     <div className="settings__uploader">
       <div className={`settings__image ${imageUrl ? 'active' : ''}`}>
-        <img src={imageUrl} alt="" />
-        <div className="settings__image-overlay">
+        <Image
+          src={imageUrl}
+          preview={false}
+          width={size}
+          height={size}
+          style={{
+            borderRadius: radius,
+            objectFit: 'cover',
+            objectPosition: 'center',
+          }}
+        />
+        {imageUrl ? (
+          <div className="settings__image-overlay">
+            <button
+              type="button"
+              className="settings__image-delete"
+              onClick={clearImage}
+            >
+              <DeleteOutlined />
+            </button>
+          </div>
+        ) : (
           <button
             type="button"
-            className="settings__image-delete"
-            onClick={clearImage}
+            className="settings__image-upload"
+            onClick={open}
+            style={{ width: size, height: size }}
           >
-            <DeleteOutlined />
+            <input {...getInputProps()} />
+            <div className="settings__upload-icon">
+              <PlusOutlined />
+              <div>Încarcă imaginea</div>
+            </div>
           </button>
-        </div>
+        )}
       </div>
-
-      <button
-        type="button"
-        className={`settings__image-crop  ${imageUrl ? 'active' : ''}`}
-        onClick={open}
-        style={{ width: size, height: size }}
-      >
-        <input {...getInputProps()} />
-        <div className="settings__upload-icon">
-          <PlusOutlined />
-          <div>Încarcă imaginea</div>
-        </div>
-      </button>
     </div>
   );
 };

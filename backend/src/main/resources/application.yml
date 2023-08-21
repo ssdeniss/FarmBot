@@ -19,6 +19,8 @@ logging:
 services:
   backend:
     host: ${SERVICES_BACKEND:http://backend:8080}
+  files:
+    host: ${SERVICES_FILES_HOST}
 
 management:
   endpoints:

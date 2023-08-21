@@ -162,7 +162,15 @@ public class FilesService {
 
     @Transactional
     public void remove(List<Long> ids) {
-        filesRepository.markAsDelete(ids);
+        List<File> files = filesRepository.findActiveById(ids);
+        files.forEach(file-> {
+            java.io.File fileToDelete = new java.io.File(file.getStorePath());
+            if(fileToDelete.exists()){
+                if(fileToDelete.delete()){
+                    filesRepository.deleteById(file.getId());
+                }
+            }
+        });
     }
 
     @Builder
@@ -172,18 +180,6 @@ public class FilesService {
         Long size;
         String contentType;
         byte[] content;
-    }
-
-    @SneakyThrows
-    public Long signFile(Long id, byte[] content){
-        md.utm.farmbot.files.model.File file = filesRepository.findById(id).orElseThrow(FileNotFoundException::new);
-        File uploadedFile = Optional.ofNullable(Consume.exception(() -> uploadFileToStore(file.getName(), file.getContentType(), content, null), null)).orElse(null);;
-        file.setStorePath(uploadedFile.getStorePath());
-        file.setUploadDate(uploadedFile.getUploadDate());
-        file.setSize(uploadedFile.getSize());
-        file.setSigned(true);
-        return filesRepository.save(file).getId();
-
     }
 
 }
