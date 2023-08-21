@@ -1,5 +1,5 @@
 import { Tabs } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Icon from '../../components/Icon';
 import { findAll } from '../../services/administration/plant_types';
 import useDictionaries from '../../hooks/useDictionaries';
@@ -8,12 +8,23 @@ const dictionaries = {
   plantTypes: findAll,
 };
 
-const LibraryTabs = ({ handleCategoryId }) => {
+const PlantTypeTabs = ({ handleTabChange }) => {
   const [{ plantTypes }] = useDictionaries(dictionaries);
-  // eslint-disable-next-line
+
+  // TODO: loader
   const { loading, content } = plantTypes;
+  console.log(loading);
+
+  useEffect(() => {
+    if (content.length > 0) {
+      handleTabChange(content[0].id);
+    }
+    console.log('test');
+    // eslint-disable-next-line
+  }, [content.length]);
+
   return (
-    <Tabs onChange={handleCategoryId}>
+    <Tabs onChange={handleTabChange}>
       {content?.length
         ? content.map((plant) => {
             return (
@@ -36,4 +47,4 @@ const LibraryTabs = ({ handleCategoryId }) => {
   );
 };
 
-export default LibraryTabs;
+export default PlantTypeTabs;

@@ -1,12 +1,17 @@
 .login {
-  width: 100vw;
-  height: calc(100vh - 60px);
   display: flex;
-  justify-content: flex-end;
-  position: relative;
+  gap: 200px;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+
   &__form-content {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
+    background-color: $greyLight;
+    padding: 40px 60px;
+    border-radius: 10px;
   }
   &__title {
     text-align: center;

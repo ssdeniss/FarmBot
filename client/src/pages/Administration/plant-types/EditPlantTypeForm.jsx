@@ -3,6 +3,7 @@ import { Divider, Form, Input, Modal } from 'antd';
 import { RollbackOutlined, SaveOutlined } from '@ant-design/icons';
 import useFormErrors from '../../../hooks/useFormErrors';
 import RequiredLabel from '../../../components/RequiredLabel';
+import { maxLengthValidator } from '../../../utils/Validator';
 
 const EditPlantTypeForm = ({ entity, onSubmit, onCancel, errors }) => {
   console.log(entity);
@@ -34,10 +35,22 @@ const EditPlantTypeForm = ({ entity, onSubmit, onCancel, errors }) => {
       <Divider />
       <Form form={form} layout="vertical" initialValues={entity}>
         <Form.Item label={<RequiredLabel title="Denumire" />} name="name">
-          <Input />
+          <Input
+            onChange={(e) => {
+              form.setFieldsValue({
+                name: maxLengthValidator(e.target.value, 25),
+              });
+            }}
+          />
         </Form.Item>
         <Form.Item label="Descriere" name="description">
-          <Input />
+          <Input
+            onChange={(e) => {
+              form.setFieldsValue({
+                description: maxLengthValidator(e.target.value, 255),
+              });
+            }}
+          />
         </Form.Item>
       </Form>
     </Modal>

@@ -1,32 +1,51 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { Button, Table } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import {
-  findAll as findAllPlantTypes,
+  findAll as findAllPlants,
   remove,
-} from '../../../services/administration/plant_types';
-import Column from '../../../helpers/Columns';
-import AuthContext, { hasPermission } from '../../Login';
-import EditItemIcon from '../../../components/icons/EditItemIcon';
-import DeleteItemIcon from '../../../components/icons/DeleteItemIcon';
-import PlantType from './PlantType';
-import useDatasource from '../../../hooks/useDatasource';
+} from '../../services/administration/plants';
+import useDatasource from '../../hooks/useDatasource';
+import EditItemIcon from '../../components/icons/EditItemIcon';
+import Column from '../../helpers/Columns';
+import AuthContext, { hasPermission } from '../Login';
+import DeleteItemIcon from '../../components/icons/DeleteItemIcon';
+import Plant from './Plant';
 
-const PlantTypesList = () => {
+const PlantsList = ({ typeId }) => {
   const {
     user: { permission },
   } = useContext(AuthContext);
 
-  const handler = useCallback((...params) => {
-    const spec = params[0];
-    if (!spec.sort) {
-      spec.sort = ['id', 'asc'];
-    }
-    return findAllPlantTypes(spec);
-  }, []);
+  const handler = useCallback(
+    (...params) => {
+      const spec = params[0];
+      if (!spec.criterias) {
+        spec.criterias = {};
+      }
+      if (!spec.sort) {
+        spec.sort = ['id', 'asc'];
+      }
+      spec.criterias.typeId = typeId;
+      return findAllPlants(spec);
+    },
+    [typeId],
+  );
 
   const { loading, pagination, content, sort, handleChange, reload } =
-    useDatasource(handler);
+    useDatasource(handler, { allowFetcher: !!typeId });
+
+  useEffect(() => {
+    if (typeId) {
+      reload();
+    }
+  }, [typeId, reload]);
 
   const [updatePlant, setUpdatePlant] = useState(false);
 
@@ -38,11 +57,40 @@ const PlantTypesList = () => {
       Column.text('name', 'Denumire', {
         width: 50,
         filter: true,
+        toUpperCase: false,
       }),
       Column.text('description', 'Descriere', {
         width: 200,
         sort: false,
+        toUpperCase: false,
       }),
+      {
+        title: 'Umeditatea',
+        key: 'humidity',
+        sort: true,
+        width: 40,
+        render: (row) => {
+          return (
+            <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+              <div>{row.humidityMin} %</div>-<div>{row.humidityMax} %</div>
+            </div>
+          );
+        },
+      },
+      {
+        title: 'Temperatura',
+        key: 'temperature',
+        sort: true,
+        width: 40,
+        render: (row) => {
+          return (
+            <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+              <div>{row.temperatureMin} °C</div>-
+              <div>{row.temperatureMax} °C</div>
+            </div>
+          );
+        },
+      },
       Column.actions(
         'Acțiune',
         (record) => (
@@ -90,11 +138,11 @@ const PlantTypesList = () => {
         sortDirections={sort}
         rowKey="id"
         size="small"
-        scroll={{ drag: true, x: 500 }}
+        scroll={{ drag: true, x: 500, y: 600 }}
         rowClassName="animated-row"
       />
       {updatePlant ? (
-        <PlantType
+        <Plant
           id={updatePlant}
           reload={reload}
           onCancel={() => setUpdatePlant(null)}
@@ -103,4 +151,5 @@ const PlantTypesList = () => {
     </div>
   );
 };
-export default PlantTypesList;
+
+export default PlantsList;

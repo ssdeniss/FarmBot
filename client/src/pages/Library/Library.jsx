@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import LibraryTabs from './LibraryTabs';
-import LibrarySegment from './LibrarySegment';
+import PlantTypeTabs from './PlantTypeTabs';
+import PlantsList from './PlantsList';
 
 const Library = () => {
-  const [categoryId, setCategoryId] = useState(0);
-  const handleCategoryId = (val) => {
-    setCategoryId(val);
-  };
-  console.log(categoryId);
+  const [planTypeId, setPlantTypeId] = useState(null);
+
   return (
     <div className="library">
       <div className="library__content">
-        <LibraryTabs handleCategoryId={handleCategoryId} />
-        <LibrarySegment categoryId={categoryId} />
+        <PlantTypeTabs handleTabChange={setPlantTypeId} />
+        <PlantsList typeId={planTypeId} />
       </div>
     </div>
   );

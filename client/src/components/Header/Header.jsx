@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import AuthContext from '../../pages/Login';
-import { SERVICE_URI, BASE_URI } from '../../services/auth';
 
 const Header = () => {
   const { user } = useContext(AuthContext);
-  const handleLogout = () => {
-    window.location.href = `${window._env_.API_BACKEND_URL}${SERVICE_URI}${BASE_URI}/logout`;
+  const navigate = useNavigate();
+  const handleRedirect = () => {
+    navigate('/settings');
   };
 
   return (
@@ -15,12 +16,13 @@ const Header = () => {
       <div className="container">
         <div className="header__content">
           <img className="header__logo" src={logo} alt="Logo" />
-          {/* <div className="header__user">Administrative Acount</div> */}
           {user?.id ? (
-            <Button type="text" onClick={handleLogout}>
-              {user?.fullname || 'Utilizator'}
+            <Button type="text" onClick={handleRedirect}>
+              {user?.fullname}
             </Button>
-          ) : null}
+          ) : (
+            'Oaspete'
+          )}
         </div>
       </div>
     </header>

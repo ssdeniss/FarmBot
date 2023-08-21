@@ -84,13 +84,14 @@ button {
   cursor: pointer;
 }
 
+.fc-button-primary,
 button.ant-btn.ant-btn-primary {
-  background-color: $primary;
+  background-color: $primary !important;
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid transparent;
+  border: 1px solid transparent !important;
   transition: all 0.3s linear;
   box-shadow: none !important;
   span {
@@ -99,10 +100,11 @@ button.ant-btn.ant-btn-primary {
   }
   &:hover {
     transition: all 0.3s linear;
-    border: 1px solid $primary;
+    border: 1px solid $primary !important;
     background-color: transparent !important;
+    color: $primary !important;
     span {
-      color: $primary;
+      color: $primary !important;
       transition: all 0.3s linear;
     }
   }
@@ -207,7 +209,7 @@ button.ant-btn.ant-btn-default {
   background-color: $greyDark;
   &__content {
     background-color: $greyMedium;
-    min-height: 100%;
+    height: 100%;
     padding: 24px;
     box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.06);
     border-radius: 10px;
@@ -215,100 +217,29 @@ button.ant-btn.ant-btn-default {
   }
 }
 
-.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: $primary !important;
-  svg {
-    stroke: $primary;
-  }
+.ant-table-header {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 }
-.ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
-  background-color: $primary;
-}
-.ant-tabs-tab {
-  .ant-tabs-tab-btn {
-    svg {
-      transition: all 0.3s;
-    }
-  }
-  &:hover {
-    .ant-tabs-tab-btn {
-      color: $primary !important;
-      svg {
-        stroke: $primary;
-        transition: all 0.3s;
-      }
-    }
-  }
-}
-.ant-popconfirm-buttons,
-.ant-modal-footer {
+
+.ant-pagination-options,
+.ant-pagination-options .ant-select,
+.ant-pagination-options .ant-select .ant-select-selector,
+.ant-pagination.ant-pagination-mini .ant-pagination-item {
+  min-width: 32px !important;
+  height: 32px !important;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none !important;
+}
+
+.ant-pagination.ant-pagination-mini.ant-table-pagination {
   align-items: center;
 }
 
-.ant-modal-close {
-  &:active {
-    background-color: transparent !important;
-  }
-  &:hover {
-    background-color: transparent !important;
-    svg {
-      color: $primary !important;
-    }
-  }
-}
-
-.ant-table-content {
-  border-radius: 8px 8px 0 0 !important;
-}
-
-tr th.ant-table-cell,
-.ant-select-selector,
-.ant-pagination,
-.ant-select-dropdown,
-.ant-picker,
-.ant-picker-panel-container,
-textarea,
-.ant-menu-item.ant-menu-item-selected,
-.ant-input-password,
-.ant-notification-notice-message,
-.ant-notification-notice,
-.ant-notification-notice-message-single-line-auto-margin,
-.ant-btn.ant-btn-default,
-.ant-input-affix-wrapper {
-  transition: all 0.3s;
-  background: $greyLight !important;
-}
-
-.ant-table-expanded-row-fixed {
-  background: $greyLight !important;
-}
-
-.ant-ta
-  .ant-picker-time-panel-column
-  > li.ant-picker-time-panel-cell
-  .ant-picker-time-panel-cell-inner:hover,
-.ant-select-item-option-active:not(.ant-select-item-option-disabled),
-.ant-select-item-option-selected,
-.ant-layout-header,
-.ant-layout-content,
-.ant-page-header,
-.ant-menu,
-.ant-layout-sider-trigger,
-.ant-modal,
-.ant-modal-body,
-.ant-modal-footer,
-.ant-modal-header,
-.ant-modal-title,
-.ant-popover-inner-content,
-.ant-popover-message-title,
-.ant-table-filter-dropdown,
-.ant-typography {
-  transition: all 0.3s;
-  background-color: $greyMedium !important;
-}
-
-.ant-popconfirm-message {
-  margin-bottom: 20px !important;
+.farm__model {
+  width: 500px;
+  height: 300px;
+  border-radius: 10px;
+  background-color: $primary;
 }

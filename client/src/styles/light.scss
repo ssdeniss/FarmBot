@@ -85,4 +85,19 @@ body.light {
   .ant-popover-inner {
     background-color: $greyMedium;
   }
+
+  .ant-table-container {
+    ::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+      transition: all 0.3s;
+      background: $greyMedium;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: $primary;
+    }
+  }
 }

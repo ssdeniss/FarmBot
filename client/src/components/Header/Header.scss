@@ -12,6 +12,10 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
+    color: $white !important;
+    span {
+      color: $white !important;
+    }
   }
   &__logo {
     width: 100px;

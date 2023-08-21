@@ -1,0 +1,187 @@
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: $primary !important;
+  svg {
+    stroke: $primary;
+  }
+}
+.ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
+  background-color: $primary;
+}
+.ant-tabs-tab {
+  .ant-tabs-tab-btn {
+    svg {
+      transition: all 0.3s;
+    }
+  }
+  &:hover {
+    .ant-tabs-tab-btn {
+      color: $primary !important;
+      svg {
+        stroke: $primary;
+        transition: all 0.3s;
+      }
+    }
+  }
+}
+.ant-popconfirm-buttons,
+.ant-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ant-modal-close {
+  &:active {
+    background-color: transparent !important;
+  }
+  &:hover {
+    background-color: transparent !important;
+    svg {
+      color: $primary !important;
+    }
+  }
+}
+
+.ant-table-content {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+tr th.ant-table-cell,
+.ant-select-selector,
+.ant-pagination,
+.ant-picker,
+.ant-picker-panel-container,
+textarea,
+.ant-menu-item.ant-menu-item-selected,
+.ant-input-password,
+.ant-notification-notice-message,
+.ant-notification-notice,
+.ant-notification-notice-message-single-line-auto-margin,
+.ant-btn.ant-btn-default,
+.ant-input-affix-wrapper {
+  transition: all 0.3s;
+  background: $greyLight !important;
+}
+
+.ant-table-expanded-row-fixed {
+  background: $greyLight !important;
+}
+
+.ant-ta
+  .ant-picker-time-panel-column
+  > li.ant-picker-time-panel-cell
+  .ant-picker-time-panel-cell-inner:hover,
+.ant-select-item-option-active:not(.ant-select-item-option-disabled),
+.ant-select-item-option-selected,
+.ant-layout-header,
+.ant-layout-content,
+.ant-page-header,
+.ant-menu,
+.ant-layout-sider-trigger,
+.ant-modal,
+.ant-modal-body,
+.ant-modal-footer,
+.ant-modal-header,
+.ant-modal-title,
+.ant-popover-inner-content,
+.ant-popover-message-title,
+.ant-table-filter-dropdown,
+.ant-typography {
+  transition: all 0.3s;
+  background-color: $greyMedium !important;
+}
+
+.ant-popconfirm-message {
+  margin-bottom: 20px !important;
+}
+
+table
+  .ant-table-cell.ant-table-cell-fix-right.ant-table-cell-fix-right-first
+  .ant-btn {
+  &:hover {
+    svg {
+      opacity: 0.5;
+      transition: all 0.3s linear;
+    }
+  }
+  svg {
+    color: $primary;
+    transition: all 0.3s linear;
+  }
+}
+.ant-modal-body,
+.ant-modal-title,
+.ant-modal-footer,
+.ant-modal-header,
+.ant-modal-content {
+  background-color: $greyLight !important;
+}
+
+.ant-input-number,
+.ant-picker,
+.ant-checkbox-inner,
+.ant-input,
+.ant-select-selector {
+  border-color: $black !important;
+  transition: all 0.3s;
+}
+
+.ant-input-number.ant-input-number-focused,
+.ant-picker.ant-picker-focused,
+.ant-select.ant-select-in-form-item.ant-select-open.ant-select-focused
+  > .ant-select-selector,
+.ant-picker:focus,
+.ant-checkbox-inner:focus,
+.ant-input:focus,
+.ant-select-selector:focus {
+  border-color: $primary !important;
+  transition: all 0.3s;
+  box-shadow: none !important;
+}
+
+.ant-picker.ant-picker-focused
+  .ant-picker-suffix
+  .anticon.anticon-calendar
+  > svg {
+  fill: $primary;
+  transition: all 0.3s;
+}
+
+.ant-table-container,
+textarea,
+.ant-table-wrapper,
+.ant-pagination-item,
+.ant-pagination-item-link,
+input,
+.ant-select-selector,
+.ant-input-number,
+.ant-btn,
+.ant-picker,
+.ant-input-password,
+.ant-input-affix-wrapper,
+.ant-menu-submenu-popup {
+  border-radius: 5px !important;
+  text-shadow: none !important;
+}
+
+.ant-picker-time-panel-column
+  > li.ant-picker-time-panel-cell
+  .ant-picker-time-panel-cell-inner:hover,
+.ant-picker-cell:hover:not(.ant-picker-cell-in-view) .ant-picker-cell-inner,
+.ant-picker-cell:hover:not(.ant-picker-cell-selected):not(
+    .ant-picker-cell-range-start
+  ):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(
+    .ant-picker-cell-range-hover-end
+  )
+  .ant-picker-cell-inner {
+  transition: all 0.3s;
+  background-color: $greyMedium !important;
+}
+
+input.ant-input:focus {
+  border-color: $primary !important;
+}
+
+.ant-table-wrapper .ant-table-thead > tr > td {
+  background-color: transparent !important;
+}

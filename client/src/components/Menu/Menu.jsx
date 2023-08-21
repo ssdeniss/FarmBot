@@ -7,7 +7,9 @@ const ICONS_DISTANCE = 69;
 const Menu = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [currentMenuItem, setCurrentMenuItem] = useState('');
+  const [currentMenuItem, setCurrentMenuItem] = useState(
+    location.pathname.split('/').pop(),
+  );
   const [distance, setDistance] = useState(0);
   const [menuHover, setMenuHover] = useState(false);
 

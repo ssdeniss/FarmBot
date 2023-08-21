@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-import { Button } from 'antd';
 import PlantTypesList from './plant-types/PlantTypesList';
 
 const KEYS = {
@@ -24,9 +23,17 @@ const Administration = () => {
 
   return (
     <div className="administration">
-      <Button type="primary" onClick={() => switchKey(KEYS.PLANT_TYPES)}>
-        Tipuri de plante
-      </Button>
+      <div className="administration__tabs">
+        <button
+          type="button"
+          className={`administration__tab ${
+            key === KEYS.PLANT_TYPES ? 'active' : ''
+          }`}
+          onClick={() => switchKey(KEYS.PLANT_TYPES)}
+        >
+          Tipuri de plante
+        </button>
+      </div>
       {renderPageList()}
     </div>
   );
