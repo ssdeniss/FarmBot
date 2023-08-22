@@ -5,10 +5,13 @@ import AuthContext from '../Login';
 import { BASE_URI, SERVICE_URI } from '../../services/auth';
 import Avatar from '../../components/Avatar';
 import { changePassword, update } from '../../services/users';
+import useFormErrors from '../../hooks/useFormErrors';
 
 const Settings = () => {
   const { user, setUser } = useContext(AuthContext);
+  const [errors, setErrors] = useState(null);
   const [form] = useForm();
+  useFormErrors(form, errors);
   const [base64, setBase64] = useState(undefined);
 
   useEffect(() => {
@@ -48,10 +51,13 @@ const Settings = () => {
     changePassword({ password, newPassword })
       .then(() => handleLogout())
       .catch((err) => {
+        setErrors(err.inner);
         const {
           inner: { _ },
         } = err;
-        notification.error({ message: _ });
+        if (_) {
+          notification.error({ message: _ });
+        }
       });
   };
 
