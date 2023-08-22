@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { Button, DatePicker, Modal } from 'antd';
-import {
-  PlusOutlined,
-  RollbackOutlined,
-  SaveOutlined,
-} from '@ant-design/icons';
+import { PlusOutlined, RollbackOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import Icon from '../../components/Icon';
 
@@ -23,12 +19,12 @@ const CalendarModal = ({ handleClose, selectedDay, events }) => {
       centered
       open={selectedDay}
       onCancel={handleClose}
-      onOk={handleClose}
-      okText="Salvează"
       cancelText="Înapoi"
-      cancelButtonProps={{ icon: <RollbackOutlined /> }}
-      okButtonProps={{ icon: <SaveOutlined /> }}
+      cancelButtonProps={{
+        icon: <RollbackOutlined />,
+      }}
       width={1100}
+      okButtonProps={{ style: { display: 'none' } }}
     >
       <h4 className="calendar__modal-head">
         {dayjs(selectedDay).format('DD.MM.YYYY')}

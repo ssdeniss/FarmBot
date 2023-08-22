@@ -118,6 +118,7 @@ const Calendar = () => {
         dayMaxEvents={2}
         titleFormat={titleFormatOptions}
         events={events}
+        buttonText={{ today: 'Ziua curentă' }}
       />
       <CalendarModal
         selectedDay={selectedDay}

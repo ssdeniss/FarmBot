@@ -253,3 +253,14 @@ button.ant-btn.ant-btn-default {
   border-radius: 10px;
   background-color: $primary;
 }
+
+.ant-modal {
+  border-radius: 10px;
+}
+
+.fc-toolbar-chunk button {
+  border-radius: 10px !important;
+}
+.fc-button-group {
+  gap: 10px;
+}

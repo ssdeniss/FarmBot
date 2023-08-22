@@ -9,10 +9,12 @@ import useFormErrors from '../../hooks/useFormErrors';
 
 const Settings = () => {
   const { user, setUser } = useContext(AuthContext);
+
   const [errors, setErrors] = useState(null);
+  const [base64, setBase64] = useState(undefined);
+
   const [form] = useForm();
   useFormErrors(form, errors);
-  const [base64, setBase64] = useState(undefined);
 
   useEffect(() => {
     if (user?.fullname) {
