@@ -20,4 +20,9 @@
   &__logo {
     width: 100px;
   }
+  &__user-data{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 }

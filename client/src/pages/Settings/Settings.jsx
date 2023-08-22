@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Input, Divider, Form } from 'antd';
+import { Button, Input, Divider, Form, notification } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import AuthContext from '../Login';
 import { BASE_URI, SERVICE_URI } from '../../services/auth';
 import Avatar from '../../components/Avatar';
+import { changePassword, update } from '../../services/users';
 
 const Settings = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [form] = useForm();
-  const [base64, setBase64] = useState('');
+  const [base64, setBase64] = useState(undefined);
 
   useEffect(() => {
     if (user?.fullname) {
@@ -20,10 +21,54 @@ const Settings = () => {
     window.location.href = `${window._env_.API_BACKEND_URL}${SERVICE_URI}${BASE_URI}/logout`;
   };
 
+  const handleSave = () => {
+    const name = form.getFieldValue('fullname');
+    const avatar = base64 !== undefined;
+    const image = {
+      content: base64 === 0 ? null : base64,
+    };
+
+    update({ name, avatar, image })
+      .then((res) => {
+        if (res.id !== user.id) {
+          handleLogout();
+        }
+        setUser(res);
+        notification.success({ message: 'Datele au fost salvate cu succes' });
+      })
+      .catch(() =>
+        notification.error({ message: 'Erroare la salvarea datelor' }),
+      );
+  };
+
+  const handleChangePassword = () => {
+    const password = form.getFieldValue('password');
+    const newPassword = form.getFieldValue('newPassword');
+
+    changePassword({ password, newPassword })
+      .then(() => handleLogout())
+      .catch((err) => {
+        const {
+          inner: { _ },
+        } = err;
+        notification.error({ message: _ });
+      });
+  };
+
   return (
     <div className="settings">
       <div className="settings__content">
-        <Avatar removable onUpload={setBase64} base64={base64} size={200} />
+        <Avatar
+          src={user?.avatarUrl}
+          removable
+          onUpload={setBase64}
+          onClear={() => {
+            setUser((prev) => ({ ...prev, avatarUrl: null }));
+            setBase64(0);
+          }}
+          base64={base64}
+          size={200}
+        />
         <Form form={form} layout="vertical">
           <Form.Item name="fullname">
             <Input
@@ -32,7 +77,7 @@ const Settings = () => {
               className="settings__user-name"
             />
           </Form.Item>
-          <Button type="primary" block>
+          <Button type="primary" block onClick={handleSave}>
             Salvează
           </Button>
           <Divider />
@@ -43,7 +88,7 @@ const Settings = () => {
             <Form.Item name="newPassword">
               <Input.Password size="large" placeholder="Parola nouă" />
             </Form.Item>
-            <Button type="primary" block>
+            <Button type="primary" block onClick={handleChangePassword}>
               Modifică parola
             </Button>
             <Divider />

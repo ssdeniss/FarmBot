@@ -59,7 +59,7 @@ public class FilesService {
     @SneakyThrows
     private md.utm.farmbot.files.model.File uploadFileToStore(String fileName, String mimeType, Long size, InputStream stream, String path) {
         var now = Instant.now();
-        var filePath = (path!= null ? path : StringUtils.defaultString(dateTimeFormatter.format(now), ".")) + "/" + UUID.randomUUID().toString();
+        var filePath = (path != null ? path : StringUtils.defaultString(dateTimeFormatter.format(now), ".")) + "/" + UUID.randomUUID().toString();
         var ref = Path.of(
                 StringUtils.defaultString(storeFolder, "."),
                 filePath
@@ -79,8 +79,7 @@ public class FilesService {
                 mimeType,
                 Timestamp.from(now),
                 size,
-                filePath,
-                false, false
+                filePath
         );
     }
 
@@ -163,10 +162,10 @@ public class FilesService {
     @Transactional
     public void remove(List<Long> ids) {
         List<File> files = filesRepository.findActiveById(ids);
-        files.forEach(file-> {
-            java.io.File fileToDelete = new java.io.File(file.getStorePath());
-            if(fileToDelete.exists()){
-                if(fileToDelete.delete()){
+        files.forEach(file -> {
+            java.io.File fileToDelete = new java.io.File(storeFolder + "/" + file.getStorePath());
+            if (fileToDelete.exists()) {
+                if (fileToDelete.delete()) {
                     filesRepository.deleteById(file.getId());
                 }
             }

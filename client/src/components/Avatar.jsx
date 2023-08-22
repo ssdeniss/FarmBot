@@ -52,8 +52,6 @@ const Avatar = ({
     // eslint-disable-next-line
   }, [base64, src]);
 
-  console.log(imageUrl);
-
   return (
     <>
       {!removable ? (
@@ -75,7 +73,7 @@ const Avatar = ({
         </div>
       ) : (
         <ImageUploader
-          url={imageUrl}
+          initial={imageUrl}
           onImageUpload={onUpload}
           onImageClear={clearImage}
           radius={radius}

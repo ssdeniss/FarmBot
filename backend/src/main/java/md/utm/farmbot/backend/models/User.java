@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Getter
 @Accessors(chain = true)
 @Setter
-@EqualsAndHashCode
 @Table(name = "FR_USER")
 public class User {
     @Id
@@ -32,4 +31,26 @@ public class User {
 
     @Column(name = "PERMISSION")
     private String permission;
+
+    @Column(name = "AVATAR_ID")
+    private Long avatarId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || ((User) o).getId() == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        User that = (User) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
