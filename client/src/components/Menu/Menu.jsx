@@ -6,6 +6,7 @@ import MenuItem from './MenuItem';
 const ICONS_DISTANCE = 69;
 
 const MENU_ITEMS = {
+  DEFAULT: { path: '' },
   HOME: { path: 'home', index: 0 },
   LIBRARY: { path: 'library', index: 1 },
   CALENDAR: { path: 'calendar', index: 2 },
@@ -22,7 +23,7 @@ const Menu = () => {
 
   const current = useMemo(() => {
     const key = location.pathname.split('/')[1].toUpperCase();
-    return MENU_ITEMS[key];
+    return MENU_ITEMS[key] || MENU_ITEMS.DEFAULT;
   }, [location.pathname]);
 
   useEffect(() => {
