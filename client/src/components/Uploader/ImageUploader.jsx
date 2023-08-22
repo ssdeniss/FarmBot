@@ -1,11 +1,13 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Image, notification } from 'antd';
+import Cropper from 'react-cropper';
+import { Image, Modal, notification } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import imageCompression from 'browser-image-compression';
+import 'cropperjs/dist/cropper.css';
 
 const ImageUploader = ({
-  url,
+  initial,
   onImageClear = () => {},
   onImageUpload,
   disabled = false,
@@ -15,19 +17,23 @@ const ImageUploader = ({
     maxWidthOrHeight: 900,
     useWebWorker: true,
   },
+  crop = true,
   radius = '50%',
 }) => {
-  const [imageUrl, setImageUrl] = useState(url);
-  const limitFileSize = parseInt(window._env_.FILE_SIZE_LIMIT_BYTES, 10);
+  const cropperRef = useRef(null);
+  const [imageUrl, setImageUrl] = useState(null);
+  const [cropModalVisible, setCropperModalVisible] = useState(false);
 
   useEffect(() => {
-    setImageUrl(url);
-  }, [url]);
+    setImageUrl(initial);
+  }, [initial]);
+
+  const limitFileSize = parseInt(window._env_.FILE_SIZE_LIMIT_BYTES, 10);
 
   const clearImage = useCallback(() => {
     if (imageUrl) {
-      URL.revokeObjectURL(imageUrl);
       setImageUrl(null);
+      URL.revokeObjectURL(imageUrl);
     }
     onImageClear();
   }, [imageUrl, onImageClear]);
@@ -46,23 +52,23 @@ const ImageUploader = ({
             const blob = new Blob([arrayBuffer]);
             const objectUrl = URL.createObjectURL(blob);
             setImageUrl(objectUrl);
+            setCropperModalVisible(true);
           } catch (e) {
             console.error(
               "Couldn't decode image base64, string not correctly encoded",
             );
             setImageUrl(null);
           }
-          onImageUpload(base64String);
+          if (!crop) {
+            onImageUpload(base64String);
+          }
         };
       }
     },
-    [onImageUpload],
+    [onImageUpload, crop],
   );
 
   const { getInputProps, open } = useDropzone({
-    accept: 'image/*',
-    maxSize: limitFileSize,
-    multiple: false,
     onDrop: (files) => {
       if (disabled) {
         return;
@@ -88,7 +94,24 @@ const ImageUploader = ({
         );
       }
     },
+    accept: 'image/*',
+    maxSize: limitFileSize,
+    multiple: false,
   });
+
+  const handleCropAndUpload = () => {
+    if (cropperRef.current) {
+      const { cropper } = cropperRef.current;
+      const croppedCanvas = cropper.getCroppedCanvas();
+
+      if (croppedCanvas) {
+        const dataURL = croppedCanvas.toDataURL();
+        setImageUrl(dataURL);
+        onImageUpload(dataURL.split(',')[1]);
+        setCropperModalVisible(false);
+      }
+    }
+  };
 
   return (
     <div className="settings__uploader">
@@ -129,6 +152,16 @@ const ImageUploader = ({
           </button>
         )}
       </div>
+      {crop ? (
+        <Modal
+          open={cropModalVisible}
+          onOk={handleCropAndUpload}
+          width={800}
+          onCancel={() => setCropperModalVisible(false)}
+        >
+          <Cropper ref={cropperRef} src={imageUrl} guides aspectRatio={9 / 9} />
+        </Modal>
+      ) : null}
     </div>
   );
 };

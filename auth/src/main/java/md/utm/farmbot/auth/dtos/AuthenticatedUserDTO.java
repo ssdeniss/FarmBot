@@ -7,4 +7,5 @@ public class AuthenticatedUserDTO {
     private String username;
     private String fullname;
     private String permission;
+    private Long avatarId;
 }

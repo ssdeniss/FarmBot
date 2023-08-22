@@ -1,19 +1,28 @@
 import React, { useState, useEffect, useMemo, useContext } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Route, Navigate } from 'react-router-dom';
 import { getCurrentUserDetails } from '../../services/auth';
+import { getBlobFile } from '../../services/files';
 
 const AuthContext = React.createContext(null);
 
 export const AuthContextWrapper = ({ children }) => {
-  const { i18n } = useTranslation();
-
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState(null);
 
-  const locale = localStorage.getItem('locale');
-
-  useMemo(() => i18n.changeLanguage(locale), [i18n, locale]);
+  useEffect(() => {
+    let avatarUrl = null;
+    if (user?.avatarId) {
+      getBlobFile(user?.avatarId).then((res) => {
+        avatarUrl = URL.createObjectURL(res);
+        setUser((prev) => ({ ...prev, avatarUrl }));
+      });
+    }
+    return () => {
+      if (avatarUrl) {
+        URL.revokeObjectURL(avatarUrl);
+      }
+    };
+  }, [user?.avatarId]);
 
   useEffect(() => {
     setLoaded(false);
@@ -27,7 +36,6 @@ export const AuthContextWrapper = ({ children }) => {
       .finally(() => {
         setLoaded(true);
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const contextValue = useMemo(() => ({ user, setUser }), [user]);

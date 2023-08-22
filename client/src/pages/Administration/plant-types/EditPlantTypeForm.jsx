@@ -6,8 +6,6 @@ import RequiredLabel from '../../../components/RequiredLabel';
 import { maxLengthValidator } from '../../../utils/Validator';
 
 const EditPlantTypeForm = ({ entity, onSubmit, onCancel, errors }) => {
-  console.log(entity);
-
   const [form] = Form.useForm();
   useFormErrors(form, errors);
 
