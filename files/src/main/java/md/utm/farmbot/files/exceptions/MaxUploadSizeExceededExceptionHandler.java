@@ -13,7 +13,7 @@ import java.util.Map;
 
 @ControllerAdvice
 @Slf4j
-public class MaxUploadSizeExceededExceptionHandlera extends ResponseEntityExceptionHandler {
+public class MaxUploadSizeExceededExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public final ResponseEntity<Object> handleAllExceptions(MaxUploadSizeExceededException exc) throws BadRequestException {
         return new ResponseEntity<>(Map.of("message", exc.getMessage()), HttpStatus.BAD_REQUEST);

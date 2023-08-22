@@ -9,10 +9,6 @@ import java.util.List;
 
 public interface FilesRepository extends JpaRepository<File, Long> {
 
-    @Modifying
-    @Query("UPDATE File f SET f.deleted = 1 WHERE f.id IN :ids")
-    void markAsDelete(List<Long> ids);
-
-    @Query("SELECT f FROM File f WHERE f.id IN :ids AND f.deleted = false")
+    @Query("SELECT f FROM File f WHERE f.id IN :ids")
     List<File> findActiveById(List<Long> ids);
 }
