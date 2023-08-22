@@ -1,0 +1,61 @@
+.calendar {
+  .fc .fc-daygrid-day-frame {
+    height: 90px;
+  }
+  .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+    position: absolute !important;
+  }
+  td.fc-day {
+    max-height: 100px;
+    border-radius: 10px;
+    border: 10px solid $greyMedium !important;
+    background-color: $greyLight;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    padding: 10px;
+    &.fc-day-today {
+      background-color: $primary;
+      color: $white;
+      &:hover {
+        background-color: $primary;
+        opacity: 0.5;
+        transition: all 0.3s linear;
+      }
+    }
+    &:hover {
+      background-color: $greyDark;
+      transition: all 0.3s linear;
+    }
+  }
+  .fc-col-header-cell.fc-day {
+    background-color: transparent !important;
+  }
+
+  colgroup {
+    background-color: transparent !important;
+  }
+  button:disabled {
+    pointer-events: none;
+  }
+  .fc-more-link,
+  .fc-event {
+    transition: all 0.3s linear;
+    &:hover {
+      transition: all 0.3s linear;
+    }
+  }
+  .fc-daygrid-event-dot {
+    border-radius: 50% !important;
+    border-width: 8px !important;
+  }
+  &__modal-event {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &__modal-event-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+}
