@@ -38,11 +38,4 @@ public class File {
     @Column(name = "store_path")
     @JsonIgnore
     private String storePath;
-
-    @Column(name = "is_deleted")
-    @JsonIgnore
-    private boolean deleted;
-
-    @Column(name = "is_signed")
-    private boolean signed;
 }

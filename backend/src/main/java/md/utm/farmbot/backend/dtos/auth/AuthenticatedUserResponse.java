@@ -12,4 +12,5 @@ public class AuthenticatedUserResponse {
     private String username;
     private String fullname;
     private String permission;
+    private Long avatarId;
 }
