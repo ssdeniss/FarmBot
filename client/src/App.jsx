@@ -25,12 +25,7 @@ const App = () => (
           <Route exact path="/administration" element={<Administration />} />
           <Route exact path="/notFound" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/NotFound" replace />} />
-          <Route
-            path="/home"
-            // element={<PrivateRoute path="/home" component={Home} />}
-            exact
-            element={<Home />}
-          />
+          <Route path="/home" exact element={<Home />} />
         </Routes>
       </Default>
     </BrowserRouter>

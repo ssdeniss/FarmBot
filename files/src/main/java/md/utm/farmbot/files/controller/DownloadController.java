@@ -26,7 +26,7 @@ public class DownloadController {
     @GetMapping(value = "/{ids}", params = {"download"})
     @PreAuthorize("hasAnyAuthority( " +
             "@environment.getProperty('app.serviceaccount.role')," +
-            "'FILES_MANAGEMENT')")
+            "'ADMIN')")
     public ResponseEntity<byte[]> downloadFilesById(@PathVariable("ids") String ids) throws DataNotFoundException, BadRequestException, IOException {
         var idsLong = FileUtils.stringToLongList(ids);
 

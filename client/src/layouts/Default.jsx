@@ -1,16 +1,27 @@
-import React, { useContext, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useMemo } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AuthContext from '../pages/Login';
 import Menu from '../components/Menu/Menu';
 import Header from '../components/Header/Header';
 
 const Default = ({ children }) => {
   const { user } = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const path = useMemo(() => {
+    if (user?.id) {
+      if (location.pathname !== '/') {
+        return location.pathname;
+      }
+      return '/home';
+    }
+    return '/';
+  }, [user?.id, location.pathname]);
 
   useEffect(() => {
     if (user?.id) {
-      // navigate('/home');
+      navigate(path);
     }
     // eslint-disable-next-line
   }, [user?.id]);

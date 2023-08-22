@@ -19,7 +19,6 @@ const PlantTypeTabs = ({ handleTabChange }) => {
     if (content.length > 0) {
       handleTabChange(content[0].id);
     }
-    console.log('test');
     // eslint-disable-next-line
   }, [content.length]);
 

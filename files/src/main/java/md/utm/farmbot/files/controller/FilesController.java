@@ -29,7 +29,7 @@ public class FilesController {
     @GetMapping(value = "/{ids}", params = {"!download"})
     @PreAuthorize("hasAnyAuthority( " +
             "@environment.getProperty('app.serviceaccount.role')," +
-            "'FILES_MANAGEMENT')")
+            "'ADMIN')")
     public Object getFilesById(@PathVariable("ids") String ids) throws DataNotFoundException, BadRequestException {
         var idsLong = FileUtils.stringToLongList(ids);
 
@@ -40,7 +40,7 @@ public class FilesController {
     @PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyAuthority( " +
             "@environment.getProperty('app.serviceaccount.role')," +
-            "'FILES_MANAGEMENT')")
+            "'ADMIN')")
     public List<File> uploadFiles(@RequestParam("files") MultipartFile[] multipartFiles) {
         if (multipartFiles.length == 0) {
             throw new BadRequestException("No files uploaded");
@@ -52,7 +52,7 @@ public class FilesController {
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAnyAuthority( " +
             "@environment.getProperty('app.serviceaccount.role')," +
-            "'FILES_MANAGEMENT')")
+            "'ADMIN')")
     public List<File> uploadFiles(@RequestBody List<Base64FileDto> files) {
         if (Collections.isEmpty(files)) {
             throw new BadRequestException("No files uploaded");
@@ -65,20 +65,10 @@ public class FilesController {
     @DeleteMapping(value = "/{ids}")
     @PreAuthorize("hasAnyAuthority( " +
             "@environment.getProperty('app.serviceaccount.role')," +
-            "'FILES_MANAGEMENT')")
+            "'ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     public void removeFiles(@PathVariable("ids") String ids) {
         filesService.remove(FileUtils.stringToLongList(ids));
     }
 
-    @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAnyAuthority( " +
-            "@environment.getProperty('app.serviceaccount.role')," +
-            "'FILES_MANAGEMENT')")
-    public Long signFile(@PathVariable("id") Long id, @RequestBody String signedFile) {
-        if (signedFile == null) {
-            throw new BadRequestException("No signed file");
-        }
-        return filesService.signFile(id, Base64.getMimeDecoder().decode(signedFile.getBytes()));
-    }
 }
