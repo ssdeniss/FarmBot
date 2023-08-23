@@ -215,11 +215,11 @@ button.ant-btn.ant-btn-default {
   width: 100%;
   padding: 24px;
   margin: 0px;
-  height: calc(100% - 60px);
+  min-height: calc(100vh - 60px);
   background-color: $greyDark;
   &__content {
     background-color: $greyMedium;
-    height: 100%;
+    min-height: calc(100vh - 110px);
     padding: 24px;
     box-shadow: 0 5px 15px 5px rgba(0, 0, 0, 0.06);
     border-radius: 10px;

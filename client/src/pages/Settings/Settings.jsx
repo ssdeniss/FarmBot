@@ -77,7 +77,7 @@ const Settings = () => {
           base64={base64}
           size={200}
         />
-        <Form form={form} layout="vertical">
+        <Form className="settings__form" form={form} layout="vertical">
           <Form.Item name="fullname">
             <Input
               size="large"
