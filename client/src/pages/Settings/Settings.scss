@@ -1,6 +1,7 @@
 .settings {
   height: 100%;
-  min-height: 100%;
+  width: 100%;
+  min-height: calc(100vh - 160px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,11 +11,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 800px;
+    width: 500px;
   }
 
   &__user-name {
     margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   &__user-password {
@@ -60,7 +62,6 @@
 
   &__image img {
     background-size: cover;
-
   }
 
   &__image-overlay {
@@ -110,5 +111,8 @@
   &__image-upload {
     position: relative;
     z-index: 9;
+  }
+  &__form {
+    width: 100%;
   }
 }
