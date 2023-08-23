@@ -20,8 +20,8 @@ const Calendar = () => {
       title: 'event 1',
       date: '2023-08-01T10:11:37Z',
       id: 1,
-      backgroundColor: '#1890ff',
-      groupId: 'water',
+      // backgroundColor: '#1890ff',
+      // groupId: 'water',
     },
     {
       title: 'event 2',
@@ -123,7 +123,7 @@ const Calendar = () => {
       <CalendarModal
         selectedDay={selectedDay}
         handleClose={handleClose}
-        events={events}
+        events={3}
       />
     </div>
   );
