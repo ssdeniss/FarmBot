@@ -123,7 +123,7 @@ const Calendar = () => {
       <CalendarModal
         selectedDay={selectedDay}
         handleClose={handleClose}
-        events={3}
+        events={events}
       />
     </div>
   );

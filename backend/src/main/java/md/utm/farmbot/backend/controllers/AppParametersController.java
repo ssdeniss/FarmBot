@@ -65,6 +65,23 @@ public class AppParametersController {
                         .getOrElseThrow(ex -> ex);
     }
 
+    @GetMapping("code/{code}")
+    @PreAuthorize(
+            "hasAnyAuthority("
+                    + "@environment.getProperty('app.serviceaccount.role'),"
+                    + "T(md.utm.farmbot.backend.Permissions).ADMIN"
+                    + ")"
+    )
+    public AppParametersResponse getByCode(
+            @PathVariable("code") String code
+    ) {
+        return
+                service
+                        .findByCode(code)
+                        .map(converter::toResponse)
+                        .getOrElseThrow(ex -> ex);
+    }
+
     @PostMapping("")
     @PreAuthorize(
             "hasAnyAuthority("

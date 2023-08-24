@@ -32,6 +32,15 @@ public class AppParametersService {
                 );
     }
 
+    public Either<PlatformException, AppParameters> findByCode(String code) {
+        return repository.findByCode(code)
+                .map(Either::<PlatformException, AppParameters>right)
+                .orElseGet(() -> Either.left(
+                                new DataNotFoundException("errors.md.utm.farm_bot.taxonomies.app_parameter.not-found " + code)
+                        )
+                );
+    }
+
     public Either<PlatformException, AppParameters> create(AppParameters entity) {
         return Either.<PlatformException, AppParameters>right(entity)
                 .flatMap(type -> ExceptionUtils.trial(() -> repository.save(type)));

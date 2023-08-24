@@ -1,19 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, DatePicker, Modal } from 'antd';
 import { PlusOutlined, RollbackOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import Icon from '../../components/Icon';
+import Areas from '../../components/Areas';
 
 const CalendarModal = ({ handleClose, selectedDay, events }) => {
-  const [selectedAreas, setSelectedAreas] = useState([]);
-
-  const handleButtonClick = (index) => {
-    if (!selectedAreas.includes(index)) {
-      setSelectedAreas([...selectedAreas, index]);
-    } else {
-      setSelectedAreas(selectedAreas.filter((item) => item !== index));
-    }
-  };
   return (
     <Modal
       centered
@@ -32,20 +24,7 @@ const CalendarModal = ({ handleClose, selectedDay, events }) => {
       <div className="calendar__modal">
         <div className="calendar__modal-area">
           <h6 className="calendar__modal-area--title">Selecteaza zona</h6>
-          <div className="calendar__modal-area--list">
-            {[1, 2, 3, 4, 5, 6].map((number, index) => (
-              <button
-                type="button"
-                className={`calendar__modal-area--item ${
-                  selectedAreas?.includes(index) ? 'active' : ''
-                }`}
-                key={number}
-                onClick={() => handleButtonClick(index)}
-              >
-                {number}
-              </button>
-            ))}
-          </div>
+          <Areas />
         </div>
         <div className="calendar__modal-add">
           <div className="calendar__modal-add--moisture">
