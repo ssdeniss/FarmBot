@@ -17,7 +17,7 @@ CREATE TABLE fr_events
     execute_at TIMESTAMP   NOT NULL,
     zone_id    INT         NOT NULL,
     mode       VARCHAR(10) NOT NULL,
-    title      VARCHAR(25,
+    title      VARCHAR(25),
     is_done    NUMERIC(1) default 0
 );
 

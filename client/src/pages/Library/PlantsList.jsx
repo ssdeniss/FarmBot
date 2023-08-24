@@ -105,7 +105,7 @@ const PlantsList = ({ typeId }) => {
             {hasPermission([permission], 'ADMIN') && (
               <DeleteItemIcon
                 title={`Șterge tipul plantei ${record.name}`}
-                message="Succes"
+                message="Planta a fost ștersă cu succes"
                 item={record}
                 remove={remove}
                 reload={reload}
