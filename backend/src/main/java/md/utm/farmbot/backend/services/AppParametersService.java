@@ -43,6 +43,7 @@ public class AppParametersService {
                         .map(persisted ->
                                 persisted
                                         .setName(changeset.getName())
+                                        .setValue(changeset.getValue())
                                         .setDescription(changeset.getDescription())
                         )
                         .flatMap(type -> ExceptionUtils.trial(() -> repository.save(type)));

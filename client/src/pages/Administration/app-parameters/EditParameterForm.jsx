@@ -51,6 +51,15 @@ const EditParameterForm = ({ entity, onSubmit, onCancel, errors }) => {
             }}
           />
         </Form.Item>
+        <Form.Item label={<RequiredLabel title="Valoare" />} name="value">
+          <Input
+            onChange={(e) => {
+              form.setFieldsValue({
+                value: maxLengthValidator(e.target.value, 50),
+              });
+            }}
+          />
+        </Form.Item>
         <Form.Item label="Descriere" name="description">
           <Input
             onChange={(e) => {

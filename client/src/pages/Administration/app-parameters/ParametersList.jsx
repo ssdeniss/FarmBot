@@ -43,6 +43,9 @@ const ParametersList = () => {
         width: 75,
         filter: true,
       }),
+      Column.text('value', 'Valoare', {
+        width: 50,
+      }),
       Column.text('description', 'Descriere', {
         width: 200,
         sort: false,

@@ -27,6 +27,9 @@ public class AppParameters {
     @Column(name = "NAME", nullable = false)
     private String name;
 
+    @Column(name = "VALUE", nullable = false)
+    private String value;
+
     @Column(name = "DESCRIPTION")
     private String description;
 }

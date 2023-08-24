@@ -7,5 +7,6 @@ public class AppParametersResponse {
     private Long id;
     private String code;
     private String name;
+    private String value;
     private String description;
 }
