@@ -10,9 +10,11 @@ import md.utm.farmbot.backend.models.Events;
 import md.utm.farmbot.backend.services.EventsService;
 import net.kaczmarzyk.spring.data.jpa.domain.Between;
 import net.kaczmarzyk.spring.data.jpa.domain.Equal;
+import net.kaczmarzyk.spring.data.jpa.domain.In;
 import net.kaczmarzyk.spring.data.jpa.domain.LikeIgnoreCase;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.And;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.Spec;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +33,7 @@ public class EventsController {
     private final EventsService service;
     private final EventsConverter converter;
 
-    @GetMapping("/all")
+    @GetMapping("")
     @PreAuthorize(
             "hasAnyAuthority("
                     + "@environment.getProperty('app.serviceaccount.role'),"
@@ -40,13 +42,13 @@ public class EventsController {
     )
     public SearchResult<EventsDTO> search(
             @And({
-                    @Spec(path = "zoneId", params = "zoneId", spec = LikeIgnoreCase.class),
-                    @Spec(path = "date", params = "date", spec = Between.class),
+                    @Spec(path = "zoneId", params = "zoneId", spec = In.class),
+                    @Spec(path = "date", params = {"start", "end"}, spec = Between.class),
                     @Spec(path = "isDone", params = "isDone", spec = Equal.class),
-            }) Specification<Events> spec,
-            Pageable page
+            }) Specification<Events> spec
     ) {
-        return new SearchResult<>(service.search(spec,page), converter::toEventDTO);
+        Pageable page = PageRequest.of(0, 10000);
+        return new SearchResult<>(service.search(spec, page), converter::toEventDTO);
     }
 
 

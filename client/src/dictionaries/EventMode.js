@@ -1,11 +1,16 @@
+export const MODES = {
+  TEMPERATURE: 'TEMPERATURE',
+  HUMIDITY: 'HUMIDITY',
+};
+
 const EventMode = {
   content: [
     {
-      name: 'HUMIDITY',
+      name: MODES.HUMIDITY,
       value: 'UMEZIRE',
     },
     {
-      name: 'TEMPERATURE',
+      name: MODES.TEMPERATURE,
       value: 'INCALZIRE',
     },
   ],
