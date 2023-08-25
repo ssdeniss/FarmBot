@@ -3,7 +3,7 @@
 
 Welcome to the Farm Bot project! This project is a software-hardware REST application designed to run on a Raspberry Pi using Docker. It provides a set of services for various functionalities related to farming.
 
-#################################################################################################################
+#############################################################################################
 ### OVERVIEW 
 
 The Farm Bot project consists of several services, each serving a specific purpose. These services are orchestrated using Docker Compose. Here's a brief overview of the services:
@@ -21,7 +21,7 @@ The Farm Bot project consists of several services, each serving a specific purpo
 
 <!> see docker-compose file for more
 
-#################################################################################################################
+#############################################################################################
 ### GETTING STARTED  
 
 To start the Farm Bot project, you'll need to follow these steps:
@@ -64,14 +64,14 @@ Development and Customization
 	If you'd like to customize or extend the Farm Bot project, you can follow these steps:
 	Service Development: Each service is defined in its respective directory (e.g., gateway, auth). You can make changes to the source code, application.yml, configuration, and Dockerfile in these directories.
 
-#################################################################################################################
+#############################################################################################
 ### BUILD && RUN  
 
 After making changes, you can rebuild and run the services using the provided scripts or Docker commands.
 Remember to update the relevant environment variables and configuration files as needed.
 The project is set up with Maven <3.6.3> for building and running tests. You can modify the tests as necessary and run them using Maven commands.
 
-#################################################################################################################
+#############################################################################################
 ### OPEN SOURCE && AUTHORS 
 GIT: 
 	George Postica -> https://github.com/GeorgePostica/farmBot.git
@@ -81,4 +81,4 @@ GIT:
 ### LICENSE ###
 The Farm Bot project is licensed under the MIT License.
 
-#################################################################################################################
+#############################################################################################
