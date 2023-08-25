@@ -8,7 +8,7 @@ import EditItemIcon from '../../../components/icons/EditItemIcon';
 import DeleteItemIcon from '../../../components/icons/DeleteItemIcon';
 import useDatasource from '../../../hooks/useDatasource';
 import Zone from './Zone';
-import ZoneMode from '../../../dictionaryes/ZoneMode';
+import ZoneMode from '../../../dictionaries/ZoneMode';
 
 function ZonesList() {
   const {
@@ -41,7 +41,6 @@ function ZonesList() {
         'plant',
         'Plantă',
         (code, row) => {
-          console.log(row);
           return row.plant?.name;
         },
         {

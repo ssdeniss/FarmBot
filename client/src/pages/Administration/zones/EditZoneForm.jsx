@@ -3,7 +3,7 @@ import { Divider, Form, Input, Modal, Select } from 'antd';
 import { RollbackOutlined, SaveOutlined } from '@ant-design/icons';
 import useFormErrors from '../../../hooks/useFormErrors';
 import { numberValidator } from '../../../utils/Validator';
-import ZoneMode from '../../../dictionaryes/ZoneMode';
+import ZoneMode from '../../../dictionaries/ZoneMode';
 import useDictionaries from '../../../hooks/useDictionaries';
 import { findAll as findAllPlants } from '../../../services/administration/plants';
 import { findAll as findAllPlantTypes } from '../../../services/administration/plant_types';

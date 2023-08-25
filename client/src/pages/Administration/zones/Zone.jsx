@@ -18,7 +18,6 @@ const Zone = ({ id = null, onCancel, reload = () => {} }) => {
 
   // TODO: add app loader for loading
   console.log('TODO here -> ', loading);
-  console.log(entity);
 
   return (
     <EditZoneForm
