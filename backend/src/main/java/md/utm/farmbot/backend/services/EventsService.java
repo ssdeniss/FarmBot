@@ -45,7 +45,6 @@ public class EventsService {
                                         .setDate(changeset.getDate())
                                         .setTitle(changeset.getTitle())
                                         .setMode(changeset.getMode())
-                                        .setZoneId(changeset.getZoneId())
                         )
                         .flatMap(type -> ExceptionUtils.trial(() -> repository.save(type)));
     }

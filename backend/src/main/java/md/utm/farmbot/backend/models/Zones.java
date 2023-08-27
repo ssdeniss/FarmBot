@@ -22,13 +22,14 @@ public class Zones {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "PLANT_ID")
     private Plants plant;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "MODE")
     private ZoneMode mode;
 
-    @Column(name = "ADDRESS")
+    @Column(name = "ADDRESS", unique = true)
     private Integer address;
 }

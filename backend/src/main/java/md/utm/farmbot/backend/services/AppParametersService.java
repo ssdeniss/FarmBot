@@ -2,11 +2,13 @@ package md.utm.farmbot.backend.services;
 
 import io.vavr.control.Either;
 import lombok.RequiredArgsConstructor;
+import md.utm.farmBot.servicecore.exceptions.BadRequestException;
 import md.utm.farmBot.servicecore.exceptions.DataNotFoundException;
 import md.utm.farmBot.servicecore.exceptions.PlatformException;
 import md.utm.farmBot.servicecore.utils.ExceptionUtils;
 import md.utm.farmbot.backend.models.AppParameters;
 import md.utm.farmbot.backend.repositories.AppParametersRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -32,9 +34,24 @@ public class AppParametersService {
                 );
     }
 
+    public Either<PlatformException, AppParameters> findByCode(String code) {
+        return repository.findByCode(code)
+                .map(Either::<PlatformException, AppParameters>right)
+                .orElseGet(() -> Either.left(
+                                new DataNotFoundException("errors.md.utm.farm_bot.taxonomies.app_parameter.not-found " + code)
+                        )
+                );
+    }
+
     public Either<PlatformException, AppParameters> create(AppParameters entity) {
         return Either.<PlatformException, AppParameters>right(entity)
-                .flatMap(type -> ExceptionUtils.trial(() -> repository.save(type)));
+                .flatMap(param -> ExceptionUtils.trial(() -> {
+                    try {
+                        return repository.save(param);
+                    } catch (DataIntegrityViolationException ex) {
+                        throw new BadRequestException("Parametru cu acest cod <" + entity.getCode() + "> deja există");
+                    }
+                }));
     }
 
     public Either<PlatformException, AppParameters> update(Long id, AppParameters changeset) {
@@ -43,6 +60,7 @@ public class AppParametersService {
                         .map(persisted ->
                                 persisted
                                         .setName(changeset.getName())
+                                        .setValue(changeset.getValue())
                                         .setDescription(changeset.getDescription())
                         )
                         .flatMap(type -> ExceptionUtils.trial(() -> repository.save(type)));

@@ -1,48 +1,59 @@
 import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { Button, Table } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import {
-  findAll as findAllPlantTypes,
-  remove,
-} from '../../../services/administration/plant_types';
+import { remove, findAll as findAllZones } from '../../../services/zones';
 import Column from '../../../helpers/Columns';
 import AuthContext, { hasPermission } from '../../Login';
 import EditItemIcon from '../../../components/icons/EditItemIcon';
 import DeleteItemIcon from '../../../components/icons/DeleteItemIcon';
-import PlantType from './PlantType';
 import useDatasource from '../../../hooks/useDatasource';
+import Zone from './Zone';
+import ZoneMode from '../../../dictionaries/ZoneMode';
 
-const PlantTypesList = () => {
+function ZonesList() {
   const {
     user: { permission },
   } = useContext(AuthContext);
+
+  const [updateZone, setUpdateZone] = useState(null);
 
   const handler = useCallback((...params) => {
     const spec = params[0];
     if (!spec.sort) {
       spec.sort = ['id', 'asc'];
     }
-    return findAllPlantTypes(spec);
+    return findAllZones(spec);
   }, []);
 
   const { loading, pagination, content, sort, handleChange, reload } =
     useDatasource(handler);
-
-  const [updatePlant, setUpdatePlant] = useState(false);
 
   const columns = useMemo(
     () => [
       Column.text('id', 'ID', {
         width: 25,
       }),
-      Column.text('name', 'Denumire', {
-        width: 50,
-        filter: true,
-      }),
-      Column.text('description', 'Descriere', {
-        width: 200,
+      Column.text('address', 'Index de poziționare', {
+        width: 20,
         sort: false,
       }),
+      Column.other(
+        'plant',
+        'Plantă',
+        (code, row) => {
+          return row.plant?.name;
+        },
+        {
+          width: 50,
+          filter: true,
+        },
+      ),
+      Column.dictionary('mode', 'Mod setat', ZoneMode, {
+        width: 50,
+        sort: false,
+        filter: true,
+      }),
+
       Column.actions(
         'Acțiune',
         (record) => (
@@ -50,7 +61,7 @@ const PlantTypesList = () => {
             {hasPermission([permission], 'ADMIN') && (
               <EditItemIcon
                 onClick={() => {
-                  setUpdatePlant(record.id);
+                  setUpdateZone(record.id);
                 }}
               />
             )}
@@ -77,7 +88,7 @@ const PlantTypesList = () => {
         style={{ marginLeft: 'auto' }}
         icon={<PlusOutlined />}
         type="primary"
-        onClick={() => setUpdatePlant(true)}
+        onClick={() => setUpdateZone(true)}
       >
         Adaugă
       </Button>
@@ -93,14 +104,15 @@ const PlantTypesList = () => {
         scroll={{ drag: true, x: 500 }}
         rowClassName="animated-row"
       />
-      {updatePlant ? (
-        <PlantType
-          id={updatePlant}
+      {updateZone ? (
+        <Zone
+          id={updateZone}
           reload={reload}
-          onCancel={() => setUpdatePlant(null)}
+          onCancel={() => setUpdateZone(null)}
         />
       ) : null}
     </div>
   );
-};
-export default PlantTypesList;
+}
+
+export default ZonesList;

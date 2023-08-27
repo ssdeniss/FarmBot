@@ -1,9 +1,9 @@
 import React from 'react';
 import sprite from '../assets/icons/sprite.svg';
 
-const Icon = ({ name, className, ...rest }) => {
+const Icon = ({ onClick, name, className, ...rest }) => {
   return (
-    <svg className={className} {...rest}>
+    <svg className={className} onClick={onClick} {...rest}>
       <use href={`${sprite}#${name}`} />
     </svg>
   );

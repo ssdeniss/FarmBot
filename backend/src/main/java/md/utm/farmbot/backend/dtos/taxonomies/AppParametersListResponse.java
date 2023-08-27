@@ -21,6 +21,7 @@ public class AppParametersListResponse extends SearchResult<AppParametersListRes
         private Long id;
         private String code;
         private String name;
+        private String value;
         private String description;
     }
 

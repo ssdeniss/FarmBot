@@ -11,5 +11,7 @@ public class AppParametersRequest {
     private String code;
     @NotEmpty
     private String name;
+    @NotEmpty
+    private String value;
     private String description;
 }
