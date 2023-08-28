@@ -3,6 +3,7 @@ package md.utm.farmbot.backend.converters;
 import md.utm.farmbot.backend.dtos.ZonesDTO;
 import md.utm.farmbot.backend.dtos.plants.PlantsRequest;
 import md.utm.farmbot.backend.dtos.plants.PlantsResponse;
+import md.utm.farmbot.backend.enums.ZoneMode;
 import md.utm.farmbot.backend.models.Plants;
 import md.utm.farmbot.backend.models.Zones;
 import org.mapstruct.AfterMapping;
@@ -24,6 +25,9 @@ public interface ZonesConverter {
     default void setAdditionalDetails(@MappingTarget Zones zone, ZonesDTO dto) {
         if(dto.getPlant() != null) {
             zone.setPlant(toPlant(dto.getPlant()));
+        }
+        if(dto.getMode() == null){
+            zone.setMode(ZoneMode.NOT_ACTIVE);
         }
     }
 

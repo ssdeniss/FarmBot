@@ -15,25 +15,35 @@ const TYPES = {
   AREAS: 'areas',
 };
 
-export const useAreas = ({ type = TYPES.AREAS, render = true }) => {
+export const useAreas = ({
+  type = TYPES.AREAS,
+  render = true,
+  multiple = true,
+}) => {
   const [selected, setSelected] = useState([]);
   const [zonesCount, setZonesCount] = useState(0);
 
-  const [{ zones }] = useDictionaries(dictionaries);
+  const [{ zones }, reload] = useDictionaries(dictionaries);
 
   useEffect(() => {
     findByCode(ZONES_COUNT_CODE).then((res) => setZonesCount(res.value));
   }, []);
 
-  const handleAreaClick = useCallback((id) => {
-    console.log(id);
-    setSelected((prev) => {
-      if (prev.includes(id)) {
-        return prev.filter((zoneId) => zoneId !== id);
+  const handleAreaClick = useCallback(
+    (id) => {
+      if (multiple) {
+        setSelected((prev) => {
+          if (prev.includes(id)) {
+            return prev.filter((zoneId) => zoneId !== id);
+          }
+          return [...prev, id];
+        });
+      } else {
+        setSelected([id]);
       }
-      return [...prev, id];
-    });
-  }, []);
+    },
+    [multiple],
+  );
 
   const areas = useCallback(() => {
     return Array.from({ length: zonesCount }, (_, index) => {
@@ -65,7 +75,7 @@ export const useAreas = ({ type = TYPES.AREAS, render = true }) => {
     return (
       <Select
         onChange={setSelected}
-        mode="multiple"
+        mode={multiple ? 'multiple' : undefined}
         style={{ width: '100%' }}
         onClear={() => setSelected([])}
         allowClear
@@ -83,13 +93,13 @@ export const useAreas = ({ type = TYPES.AREAS, render = true }) => {
           ))}
       </Select>
     );
-  }, [zones?.content]);
+  }, [zones?.content, multiple]);
 
   const renderFunc = useCallback(() => {
     if (render) {
       switch (type) {
         case TYPES.AREAS:
-          return areas();
+          return <div className="calendar__modal-area--list">{areas()}</div>;
         case TYPES.DROPDOWN:
           return dropdown();
         default:
@@ -99,5 +109,16 @@ export const useAreas = ({ type = TYPES.AREAS, render = true }) => {
     return null;
   }, [render, type, areas, dropdown]);
 
-  return { zones: zones?.content, render: renderFunc, zonesCount, selected };
+  const clear = useCallback(() => {
+    setSelected([]);
+  }, []);
+
+  return {
+    zones: zones?.content,
+    render: renderFunc,
+    zonesCount,
+    selected,
+    reload,
+    clear,
+  };
 };

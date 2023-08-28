@@ -67,7 +67,7 @@ const EventList = ({ content, zones, selectedDay, reload = () => {} }) => {
     const zone = zones.find((el) => el.id === zoneId);
     return (
       <div className="calendar__modal-event-area">
-        {`${zone?.plant?.name || ''} Poziția :${zone?.address + 1 || ''}`}
+        {`${zone?.plant?.name || ''} ${zone?.address + 1 || ''}`}
       </div>
     );
   };
