@@ -76,7 +76,7 @@ const CalendarModal = ({ handleClose, selectedDay, events, reload }) => {
       <div className="calendar__modal">
         <div className="calendar__modal-area">
           <h6 className="calendar__modal-area--title">Selecteaza zona</h6>
-          <div className="calendar__modal-area--list">{render()}</div>
+          {render()}
         </div>
         <div className="calendar__modal-add">
           <div className="calendar__modal-add--moisture">
