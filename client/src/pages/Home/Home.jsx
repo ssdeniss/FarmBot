@@ -1,5 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Button, Divider, Form, notification, Select, Slider } from 'antd';
+import {
+  Button,
+  Divider,
+  Form,
+  notification,
+  Select,
+  Slider,
+  Tooltip,
+} from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/lib/form/Form';
 import { useAreas } from '../../hooks/useAreas';
 import ZoneMode from '../../dictionaries/ZoneMode';
@@ -100,15 +109,18 @@ const Home = () => {
 
       <div className={`home__area ${zone?.id ? 'active' : ''}`}>
         <div className="home__area-container">
-          <h3>Zona nr. {zone?.address + 1}</h3>
-          {zone?.plant?.typeId ? (
-            <Icon
-              name={
-                plantTypes?.content?.find((el) => el.id === zone?.plant?.typeId)
-                  ?.name || 'default'
-              }
-            />
-          ) : null}
+          <div className="home__area-title">
+            <h3>Zona nr. {zone?.address + 1}</h3>
+            {zone?.plant?.typeId ? (
+              <Icon
+                name={
+                  plantTypes?.content?.find(
+                    (el) => el.id === zone?.plant?.typeId,
+                  )?.name || 'default'
+                }
+              />
+            ) : null}
+          </div>
           <div className="home__area-ground">content</div>
           {/* sfarsit patrat ||| Poate
           slider pentru umiditate, temperatura la planta? (pentru a modifica si
@@ -157,6 +169,14 @@ const Home = () => {
             </Form.Item>
             {zone?.plant?.id ? (
               <>
+                <Tooltip
+                  placement="left"
+                  className="home__area-plant--info"
+                  title={zone?.plant?.description}
+                >
+                  <InfoCircleOutlined size={30} />
+                  Informație despre plantă
+                </Tooltip>
                 <Form.Item
                   name="humidity"
                   label="Umiditatea"
