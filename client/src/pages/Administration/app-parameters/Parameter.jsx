@@ -1,14 +1,14 @@
 import React from 'react';
-import EditPlantTypeForm from './EditPlantTypeForm';
 import {
   findOne,
   create,
   update,
-} from '../../../services/administration/plant_types';
+} from '../../../services/administration/parameters';
 import { useEditPage } from '../../../hooks/useEditPage';
+import EditParameterForm from './EditParameterForm';
 
 const initial = {};
-const PlantType = ({ id = null, onCancel, reload = () => {} }) => {
+const Parameter = ({ id = null, onCancel, reload = () => {} }) => {
   const [entity, handleSubmit, handleCancel, errors, loading] = useEditPage({
     id: typeof id === 'number' ? id : null,
     isNew: typeof id !== 'number',
@@ -24,7 +24,7 @@ const PlantType = ({ id = null, onCancel, reload = () => {} }) => {
   console.log('TODO here -> ', loading);
 
   return (
-    <EditPlantTypeForm
+    <EditParameterForm
       entity={entity}
       onSubmit={handleSubmit}
       onCancel={handleCancel}
@@ -33,4 +33,4 @@ const PlantType = ({ id = null, onCancel, reload = () => {} }) => {
   );
 };
 
-export default PlantType;
+export default Parameter;

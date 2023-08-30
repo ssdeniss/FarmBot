@@ -1,22 +1,15 @@
 import React, { useEffect } from 'react';
-import { Col, Divider, Form, Input, Modal, Row, Select } from 'antd';
+import { Col, Divider, Form, Input, Modal, Row } from 'antd';
 import { RollbackOutlined, SaveOutlined } from '@ant-design/icons';
 import useFormErrors from '../../hooks/useFormErrors';
 import RequiredLabel from '../../components/RequiredLabel';
-import { findAll } from '../../services/administration/plant_types';
-import useDatasource from '../../hooks/useDatasource';
 import {
   dotValidator,
   floatValidator,
   maxLengthValidator,
 } from '../../utils/Validator';
 
-// eslint-disable-next-line
-const EditPlantForm = ({ plant, onSubmit, onCancel, errors }) => {
-  console.log(plant);
-  // eslint-disable-next-line
-  const { loading, pagination, content, sort, handleChange, reload } =
-    useDatasource(findAll);
+const EditPlantForm = ({ plant, onSubmit, onCancel, errors, typeId }) => {
   const [form] = Form.useForm();
   useFormErrors(form, errors);
 
@@ -25,10 +18,10 @@ const EditPlantForm = ({ plant, onSubmit, onCancel, errors }) => {
   }, [form, plant]);
 
   const handleSubmit = () => {
-    onSubmit(form.getFieldsValue());
+    onSubmit({ ...form.getFieldsValue(), typeId });
     onCancel();
   };
-  console.log(content);
+
   return (
     <Modal
       centered
@@ -51,15 +44,6 @@ const EditPlantForm = ({ plant, onSubmit, onCancel, errors }) => {
               });
             }}
           />
-        </Form.Item>
-        <Form.Item label={<RequiredLabel title="Tipul" />} name="typeId">
-          <Select style={{ width: '100%' }}>
-            {content.map((row) => (
-              <Select.Option value={row.id} key={row.id}>
-                {row.name}
-              </Select.Option>
-            ))}
-          </Select>
         </Form.Item>
         <Form.Item label="Descriere" name="description">
           <Input

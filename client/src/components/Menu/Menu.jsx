@@ -8,8 +8,8 @@ const ICONS_DISTANCE = 69;
 const MENU_ITEMS = {
   DEFAULT: { path: '' },
   HOME: { path: 'home', index: 0 },
-  LIBRARY: { path: 'library', index: 1 },
-  CALENDAR: { path: 'calendar', index: 2 },
+  CALENDAR: { path: 'calendar', index: 1 },
+  LIBRARY: { path: 'library', index: 2 },
   SETTINGS: { path: 'settings', index: 3 },
   ADMINISTRATION: { path: 'administration', index: 4 },
 };
@@ -52,13 +52,13 @@ const Menu = () => {
         />
         <MenuItem
           current={current.path}
-          name={MENU_ITEMS.LIBRARY.path}
-          onClick={() => handleNavigate(MENU_ITEMS.LIBRARY)}
+          name={MENU_ITEMS.CALENDAR.path}
+          onClick={() => handleNavigate(MENU_ITEMS.CALENDAR)}
         />
         <MenuItem
           current={current.path}
-          name={MENU_ITEMS.CALENDAR.path}
-          onClick={() => handleNavigate(MENU_ITEMS.CALENDAR)}
+          name={MENU_ITEMS.LIBRARY.path}
+          onClick={() => handleNavigate(MENU_ITEMS.LIBRARY)}
         />
         <MenuItem
           current={current.path}
