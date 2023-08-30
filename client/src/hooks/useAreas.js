@@ -61,6 +61,7 @@ export const useAreas = ({
           onClick={() =>
             curentZone ? handleAreaClick(curentZone.id) : () => {}
           }
+          disabled={!curentZone?.id}
         >
           {curentZone?.id
             ? `${curentZone?.plant?.name || ''}
@@ -80,6 +81,7 @@ export const useAreas = ({
         onClear={() => setSelected([])}
         allowClear
         showSearch
+        showArrow
         filterOption={(input, option) =>
           option.children.toLowerCase().indexOf(input.toLowerCase()) !== -1
         }

@@ -42,7 +42,7 @@ const Calendar = () => {
   const events = useMemo(() => {
     return content.map((el) => ({
       ...el,
-      backgroundColor: el.mode === MODES.TEMPERATURE ? '#FF0000' : '#0000FF',
+      backgroundColor: el.mode === MODES.TEMPERATURE ? '#f4ca16' : '#1890ff',
     }));
   }, [content]);
 
@@ -64,8 +64,8 @@ const Calendar = () => {
 
   return (
     <div className="calendar">
-      <div style={{ gap: '20px', display: 'flex', flexDirection: 'row' }}>
-        <div>Zone select:</div>
+      <div className="calendar__area-select">
+        <div className="calendar__area-select--title">Selectează zonele</div>
         {render()}
       </div>
 
