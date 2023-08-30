@@ -188,3 +188,11 @@ input.ant-input:focus {
 .ant-form-item {
   margin-bottom: initial !important;
 }
+.anticon-check {
+  svg {
+    color: $primary !important;
+  }
+}
+.ant-modal-header {
+  margin-bottom: 15px !important;
+}

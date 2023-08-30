@@ -1,0 +1,60 @@
+.home {
+  position: relative;
+  &__areas {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s linear;
+    &.active {
+      opacity: 1;
+      pointer-events: initial;
+      transition: all 0.3s linear;
+    }
+  }
+  .calendar__modal-area--list {
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    max-width: 800px;
+    height: calc(100vh - 140px);
+    max-height: none;
+  }
+  .calendar__modal-area--item {
+    height: 200px;
+  }
+  &__area {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s linear;
+    justify-content: space-around;
+    &.active {
+      opacity: 1;
+      pointer-events: initial;
+      transition: all 0.3s linear;
+    }
+  }
+  &__area-container {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__area-ground {
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: $ground;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__area-info {
+    max-width: 500px;
+    width: 100%;
+  }
+
+  &__btn-plant {
+    margin-top: 20px;
+  }
+}

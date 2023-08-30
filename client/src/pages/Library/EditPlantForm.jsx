@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Col, Divider, Form, Input, Modal, Row } from 'antd';
+import { Col, Form, Input, Modal, Row } from 'antd';
 import { RollbackOutlined, SaveOutlined } from '@ant-design/icons';
 import useFormErrors from '../../hooks/useFormErrors';
 import RequiredLabel from '../../components/RequiredLabel';
@@ -34,8 +34,12 @@ const EditPlantForm = ({ plant, onSubmit, onCancel, errors, typeId }) => {
       cancelButtonProps={{ icon: <RollbackOutlined /> }}
       okButtonProps={{ icon: <SaveOutlined /> }}
     >
-      <Divider />
-      <Form form={form} layout="vertical" initialValues={plant}>
+      <Form
+        className="form__layout"
+        form={form}
+        layout="vertical"
+        initialValues={plant}
+      >
         <Form.Item label={<RequiredLabel title="Denumire" />} name="name">
           <Input
             onChange={(e) => {

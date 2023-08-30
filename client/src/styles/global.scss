@@ -264,3 +264,9 @@ button.ant-btn.ant-btn-default {
 .fc-button-group {
   gap: 10px;
 }
+
+.form__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
