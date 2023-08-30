@@ -27,7 +27,9 @@ const initialState = {
   content: [],
   pagination: {
     current: 1,
-    pageSize: 20,
+    pageSize: localStorage.getItem('pageSize')
+      ? localStorage.getItem('pageSize')
+      : 20,
     total: 0,
   },
 
@@ -39,6 +41,9 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
+  if (action?.payload?.pageSize) {
+    localStorage.setItem('pageSize', action?.payload?.pageSize);
+  }
   switch (action.type) {
     case ACTION_LOADING:
       return {
@@ -70,7 +75,9 @@ const reducer = (state, action) => {
           pageSize: action.payload.pageSize,
           total: action.payload.totalElements,
           pageSizeOptions: [20, 50, 100, 200],
-          defaultPageSize: 20,
+          defaultPageSize: localStorage.getItem('pageSize')
+            ? localStorage.getItem('pageSize')
+            : 20,
         },
         error: false,
         loading: false,

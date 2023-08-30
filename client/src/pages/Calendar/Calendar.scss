@@ -71,14 +71,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    max-height: 430px;
-    overflow: auto;
-    padding-right: 10px;
   }
   &__modal-area--item {
     height: 100% !important;
-    max-height: 100px !important;
-    min-height: 100px !important;
   }
   &__modal-event-dot {
     width: 15px;

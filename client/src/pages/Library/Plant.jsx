@@ -5,7 +5,7 @@ import { findOne, create, update } from '../../services/administration/plants';
 
 const initial = {};
 
-const Plant = ({ id = null, onCancel, reload = () => {}, typeId }) => {
+const Plant = ({ id = null, onCancel, reload = () => {} }) => {
   const [entity, handleSubmit, handleCancel, errors, loading] = useEditPage({
     id: typeof id === 'number' ? id : null,
     isNew: typeof id !== 'number',
@@ -26,7 +26,6 @@ const Plant = ({ id = null, onCancel, reload = () => {}, typeId }) => {
       onCancel={handleCancel}
       onSubmit={handleSubmit}
       errors={errors}
-      typeId={typeId}
     />
   );
 };
