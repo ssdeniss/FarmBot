@@ -1,11 +1,10 @@
 import React from 'react';
-import EditPlantForm from './EditPlantForm';
-import { useEditPage } from '../../hooks/useEditPage';
-import { findOne, create, update } from '../../services/administration/plants';
+import { useEditPage } from '../../../hooks/useEditPage';
+import { create, findOne, update } from '../../../services/zones';
+import EditZoneForm from './EditZoneForm';
 
 const initial = {};
-
-const Plant = ({ id = null, onCancel, reload = () => {}, typeId }) => {
+const Zone = ({ id = null, onCancel, reload = () => {} }) => {
   const [entity, handleSubmit, handleCancel, errors, loading] = useEditPage({
     id: typeof id === 'number' ? id : null,
     isNew: typeof id !== 'number',
@@ -17,18 +16,17 @@ const Plant = ({ id = null, onCancel, reload = () => {}, typeId }) => {
     onCancel,
   });
 
-  // TODO: loader
-  console.log(loading);
+  // TODO: add app loader for loading
+  console.log('TODO here -> ', loading);
 
   return (
-    <EditPlantForm
-      plant={entity}
-      onCancel={handleCancel}
+    <EditZoneForm
+      entity={entity}
       onSubmit={handleSubmit}
+      onCancel={handleCancel}
       errors={errors}
-      typeId={typeId}
     />
   );
 };
 
-export default Plant;
+export default Zone;

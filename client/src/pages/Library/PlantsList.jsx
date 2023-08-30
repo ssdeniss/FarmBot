@@ -64,33 +64,44 @@ const PlantsList = ({ typeId }) => {
         sort: false,
         toUpperCase: false,
       }),
-      {
-        title: 'Umeditatea',
-        key: 'humidity',
-        sort: true,
-        width: 40,
-        render: (row) => {
+      Column.other(
+        'humidity',
+        'Umeditatea',
+        (code, row) => {
+          const string = `${
+            row.humidityMin ? row.humidityMin.toString().concat('%') : ''
+          } ${row.humidityMin && row.humidityMax ? '-' : ''}
+          ${row.humidityMax ? row.humidityMax.toString().concat('%') : ''}`;
           return (
             <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
-              <div>{row.humidityMin} %</div>-<div>{row.humidityMax} %</div>
+              {string}
             </div>
           );
         },
-      },
-      {
-        title: 'Temperatura',
-        key: 'temperature',
-        sort: true,
-        width: 40,
-        render: (row) => {
+        {
+          width: 40,
+        },
+      ),
+      Column.other(
+        'temperature',
+        'Temperatura',
+        (code, row) => {
+          const string = `${
+            row.temperatureMin ? row.temperatureMin.toString().concat('°C') : ''
+          } ${row.temperatureMin && row.temperatureMax ? '-' : ''}
+          ${
+            row.temperatureMax ? row.temperatureMax.toString().concat('°C') : ''
+          }`;
           return (
             <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
-              <div>{row.temperatureMin} °C</div>-
-              <div>{row.temperatureMax} °C</div>
+              {string}
             </div>
           );
         },
-      },
+        {
+          width: 40,
+        },
+      ),
       Column.actions(
         'Acțiune',
         (record) => (
@@ -105,7 +116,7 @@ const PlantsList = ({ typeId }) => {
             {hasPermission([permission], 'ADMIN') && (
               <DeleteItemIcon
                 title={`Șterge tipul plantei ${record.name}`}
-                message="Succes"
+                message="Planta a fost ștersă cu succes"
                 item={record}
                 remove={remove}
                 reload={reload}
@@ -146,6 +157,7 @@ const PlantsList = ({ typeId }) => {
           id={updatePlant}
           reload={reload}
           onCancel={() => setUpdatePlant(null)}
+          typeId={typeId}
         />
       ) : null}
     </div>

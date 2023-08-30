@@ -2,17 +2,17 @@ import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { Button, Table } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import {
-  findAll as findAllPlantTypes,
+  findAll as findAllParameters,
   remove,
-} from '../../../services/administration/plant_types';
+} from '../../../services/administration/parameters';
 import Column from '../../../helpers/Columns';
 import AuthContext, { hasPermission } from '../../Login';
 import EditItemIcon from '../../../components/icons/EditItemIcon';
 import DeleteItemIcon from '../../../components/icons/DeleteItemIcon';
-import PlantType from './PlantType';
 import useDatasource from '../../../hooks/useDatasource';
+import Parameter from './Parameter';
 
-const PlantTypesList = () => {
+const ParametersList = () => {
   const {
     user: { permission },
   } = useContext(AuthContext);
@@ -22,22 +22,29 @@ const PlantTypesList = () => {
     if (!spec.sort) {
       spec.sort = ['id', 'asc'];
     }
-    return findAllPlantTypes(spec);
+    return findAllParameters(spec);
   }, []);
 
   const { loading, pagination, content, sort, handleChange, reload } =
     useDatasource(handler);
 
-  const [updatePlant, setUpdatePlant] = useState(false);
+  const [updateParameter, setUpdateParameter] = useState(false);
 
   const columns = useMemo(
     () => [
       Column.text('id', 'ID', {
         width: 25,
       }),
-      Column.text('name', 'Denumire', {
+      Column.text('code', 'Cod', {
         width: 50,
         filter: true,
+      }),
+      Column.text('name', 'Denumire', {
+        width: 75,
+        filter: true,
+      }),
+      Column.text('value', 'Valoare', {
+        width: 50,
       }),
       Column.text('description', 'Descriere', {
         width: 200,
@@ -50,14 +57,14 @@ const PlantTypesList = () => {
             {hasPermission([permission], 'ADMIN') && (
               <EditItemIcon
                 onClick={() => {
-                  setUpdatePlant(record.id);
+                  setUpdateParameter(record.id);
                 }}
               />
             )}
             {hasPermission([permission], 'ADMIN') && (
               <DeleteItemIcon
-                title={`Șterge tipul plantei ${record.name}`}
-                message="Tipul plantei a fost șters cu succes"
+                title={`Șterge parametrul ${record.name}`}
+                message="Parametrul a fost șters cu succes"
                 item={record}
                 remove={remove}
                 reload={reload}
@@ -65,7 +72,7 @@ const PlantTypesList = () => {
             )}
           </span>
         ),
-        { width: 25 },
+        { width: 50 },
       ),
     ],
     [reload, permission],
@@ -77,7 +84,7 @@ const PlantTypesList = () => {
         style={{ marginLeft: 'auto' }}
         icon={<PlusOutlined />}
         type="primary"
-        onClick={() => setUpdatePlant(true)}
+        onClick={() => setUpdateParameter(true)}
       >
         Adaugă
       </Button>
@@ -93,14 +100,14 @@ const PlantTypesList = () => {
         scroll={{ drag: true, x: 500 }}
         rowClassName="animated-row"
       />
-      {updatePlant ? (
-        <PlantType
-          id={updatePlant}
+      {updateParameter ? (
+        <Parameter
+          id={updateParameter}
           reload={reload}
-          onCancel={() => setUpdatePlant(null)}
+          onCancel={() => setUpdateParameter(null)}
         />
       ) : null}
     </div>
   );
 };
-export default PlantTypesList;
+export default ParametersList;
