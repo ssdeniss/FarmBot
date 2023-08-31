@@ -63,9 +63,6 @@ Development and Customization
 If you'd like to customize or extend the Farm Bot project, you can follow these steps:
 Service Development: Each service is defined in its respective directory (e.g., gateway, auth). You can make changes to the source code, application.yml, configuration, and Dockerfile in these directories.
 
-    node: v16.17.1
-    npm: v6.10.2
-
 ---
 
 ### 🔨 BUILD && RUN
@@ -73,6 +70,9 @@ Service Development: Each service is defined in its respective directory (e.g., 
 After making changes, you can rebuild and run the services using the provided scripts or Docker commands.
 Remember to update the relevant environment variables and configuration files as needed.
 The project is set up with Maven <3.6.3> for building and running tests. You can modify the tests as necessary and run them using Maven commands.
+
+    node: v16.17.1
+    npm: v6.10.2
 
 ---
 
@@ -92,4 +92,5 @@ George Postica -> <a href="https://github.com/GeorgePostica/farmBot.git">https:/
 <p>
 The Farm Bot project is licensed under the MIT License.
 </p>
+
 ---
