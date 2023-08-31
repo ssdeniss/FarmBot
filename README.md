@@ -1,12 +1,10 @@
-### Farm Bot Project:
-🚀🚀🚀
+### 🚀 Farm Bot Project:
 
 Welcome to the Farm Bot project! This project is a software-hardware REST application designed to run on a Raspberry Pi using Docker. It provides a set of services for various functionalities related to farming.
 
 ---
 
-### OVERVIEW
-📝📝📝
+### 📝 OVERVIEW
 
 The Farm Bot project consists of several services, each serving a specific purpose. These services are orchestrated using Docker Compose. Here's a brief overview of the services:
 
@@ -25,8 +23,7 @@ allow using: hibernate, JWT sequrity, FeignClients, JPA Specifications and Datas
 
 ---
 
-### GETTING STARTED
-🔥🔥🔥
+### 🔥 GETTING STARTED
 
 To start the Farm Bot project, you'll need to follow these steps:
 
@@ -48,8 +45,7 @@ _ Run the "./run.sh" script with appropriate parameters to manage the services:
 -l: View logs of services.
 -force: Clean docker images and restart everething.
 
-## Examples
-💡💡💡
+### 💡 Examples
 
       default run: sudo ./run.sh
       clean   run: sudo ./run.sh -up  | or use -force
@@ -72,8 +68,7 @@ Service Development: Each service is defined in its respective directory (e.g., 
 
 ---
 
-### BUILD && RUN
-🔨🔨🔨
+### 🔨 BUILD && RUN
 
 After making changes, you can rebuild and run the services using the provided scripts or Docker commands.
 Remember to update the relevant environment variables and configuration files as needed.
@@ -81,8 +76,7 @@ The project is set up with Maven <3.6.3> for building and running tests. You can
 
 ---
 
-### OPEN SOURCE && AUTHORS
-✏️✏️✏️
+### ✏️ OPEN SOURCE && AUTHORS
 
 GIT:
 
@@ -93,9 +87,9 @@ George Postica -> <a href="https://github.com/GeorgePostica/farmBot.git">https:/
 Șeremet Denis -> <a href="https://github.com/ssdeniss/farmBot.git">https://github.com/ssdeniss/farmBot.git</a>
 </p>
 
-### LICENSE
+### 🔒️ LICENSE
 
-🔐🔐🔐
+<p>
 The Farm Bot project is licensed under the MIT License.
-
+</p>
 ---
