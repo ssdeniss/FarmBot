@@ -53,7 +53,7 @@ _ Run the "./run.sh" script with appropriate parameters to manage the services:
 
 ---
 
-<span style="color:#E6484B;">Use service names (e.g., gateway, auth) to target specific services.</span>
+$${\color{red}Use service names (e.g., gateway, auth) to target specific services.}$$
 
 <!> Accessing Services:
 Once the services are up, you can access them via the exposed ports on your Raspberry Pi.
