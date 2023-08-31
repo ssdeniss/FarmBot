@@ -2,7 +2,7 @@
 
 Welcome to the Farm Bot project! This project is a software-hardware REST application designed to run on a Raspberry Pi using Docker. It provides a set of services for various functionalities related to farming.
 
-#############################################################################################
+---
 
 ### OVERVIEW
 
@@ -21,7 +21,7 @@ allow using: hibernate, JWT sequrity, FeignClients, JPA Specifications and Datas
 
 <!> see docker-compose file for more
 
-#############################################################################################
+---
 
 ### GETTING STARTED
 
@@ -66,7 +66,7 @@ Service Development: Each service is defined in its respective directory (e.g., 
     -node: v16.17.1
     -npm: v6.10.2
 
-#############################################################################################
+---
 
 ### BUILD && RUN
 
@@ -74,7 +74,7 @@ After making changes, you can rebuild and run the services using the provided sc
 Remember to update the relevant environment variables and configuration files as needed.
 The project is set up with Maven <3.6.3> for building and running tests. You can modify the tests as necessary and run them using Maven commands.
 
-#############################################################################################
+---
 
 ### OPEN SOURCE && AUTHORS
 
@@ -91,4 +91,4 @@ George Postica -> <a href="https://github.com/GeorgePostica/farmBot.git">https:/
 
 The Farm Bot project is licensed under the MIT License.
 
-#############################################################################################
+---
