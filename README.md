@@ -51,7 +51,6 @@ _ Run the "./run.sh" script with appropriate parameters to manage the services:
       clean   run: sudo ./run.sh -up  | or use -force
       custom  run: sudo ./run.sh -restart backend auth (or any other services | functions)
 
-
 ---
 
 <!> Use service names (e.g., gateway, auth) to target specific services.
@@ -80,8 +79,13 @@ The project is set up with Maven <3.6.3> for building and running tests. You can
 ### OPEN SOURCE && AUTHORS
 
 GIT:
-George Postica -> https://github.com/GeorgePostica/farmBot.git
-Șeremet Denis -> https://github.com/ssdeniss/farmBot.git
+
+<p>
+George Postica -> <a href="https://github.com/GeorgePostica/farmBot.git">https://github.com/GeorgePostica/farmBot.git</a>
+</p>
+<p>
+Șeremet Denis -> <a href="https://github.com/ssdeniss/farmBot.git">https://github.com/ssdeniss/farmBot.git</a>
+</p>
 
 ### LICENSE
 
