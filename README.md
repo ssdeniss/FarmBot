@@ -1,4 +1,3 @@
-```diff
 ### Farm Bot Project:
 
 Welcome to the Farm Bot project! This project is a software-hardware REST application designed to run on a Raspberry Pi using Docker. It provides a set of services for various functionalities related to farming.
@@ -40,11 +39,11 @@ _ Open a terminal and navigate to the project directory.
 _ Make shure that have permission: sudo chmod +x run.sh
 _ Configure "run.config" if needed
 _ Run the "./run.sh" script with appropriate parameters to manage the services:
-+ -up: Stop and remove containers, then bring them up.
-+ -stop: Stop containers.
-+ -restart: Restart containers.
-+ -l: View logs of services.
-+ -force: Clean docker images and restart everething.
+-up: Stop and remove containers, then bring them up.
+-stop: Stop containers.
+-restart: Restart containers.
+-l: View logs of services.
+-force: Clean docker images and restart everething.
 
 ## Examples
 
@@ -54,7 +53,7 @@ _ Run the "./run.sh" script with appropriate parameters to manage the services:
 
 ---
 
-- Use service names (e.g., gateway, auth) to target specific services.-
+<p><!> Use service names (e.g., gateway, auth) to target specific services.</p>
 
 <!> Accessing Services:
 Once the services are up, you can access them via the exposed ports on your Raspberry Pi.
@@ -93,4 +92,3 @@ George Postica -> <a href="https://github.com/GeorgePostica/farmBot.git">https:/
 The Farm Bot project is licensed under the MIT License.
 
 ---
-```
