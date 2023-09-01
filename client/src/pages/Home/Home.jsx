@@ -3,6 +3,7 @@ import {
   Button,
   Divider,
   Form,
+  Image,
   notification,
   Select,
   Slider,
@@ -17,6 +18,8 @@ import { findAll as findAllPlants } from '../../services/administration/plants';
 import { findAll as findAllTypes } from '../../services/administration/plant_types';
 import useDictionaries from '../../hooks/useDictionaries';
 import Icon from '../../components/Icon';
+import { FarmBotModel } from '../../components/3DModels/FarmBotModel';
+import backImage from '../../assets/images/360.png';
 
 const dictionaries = {
   plants: findAllPlants,
@@ -25,7 +28,12 @@ const dictionaries = {
 
 const Home = () => {
   const [form] = useForm();
+  const [modelRegime, setModelRegime] = useState(true);
   const [zone, setZone] = useState({});
+
+  const handleModelRegime = () => {
+    setModelRegime((prev) => !prev);
+  };
 
   const [{ plants, plantTypes }] = useDictionaries(dictionaries);
 
@@ -103,11 +111,22 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className={`home__areas ${!zone?.id ? 'active' : ''}`}>
+      <div className={`home__model ${modelRegime ? 'active' : ''}`}>
+        <FarmBotModel handleModelRegime={handleModelRegime} />
+      </div>
+      <div
+        className={`home__areas ${!modelRegime && !zone?.id ? 'active' : ''}`}
+      >
+        <Image
+          className="home__areas-back"
+          src={backImage}
+          preview={false}
+          onClick={handleModelRegime}
+        />
         {render()}
       </div>
 
-      <div className={`home__area ${zone?.id ? 'active' : ''}`}>
+      <div className={`home__area ${!modelRegime && zone?.id ? 'active' : ''}`}>
         <div className="home__area-container">
           <div className="home__area-title">
             <h3>Zona nr. {zone?.address + 1}</h3>
