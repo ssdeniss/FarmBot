@@ -5,7 +5,9 @@ import { FarmBotModel } from '../../components/3DModels/FarmBotModel';
 const Login = () => {
   return (
     <div className="login">
-      <FarmBotModel />
+      <div className="login__model">
+        <FarmBotModel />
+      </div>
       <LoginForm />
     </div>
   );
