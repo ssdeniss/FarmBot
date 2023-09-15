@@ -1,22 +1,39 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Button, Form, notification, Row, Select, Slider } from 'antd';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  Button,
+  Divider,
+  Form,
+  Image,
+  notification,
+  Select,
+  Slider,
+  Tooltip,
+} from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/lib/form/Form';
 import { useAreas } from '../../hooks/useAreas';
 import ZoneMode from '../../dictionaries/ZoneMode';
 import { update } from '../../services/zones';
 import { findAll as findAllPlants } from '../../services/administration/plants';
-import { findAll as findAllPlantsTypes } from '../../services/administration/plant_types';
+import { findAll as findAllTypes } from '../../services/administration/plant_types';
 import useDictionaries from '../../hooks/useDictionaries';
 import Icon from '../../components/Icon';
+import { FarmBotModel } from '../../components/3DModels/FarmBotModel';
+import backImage from '../../assets/images/360.png';
 
 const dictionaries = {
   plants: findAllPlants,
-  plantTypes: findAllPlantsTypes,
+  plantTypes: findAllTypes,
 };
 
 const Home = () => {
   const [form] = useForm();
+  const [modelRegime, setModelRegime] = useState(true);
   const [zone, setZone] = useState({});
+
+  const handleModelRegime = () => {
+    setModelRegime((prev) => !prev);
+  };
 
   const [{ plants, plantTypes }] = useDictionaries(dictionaries);
 
@@ -25,11 +42,42 @@ const Home = () => {
     multiple: false,
   });
 
-  const handlePlant = useCallback(() => {
-    const data = form.getFieldsValue();
-    const plant = plants?.content?.find((el) => el.id === data.plantId);
+  const temperatureMarks = useMemo(
+    () => ({
+      0: '0°C',
+      [zone?.plant?.temperatureMin]: `${zone?.plant?.temperatureMin}°C`,
+      [zone?.plant?.temperatureMax]: `${zone?.plant?.temperatureMax}°C`,
+      100: '100°C',
+    }),
+    [zone?.plant],
+  );
 
-    update({ ...zone, ...data, plant })
+  const humidityMarks = {
+    0: '0%',
+    [zone?.plant?.humidityMin]: `${zone?.plant?.humidityMin}°C`,
+    [zone?.plant?.humidityMax]: `${zone?.plant?.humidityMax}°C`,
+    100: '100%',
+  };
+
+  const handlePlant = useCallback(() => {
+    const { mode, plantId, temperature, humidity } = form.getFieldsValue();
+
+    if (!plantId) {
+      notification.warning({ message: 'Selecteaza planta' });
+      return;
+    }
+
+    const plant = plants?.content?.find((el) => el.id === plantId);
+    [plant.temperatureMin, plant.temperatureMax] = temperature ?? [
+      plant.temperatureMin,
+      plant.temperatureMax,
+    ];
+    [plant.humidityMin, plant.humidityMax] = humidity ?? [
+      plant.humidityMin,
+      plant.humidityMax,
+    ];
+
+    update({ ...zone, mode, plant })
       .then(() =>
         notification.success({ message: 'Datele au fost salvate cu succes' }),
       )
@@ -47,15 +95,34 @@ const Home = () => {
   }, [selected, zones]);
 
   useEffect(() => {
-    form.setFieldsValue({ ...zone, plantId: zone?.plant?.id });
+    const humidity = [zone?.plant?.humidityMin, zone?.plant?.humidityMax];
+    const temperature = [
+      zone?.plant?.temperatureMin,
+      zone?.plant?.temperatureMax,
+    ];
+
+    form.setFieldsValue({
+      ...zone,
+      plantId: zone?.plant?.id,
+      humidity,
+      temperature,
+    });
   }, [zone, form]);
 
   return (
     <div className="home">
-      {/* TODO: refactor la ceia ce ii mai jos */}
-
-      <div className={`home__areas ${!zone?.id ? 'active' : ''}`}>
-        <h5 className="home__areas-title">Selectează zona</h5>
+      <div className={`home__model ${modelRegime ? 'active' : ''}`}>
+        <FarmBotModel handleModelRegime={handleModelRegime} />
+      </div>
+      <div
+        className={`home__areas ${!modelRegime && !zone?.id ? 'active' : ''}`}
+      >
+        <Image
+          className="home__areas-back"
+          src={backImage}
+          preview={false}
+          onClick={handleModelRegime}
+        />
         {render()}
       </div>
 
@@ -70,9 +137,11 @@ const Home = () => {
             <div className="home__area-title">
               <h3>Zona nr.{zone?.address + 1}</h3>{' '}
               <Icon
-                name={plantTypes?.content
-                  ?.find((el) => el.id === zone?.plant?.typeId)
-                  ?.name?.toLowerCase()}
+                name={
+                  plantTypes?.content?.find(
+                    (el) => el.id === zone?.plant?.typeId,
+                  )?.name || 'default'
+                }
               />
             </div>
           </div>
@@ -117,18 +186,48 @@ const Home = () => {
                   ))}
               </Select>
             </Form.Item>
-            <Form.Item label="Umeditatea" name="humidity">
-              <Slider defaultValue={35} range />
-            </Form.Item>
-            <Form.Item label="Iluminarea" name="humidity">
-              <Slider defaultValue={35} range />
-            </Form.Item>
-            <Row style={{ gap: '20px', marginTop: '25px' }}>
-              <Button onClick={clear}>Înapoi</Button>
-              <Button type="primary" onClick={handlePlant}>
-                {zone?.plant?.id ? 'Modifică' : 'Plantează'}
-              </Button>
-            </Row>
+            {zone?.plant?.id ? (
+              <>
+                <Tooltip
+                  placement="left"
+                  className="home__area-plant--info"
+                  title={zone?.plant?.description}
+                >
+                  <InfoCircleOutlined size={30} />
+                  Informație despre plantă
+                </Tooltip>
+                <Form.Item
+                  name="humidity"
+                  label="Umiditatea"
+                  labelCol={{ span: 24 }}
+                >
+                  <Slider range marks={humidityMarks} />
+                </Form.Item>
+                <Form.Item
+                  name="temperature"
+                  label="Temperatura"
+                  labelCol={{ span: 24 }}
+                >
+                  <Slider
+                    range
+                    marks={temperatureMarks}
+                    disabled={!zone?.plant?.id}
+                  />
+                </Form.Item>
+              </>
+            ) : null}
+            <Button
+              className="home__btn-plant"
+              block
+              type="primary"
+              onClick={handlePlant}
+            >
+              {zone?.plant?.id ? 'Modifică' : 'Plantează'}
+            </Button>
+            <Divider />
+            <Button block onClick={clear}>
+              Înapoi
+            </Button>
           </Form>
         </div>
       </div>

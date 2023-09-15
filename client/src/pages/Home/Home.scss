@@ -1,68 +1,116 @@
 .home {
   position: relative;
-  .calendar__modal-area--list {
-    max-height: 830px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 160px);
+  justify-content: center;
+  &__model {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    &.active {
+      opacity: 1;
+    }
   }
-  .calendar__modal-area--item {
-    height: 200px;
-  }
-  &__area-info,
   &__areas {
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s linear;
+    position: absolute;
+    max-width: 800px;
+    width: 100%;
+    transform: translateX(-50%);
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     &.active {
       opacity: 1;
       pointer-events: initial;
       transition: all 0.3s linear;
     }
   }
-  &__area-content {
+  .calendar__modal-area--list {
+    max-width: 800px;
+    height: calc(100vh - 250px);
+    max-height: none;
+    grid-gap: 0;
+    border: 5px solid #cda26e;
+    border-radius: 10px;
+    padding-right: 0;
+  }
+  .calendar__modal-area--item {
+    border-radius: 0px;
+    background: $ground;
+    min-height: 260px;
+    height: 100%;
+    &:nth-child(1) {
+      border-top-left-radius: 5px;
+    }
+    &:nth-child(2) {
+      border-top-right-radius: 5px;
+    }
+  }
+  &__areas-back {
+    width: 100px !important;
+    height: 100px !important;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  &__area {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s linear;
+    justify-content: space-around;
+    width: 100%;
+    &.active {
+      opacity: 1;
+      pointer-events: initial;
+      transition: all 0.3s linear;
+    }
   }
   &__area-title {
     display: flex;
-    gap: 10px;
-    text-align: center;
     align-items: center;
+    gap: 20px;
     margin-bottom: 20px;
     svg {
-      width: 30px;
       height: 30px;
+      width: 30px;
     }
   }
-  &__areas {
-    position: absolute;
-    width: 100%;
+  &__area-container {
     max-width: 800px;
-    transform: translate(-50%);
-    left: 50%;
-  }
-  &__areas-title {
-    margin-bottom: 20px;
-  }
-  &__area-info {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  &__area-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    max-width: 800px;
   }
-  &__area-plant {
+  &__area-ground {
     width: 500px;
     height: 500px;
     border-radius: 10px;
     background-color: $ground;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  &__area-functionality {
+  &__area-info {
+    max-width: 500px;
     width: 100%;
-    max-width: 600px;
+  }
+  &__area-plant--info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  &__btn-plant {
+    margin-top: 20px;
   }
 }

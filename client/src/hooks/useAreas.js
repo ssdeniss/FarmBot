@@ -81,6 +81,7 @@ export const useAreas = ({
         onClear={() => setSelected([])}
         allowClear
         showSearch
+        showArrow
         filterOption={(input, option) =>
           option.children.toLowerCase().indexOf(input.toLowerCase()) !== -1
         }

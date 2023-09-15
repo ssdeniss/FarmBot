@@ -13,11 +13,11 @@ const Icon = ({
     <svg
       className={className}
       onClick={onClick}
-      {...rest}
       width={width}
       height={height}
+      {...rest}
     >
-      <use href={`${sprite}#${name}`} />
+      <use href={`${sprite}#${name?.toString()?.toLowerCase()}`} />
     </svg>
   );
 };

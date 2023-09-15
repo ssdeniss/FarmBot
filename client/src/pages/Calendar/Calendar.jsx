@@ -64,8 +64,8 @@ const Calendar = () => {
 
   return (
     <div className="calendar">
-      <div style={{ gap: '20px', display: 'flex', flexDirection: 'row' }}>
-        <div>Zone select:</div>
+      <div className="calendar__area-select">
+        <div className="calendar__area-select--title">Selectează zonele</div>
         {render()}
       </div>
 
