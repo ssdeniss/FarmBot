@@ -44,7 +44,7 @@
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@uifabric/file-type-icons": "^7.6.30",
-    "antd": "^5.2.0",
+    "antd": "5.2.0",
     "browser-image-compression": "^2.0.2",
     "cropperjs": "^1.5.13",
     "date-fns": "^2.23.0",

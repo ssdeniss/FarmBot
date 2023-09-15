@@ -61,6 +61,7 @@ export const useAreas = ({
           onClick={() =>
             curentZone ? handleAreaClick(curentZone.id) : () => {}
           }
+          disabled={!curentZone?.id}
         >
           {curentZone?.id
             ? `${curentZone?.plant?.name || ''}

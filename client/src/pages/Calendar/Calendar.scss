@@ -76,9 +76,7 @@
     padding-right: 10px;
   }
   &__modal-area--item {
-    height: 100% !important;
-    max-height: 100px !important;
-    min-height: 100px !important;
+    height: 100px;
   }
   &__modal-event-dot {
     width: 15px;
@@ -103,7 +101,7 @@
     }
   }
   &__modal-events--list {
-    max-height: 310px;
+    max-height: 430px;
     overflow: auto;
   }
   &__modal-info {

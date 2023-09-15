@@ -42,7 +42,7 @@ const Calendar = () => {
   const events = useMemo(() => {
     return content.map((el) => ({
       ...el,
-      backgroundColor: el.mode === MODES.TEMPERATURE ? '#FF0000' : '#0000FF',
+      backgroundColor: el.mode === MODES.TEMPERATURE ? '#f4ca16' : '#1890ff',
     }));
   }, [content]);
 

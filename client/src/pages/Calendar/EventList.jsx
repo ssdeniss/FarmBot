@@ -66,8 +66,13 @@ const EventList = ({ content, zones, selectedDay, reload = () => {} }) => {
   const getZonelabel = (zoneId) => {
     const zone = zones.find((el) => el.id === zoneId);
     return (
-      <div className="calendar__modal-event-area">
-        {`${zone?.plant?.name || ''} ${zone?.address + 1 || ''}`}
+      <div>
+        <div className="calendar__modal-event-area">
+          {`zona - ${zone?.address + 1 || ''}  `}
+        </div>
+        <div className="calendar__modal-event-area">
+          {zone?.plant?.name || ''}
+        </div>
       </div>
     );
   };
