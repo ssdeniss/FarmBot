@@ -1,16 +1,16 @@
 import React, { Suspense, useEffect, useMemo, useRef } from 'react';
 import { Canvas, extend, useFrame, useThree } from 'react-three-fiber';
 import { useGLTF } from '@react-three/drei';
-// eslint-disable-next-line
 import { OrbitControls } from 'three-stdlib';
 import model from '../../assets/farm.glb';
 
 const Controls = ({ center }) => {
   const { camera, gl, invalidate } = useThree();
   const ref = useRef();
+
   useFrame(() => ref.current.update());
-  // eslint-disable-next-line
   useEffect(() => void ref.current.addEventListener('change', invalidate), []);
+
   return (
     <orbitControls
       ref={ref}
@@ -31,9 +31,8 @@ const Controls = ({ center }) => {
 };
 export const FarmBotModel = ({ handleModelRegime = () => {} }) => {
   const { nodes, materials } = useGLTF(model);
-  // eslint-disable-next-line
   const cameraRef = useRef();
-  extend({ OrbitControls });
+  extend({ OrbitControls } );
   const boundingBox = useMemo(() => {
     if (nodes && nodes.Cube && nodes.Cube.geometry) {
       nodes.Cube.geometry.computeBoundingBox();
