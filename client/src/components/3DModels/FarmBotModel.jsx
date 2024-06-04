@@ -9,7 +9,10 @@ const Controls = ({ center }) => {
   const ref = useRef();
 
   useFrame(() => ref.current.update());
-  useEffect(() => void ref.current.addEventListener('change', invalidate), []);
+  useEffect(
+    () => ref.current.addEventListener('change', invalidate),
+    [invalidate],
+  );
 
   return (
     <orbitControls
@@ -32,7 +35,7 @@ const Controls = ({ center }) => {
 export const FarmBotModel = ({ handleModelRegime = () => {} }) => {
   const { nodes, materials } = useGLTF(model);
   const cameraRef = useRef();
-  extend({ OrbitControls } );
+  extend({ OrbitControls });
   const boundingBox = useMemo(() => {
     if (nodes && nodes.Cube && nodes.Cube.geometry) {
       nodes.Cube.geometry.computeBoundingBox();
