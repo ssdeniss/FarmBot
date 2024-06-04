@@ -3,6 +3,7 @@ package md.utm.farmbot.backend.dtos.plants;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 
 @Data
 public class PlantsResponse {
@@ -14,4 +15,5 @@ public class PlantsResponse {
     private BigDecimal humidityMax;
     private BigDecimal temperatureMin;
     private BigDecimal temperatureMax;
+    private Long growingTime;
 }

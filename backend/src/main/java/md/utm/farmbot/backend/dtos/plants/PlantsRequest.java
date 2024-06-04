@@ -5,6 +5,8 @@ import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.time.Instant;
+
 @Data
 public class PlantsRequest {
     @NotNull
@@ -16,4 +18,6 @@ public class PlantsRequest {
     private BigDecimal humidityMax;
     private BigDecimal temperatureMin;
     private BigDecimal temperatureMax;
+    private Long growingTime;
+
 }

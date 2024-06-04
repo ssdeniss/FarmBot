@@ -15,6 +15,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+
 @Service
 @RequiredArgsConstructor
 public class ZonesService {
@@ -48,11 +50,14 @@ public class ZonesService {
     public Either<PlatformException, Zones> update(Long id, Zones changeset) {
         return
                 findById(id)
-                        .map(persisted ->
-                                persisted
-                                        .setAddress(changeset.getAddress())
-                                        .setMode(changeset.getMode())
-                                        .setPlant(changeset.getPlant())
+                        .map(persisted -> {
+                                    setPlantDate(persisted, changeset);
+                                    persisted
+                                            .setAddress(changeset.getAddress())
+                                            .setMode(changeset.getMode())
+                                            .setPlant(changeset.getPlant());
+                                    return persisted;
+                                }
                         )
                         .flatMap(zone -> ExceptionUtils.trial(() -> {
                             try {
@@ -70,5 +75,16 @@ public class ZonesService {
                             repository.delete(type);
                             return ResponseEntity.ok().build();
                         }));
+    }
+
+
+    public void setPlantDate(Zones existent, Zones changeset) {
+        if (changeset.getPlant() != null) {
+            if (existent.getPlant() == null || !existent.getPlant().getId().equals(changeset.getPlant().getId())) {
+                existent.setPlantDate(Instant.now());
+            }
+        } else {
+            existent.setPlantDate(null);
+        }
     }
 }

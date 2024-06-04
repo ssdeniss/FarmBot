@@ -121,6 +121,21 @@ const EditPlantForm = ({ plant, onSubmit, onCancel, errors, typeId }) => {
               />
             </Form.Item>
           </Col>
+          <Col span={24}>
+            <Form.Item label="Timpul de crestere" name="growingTime">
+              <Input
+                onChange={(e) => {
+                  form.setFieldsValue({
+                    growingTime: floatValidator(
+                      dotValidator(e.target.value),
+                      3,
+                      2,
+                    ),
+                  });
+                }}
+              />
+            </Form.Item>
+          </Col>
         </Row>
       </Form>
     </Modal>

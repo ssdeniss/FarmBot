@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.Instant;
 
 @ToString
 @Entity
@@ -43,4 +44,6 @@ public class Plants {
     @Column(name = "TEMPERATURE_MAX")
     private BigDecimal temperatureMax;
 
+    @Column(name="GROWING_TIME")
+    private Long growingTime;
 }
