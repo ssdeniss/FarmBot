@@ -25,6 +25,8 @@ export const useAreas = ({
 
   const [{ zones }, reload] = useDictionaries(dictionaries);
 
+  console.log(zones);
+
   useEffect(() => {
     findByCode(ZONES_COUNT_CODE).then((res) => setZonesCount(res.value));
   }, []);

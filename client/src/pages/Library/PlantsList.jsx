@@ -102,6 +102,7 @@ const PlantsList = ({ typeId }) => {
           width: 40,
         },
       ),
+      Column.text('growingTime', 'Timpul de crestere (zile)', { width: 50 }),
       Column.actions(
         'Acțiune',
         (record) => (

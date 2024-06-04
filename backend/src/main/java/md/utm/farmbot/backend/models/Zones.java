@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 import md.utm.farmbot.backend.enums.ZoneMode;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 @ToString
 @Entity
@@ -32,4 +33,8 @@ public class Zones {
 
     @Column(name = "ADDRESS", unique = true)
     private Integer address;
+
+    @Column(name="PLANT_DATE")
+    private Instant plantDate;
+
 }

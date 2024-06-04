@@ -43,6 +43,7 @@ public class PlantsService {
                         .map(persisted ->
                                 persisted
                                         .setName(changeset.getName())
+                                        .setGrowingTime(changeset.getGrowingTime())
                                         .setDescription(changeset.getDescription())
                                         .setHumidityMin(changeset.getHumidityMin())
                                         .setHumidityMax(changeset.getHumidityMax())

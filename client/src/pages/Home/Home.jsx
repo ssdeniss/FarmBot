@@ -34,6 +34,9 @@ const Home = () => {
   const handleModelRegime = () => {
     setModelRegime((prev) => !prev);
   };
+  useEffect(() => {
+    console.log(zone, 'zone');
+  }, [zone]);
 
   const [{ plants, plantTypes }] = useDictionaries(dictionaries);
 
@@ -111,126 +114,130 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className={`home__model ${modelRegime ? 'active' : ''}`}>
-        <FarmBotModel handleModelRegime={handleModelRegime} />
-      </div>
-      <div
-        className={`home__areas ${!modelRegime && !zone?.id ? 'active' : ''}`}
-      >
-        <Image
-          className="home__areas-back"
-          src={backImage}
-          preview={false}
-          onClick={handleModelRegime}
-        />
-        {render()}
-      </div>
-
-      <div className={`home__area-info ${zone?.id ? 'active' : ''}`}>
-        <div className="home__area-item">
-          <div className="home__area-content">
-            {/* Aici patrat la zona ({zone?.address + 1}) sfarsit patrat ||| Poate
+      {modelRegime && !zone?.id ? (
+        <div className="home__model">
+          <FarmBotModel handleModelRegime={handleModelRegime} />
+        </div>
+      ) : null}
+      {!modelRegime && !zone?.id ? (
+        <div className="home__areas">
+          <Image
+            className="home__areas-back"
+            src={backImage}
+            preview={false}
+            onClick={handleModelRegime}
+          />
+          {render()}
+        </div>
+      ) : null}
+      {!modelRegime && zone?.id ? (
+        <div className="home__area-info">
+          <div className="home__area-item">
+            <div className="home__area-content">
+              {/* Aici patrat la zona ({zone?.address + 1}) sfarsit patrat ||| Poate
             slider pentru umiditate, temperatura la planta? (pentru a modifica
             si de aici temperatura sau umiditatea) ++ Imagine la planta P.S.
             datele la planta o sa se schimbe automat daca le schimbam in
             update(... plant .some new.) */}
-            <div className="home__area-title">
-              <h3>Zona nr.{zone?.address + 1}</h3>{' '}
-              <Icon
-                name={
-                  plantTypes?.content?.find(
-                    (el) => el.id === zone?.plant?.typeId,
-                  )?.name || 'default'
-                }
-              />
+              <div className="home__area-title">
+                <h3>Zona nr.{zone?.address + 1}</h3>
+                <Icon
+                  name={
+                    plantTypes?.content?.find(
+                      (el) => el.id === zone?.plant?.typeId,
+                    )?.name || 'default'
+                  }
+                />
+              </div>
             </div>
+            <div className="home__area-plant" />
           </div>
-          <div className="home__area-plant" />
-        </div>
-        <div className="home__area-functionality">
-          <Form form={form} initialValues={zone}>
-            <Form.Item
-              label="Mod de funcționare"
-              name="mode"
-              labelCol={{ span: 24 }}
-            >
-              <Select style={{ width: '100%' }} allowClear>
-                {ZoneMode.content.map((row) => (
-                  <Select.Option value={row.name} key={row.name}>
-                    {row.value}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label="Plantă"
-              name="plantId"
-              initialValue={zone?.plant?.id}
-              labelCol={{ span: 24 }}
-            >
-              <Select
-                disabled={zone?.plant?.id}
-                allowClear
-                showSearch
-                filterOption={(input, option) =>
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) !==
-                  -1
-                }
+          <div className="home__area-functionality">
+            <Form form={form} initialValues={zone}>
+              <Form.Item
+                label="Mod de funcționare"
+                name="mode"
+                labelCol={{ span: 24 }}
               >
-                {plants.content
-                  .sort((a, b) => a.name.localeCompare(b.name))
-                  .map((option) => (
-                    <Select.Option key={option.id} value={option.id}>
-                      {`${option.name}`}
+                <Select style={{ width: '100%' }} allowClear>
+                  {ZoneMode.content.map((row) => (
+                    <Select.Option value={row.name} key={row.name}>
+                      {row.value}
                     </Select.Option>
                   ))}
-              </Select>
-            </Form.Item>
-            {zone?.plant?.id ? (
-              <>
-                <Tooltip
-                  placement="left"
-                  className="home__area-plant--info"
-                  title={zone?.plant?.description}
+                </Select>
+              </Form.Item>
+              <Form.Item
+                label="Plantă"
+                name="plantId"
+                initialValue={zone?.plant?.id}
+                labelCol={{ span: 24 }}
+              >
+                <Select
+                  disabled={zone?.plant?.id}
+                  allowClear
+                  showSearch
+                  filterOption={(input, option) =>
+                    option.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) !== -1
+                  }
                 >
-                  <InfoCircleOutlined size={30} />
-                  Informație despre plantă
-                </Tooltip>
-                <Form.Item
-                  name="humidity"
-                  label="Umiditatea"
-                  labelCol={{ span: 24 }}
-                >
-                  <Slider range marks={humidityMarks} />
-                </Form.Item>
-                <Form.Item
-                  name="temperature"
-                  label="Temperatura"
-                  labelCol={{ span: 24 }}
-                >
-                  <Slider
-                    range
-                    marks={temperatureMarks}
-                    disabled={!zone?.plant?.id}
-                  />
-                </Form.Item>
-              </>
-            ) : null}
-            <Button
-              className="home__btn-plant"
-              block
-              type="primary"
-              onClick={handlePlant}
-            >
-              {zone?.plant?.id ? 'Modifică' : 'Plantează'}
-            </Button>
-            <Divider />
-            <Button block onClick={clear}>
-              Înapoi
-            </Button>
-          </Form>
+                  {plants.content
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .map((option) => (
+                      <Select.Option key={option.id} value={option.id}>
+                        {`${option.name}`}
+                      </Select.Option>
+                    ))}
+                </Select>
+              </Form.Item>
+              {zone?.plant?.id ? (
+                <>
+                  <Tooltip
+                    placement="left"
+                    className="home__area-plant--info"
+                    title={zone?.plant?.description}
+                  >
+                    <InfoCircleOutlined size={30} />
+                    Informație despre plantă
+                  </Tooltip>
+                  <Form.Item
+                    name="humidity"
+                    label="Umiditatea"
+                    labelCol={{ span: 24 }}
+                  >
+                    <Slider range marks={humidityMarks} />
+                  </Form.Item>
+                  <Form.Item
+                    name="temperature"
+                    label="Temperatura"
+                    labelCol={{ span: 24 }}
+                  >
+                    <Slider
+                      range
+                      marks={temperatureMarks}
+                      disabled={!zone?.plant?.id}
+                    />
+                  </Form.Item>
+                </>
+              ) : null}
+              <Button
+                className="home__btn-plant"
+                block
+                type="primary"
+                onClick={handlePlant}
+              >
+                {zone?.plant?.id ? 'Modifică' : 'Plantează'}
+              </Button>
+              <Divider />
+              <Button block onClick={clear}>
+                Înapoi
+              </Button>
+            </Form>
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

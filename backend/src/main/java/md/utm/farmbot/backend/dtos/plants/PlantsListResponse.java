@@ -8,6 +8,7 @@ import md.utm.farmbot.backend.models.Plants;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.function.Function;
 
 public class PlantsListResponse extends SearchResult<PlantsListResponse.Entity> {
@@ -27,5 +28,6 @@ public class PlantsListResponse extends SearchResult<PlantsListResponse.Entity> 
         private BigDecimal humidityMax;
         private BigDecimal temperatureMin;
         private BigDecimal temperatureMax;
+        private Long growingTime;
     }
 }

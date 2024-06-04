@@ -20,7 +20,7 @@ export const numberValidator = (value, max) => {
   if (max) {
     field = field.slice(0, max);
   }
-  return field.replace(/[^\d]+/g, '');
+  return Number(field.replace(/[^\d]+/g, ''));
 };
 
 export const vinNumberValidator = (field) => {
