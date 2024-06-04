@@ -126,11 +126,16 @@ const Home = () => {
         {render()}
       </div>
 
-      <div className={`home__area ${!modelRegime && zone?.id ? 'active' : ''}`}>
-        <div className="home__area-container">
-          <div className="home__area-title">
-            <h3>Zona nr. {zone?.address + 1}</h3>
-            {zone?.plant?.typeId ? (
+      <div className={`home__area-info ${zone?.id ? 'active' : ''}`}>
+        <div className="home__area-item">
+          <div className="home__area-content">
+            {/* Aici patrat la zona ({zone?.address + 1}) sfarsit patrat ||| Poate
+            slider pentru umiditate, temperatura la planta? (pentru a modifica
+            si de aici temperatura sau umiditatea) ++ Imagine la planta P.S.
+            datele la planta o sa se schimbe automat daca le schimbam in
+            update(... plant .some new.) */}
+            <div className="home__area-title">
+              <h3>Zona nr.{zone?.address + 1}</h3>{' '}
               <Icon
                 name={
                   plantTypes?.content?.find(
@@ -138,16 +143,11 @@ const Home = () => {
                   )?.name || 'default'
                 }
               />
-            ) : null}
+            </div>
           </div>
-          <div className="home__area-ground">content</div>
-          {/* sfarsit patrat ||| Poate
-          slider pentru umiditate, temperatura la planta? (pentru a modifica si
-          de aici temperatura sau umiditatea) ++ Imagine la planta P.S. datele
-          la planta o sa se schimbe automat daca le schimbam in update(... plant
-          .some new.) */}
+          <div className="home__area-plant" />
         </div>
-        <div className="home__area-info">
+        <div className="home__area-functionality">
           <Form form={form} initialValues={zone}>
             <Form.Item
               label="Mod de funcționare"
